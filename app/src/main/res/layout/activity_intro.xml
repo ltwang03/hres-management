@@ -16,7 +16,7 @@
         android:contentDescription="TODO"
         android:foregroundGravity="center"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/btnSignup"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignin"
         app:srcCompat="@drawable/bg_intro3"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="-5dp" />
@@ -32,7 +32,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/btnSignup"
+        android:id="@+id/btnSignin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -40,7 +40,7 @@
         android:layout_marginBottom="25dp"
         android:background="@drawable/button_primary"
         android:backgroundTint="#E4B18C"
-        android:text="SIGN UP"
+        android:text="SIGN IN"
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/btnRegister"
@@ -55,10 +55,10 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="60dp"
         android:background="@drawable/button_primary"
-        android:backgroundTint="#DB9460"
+        android:backgroundTint="@color/orange_03"
         android:text="REGISTER"
         android:textColor="@color/white"
-        android:textSize="30dp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="161dp" />
