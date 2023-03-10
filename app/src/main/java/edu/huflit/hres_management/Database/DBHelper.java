@@ -1,17 +1,16 @@
 package edu.huflit.hres_management.Database;
-<<<<<<< HEAD
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-=======
+
 
 import android.content.Context;
->>>>>>> bc622f85a9d20a21c8922699768c03e2574670d4
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
-<<<<<<< HEAD
+
 
 public class DBHelper extends SQLiteOpenHelper    {
 
@@ -62,19 +61,6 @@ public class DBHelper extends SQLiteOpenHelper    {
 
     }
 
-=======
-//
-//public class DBHelper extends SQLiteOpenHelper {
-//
-//
-//    @Override
-//    public void onCreate(SQLiteDatabase db) {
-//
-//    }
-//
-//    @Override
-//    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-//
-//    }
-//}
->>>>>>> bc622f85a9d20a21c8922699768c03e2574670d4
+
+    
+

@@ -10,9 +10,10 @@
     tools:context=".LoginActivity">
 
     <ImageView
+        android:id="@+id/imv"
         android:layout_width="340dp"
         android:layout_height="150dp"
-        android:src="@drawable/logo_without_title"/>
+        android:src="@drawable/logo_without_title" />
 
     <TextView
         android:id="@+id/text"
@@ -46,15 +47,16 @@
 
 
         <EditText
+            android:id="@+id/lrestaurantID"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/holo_orange_dark"
-            android:maxEms="3"
-            android:textColor="@color/black"
             android:hint="Enter your Restaurant ID !"
-            android:textColorHint="#716966"
             android:inputType="text"
-            android:minHeight="48dp" />
+            android:maxEms="3"
+            android:minHeight="48dp"
+            android:textColor="@color/black"
+            android:textColorHint="#716966" />
         <!--            android:fontFamily="@font/urbanist_bold"-->
 
         <TextView
@@ -67,20 +69,17 @@
             tools:ignore="TextSizeCheck" />
 
         <EditText
+            android:id="@+id/ltvSignup"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/holo_orange_dark"
             android:ems="10"
-            android:textColor="@color/black"
 
             android:hint="Enter your UserName !"
-            android:textColorHint="#716966"
             android:inputType="text"
-            android:minHeight="48dp" />
-
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:minHeight="48dp"
+            android:textColor="@color/black"
+            android:textColorHint="#716966" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -92,18 +91,20 @@
             tools:ignore="TextSizeCheck" />
 
         <EditText
+            android:id="@+id/lpassword"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/holo_orange_dark"
             android:ems="10"
-            android:textColor="@color/black"
 
             android:hint="Enter your Pasword !"
-            android:textColorHint="#716966"
             android:inputType="textPassword"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            android:textColor="@color/black"
+            android:textColorHint="#716966" />
 
         <CheckBox
+            android:id="@+id/lcbRemember"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
@@ -113,6 +114,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/lbtnSignin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -128,19 +130,22 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Don't have an account?"
             android:textColor="#716966" />
+
         <TextView
+            android:id="@+id/ltvSignup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sign up"
+            android:textColor="#716966"
             android:textSize="15dp"
-            android:textStyle="bold"
-            android:textColor="#716966"/>
+            android:textStyle="bold" />
     </LinearLayout>
 
 

@@ -23,12 +23,12 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        lrestaurantID = (EditText) findViewById(R.id.edtRestaurantID);
-        lusername = (EditText) findViewById(R.id.edtUsername);
-        lpassword =(EditText) findViewById(R.id.edtPassword);
-        lcbRemember = (CheckBox) findViewById(R.id.cbRemember);
-        lbtnlogin = (Button) findViewById(R.id.btnSignin);
-        ltvSignup =(TextView) findViewById(R.id.tvSignup);
+        lrestaurantID = (EditText) findViewById(R.id.lrestaurantID);
+        lusername = (EditText) findViewById(R.id.ltvSignup);
+        lpassword =(EditText) findViewById(R.id.lpassword);
+        lcbRemember = (CheckBox) findViewById(R.id.lcbRemember);
+        lbtnlogin = (Button) findViewById(R.id.lbtnSignin);
+        ltvSignup =(TextView) findViewById(R.id.ltvSignup);
         DB = new DBHelper(this);
         lbtnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
