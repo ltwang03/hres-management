@@ -1,4 +1,4 @@
-package edu.huflit.hres_management;
+package edu.huflit.hres_management.Database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;

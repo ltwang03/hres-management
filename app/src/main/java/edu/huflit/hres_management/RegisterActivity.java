@@ -12,6 +12,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import edu.huflit.hres_management.Database.DBHelper;
+
 public class RegisterActivity extends AppCompatActivity {
     EditText rusername, rpassword , rrestaurantID;
     Button rbtnSignup;
