@@ -46,18 +46,15 @@
 
 
         <EditText
-            android:id="@+id/edtRestaurantID"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/holo_orange_dark"
-            android:drawableLeft="@drawable/baseline_restaurant_24"
-            android:hint=" Enter your Restaurant ID !"
-            android:inputType="text"
-
-            android:maxEms="5"
-            android:minHeight="48dp"
+            android:maxEms="3"
             android:textColor="@color/black"
-            android:textColorHint="#716966" />
+            android:hint="Enter your Restaurant ID !"
+            android:textColorHint="#716966"
+            android:inputType="text"
+            android:minHeight="48dp" />
         <!--            android:fontFamily="@font/urbanist_bold"-->
 
         <TextView
@@ -70,19 +67,16 @@
             tools:ignore="TextSizeCheck" />
 
         <EditText
-            android:id="@+id/edtUsername"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/holo_orange_dark"
-            android:drawableLeft="@drawable/baseline_person_outline_24"
-
-
             android:ems="10"
-            android:hint=" Enter your UserName !"
-            android:inputType="text"
-            android:minHeight="48dp"
             android:textColor="@color/black"
-            android:textColorHint="#716966" />
+
+            android:hint="Enter your UserName !"
+            android:textColorHint="#716966"
+            android:inputType="text"
+            android:minHeight="48dp" />
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -98,23 +92,18 @@
             tools:ignore="TextSizeCheck" />
 
         <EditText
-            android:id="@+id/edtPassword"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/holo_orange_dark"
-
-            android:drawableLeft="@drawable/baseline_password_24"
             android:ems="10"
-
-            android:hint=" Enter your Pasword !"
-
-            android:inputType="textPassword"
-            android:minHeight="48dp"
             android:textColor="@color/black"
-            android:textColorHint="#716966" />
+
+            android:hint="Enter your Pasword !"
+            android:textColorHint="#716966"
+            android:inputType="textPassword"
+            android:minHeight="48dp" />
 
         <CheckBox
-            android:id="@+id/cbRemember"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
@@ -124,7 +113,6 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnSignin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -135,7 +123,6 @@
         android:textColor="@color/white"
         android:textSize="30dp"
         app:backgroundTint="#A4634D" />
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -147,15 +134,13 @@
             android:layout_gravity="center"
             android:text="Don't have an account?"
             android:textColor="#716966" />
-
         <TextView
-            android:id="@+id/tvSignup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sign up"
-            android:textColor="#716966"
             android:textSize="15dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#716966"/>
     </LinearLayout>
 
 
