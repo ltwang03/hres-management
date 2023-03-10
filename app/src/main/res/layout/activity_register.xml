@@ -8,7 +8,9 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@color/white"
+    android:theme="@style/AppTheme"
     tools:context=".RegisterActivity">
+
     <ImageView
         android:layout_width="340dp"
         android:layout_height="150dp"
@@ -152,6 +154,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:text="Sign up"
+
         android:textColor="@color/white"
         android:textSize="30dp"
         app:backgroundTint="#A4634D"
