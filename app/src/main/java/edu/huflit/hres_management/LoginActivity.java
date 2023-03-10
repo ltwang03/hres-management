@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import edu.huflit.hres_management.Database.DBHelper;
+
 public class LoginActivity extends AppCompatActivity {
     EditText lusername, lpassword , lrestaurantID;
     CheckBox lcbRemember;
