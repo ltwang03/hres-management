@@ -6,14 +6,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:theme="@style/AppTheme"
     android:background="@color/white"
     tools:context=".LoginActivity">
 
     <ImageView
         android:layout_width="340dp"
         android:layout_height="150dp"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/logo_without_title"/>
+        android:src="@drawable/logo_without_title"
+        android:contentDescription="TODO"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/text"
@@ -24,8 +26,8 @@
         android:textColor="@color/black"
         android:textSize="45dp"
         android:layout_marginBottom="10dp"
-        android:textStyle="bold"/>
-    <!--        android:fontFamily="@font/urbanist_regular"/>-->
+        android:textFontWeight="800"
+        />
 
 
     <LinearLayout
@@ -43,7 +45,6 @@
             android:textStyle="bold"
             android:textSize="20dp"
             tools:ignore="TextSizeCheck" />
-        <!--            android:fontFamily="@font/urbanist_bold"-->
 
 
         <EditText
@@ -56,7 +57,6 @@
             android:textColorHint="#716966"
             android:inputType="text"
             android:minHeight="48dp" />
-        <!--            android:fontFamily="@font/urbanist_bold"-->
 
         <TextView
             android:layout_width="wrap_content"
@@ -121,25 +121,29 @@
         android:layout_marginEnd="32dp"
         android:background="@drawable/button_primary"
         android:text="Sign in"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:textStyle="bold"
         app:backgroundTint="#A4634D" />
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="10dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="You have an account?"
+            android:text="Don't have an account?"
             android:textColor="#716966" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign in"
+            android:text="Sign up"
+            android:textSize="15dp"
             android:textStyle="bold"
             android:textColor="#716966"/>
     </LinearLayout>
+
 
 </LinearLayout>

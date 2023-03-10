@@ -8,7 +8,9 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@color/white"
+    android:theme="@style/AppTheme"
     tools:context=".RegisterActivity">
+
     <ImageView
         android:layout_width="340dp"
         android:layout_height="150dp"
@@ -152,34 +154,31 @@
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:text="Sign up"
+
+        android:textColor="@color/white"
+        android:textSize="30dp"
         app:backgroundTint="#A4634D"
         android:background="@drawable/button_primary" />
 
-    <TextView
-        android:layout_marginTop="50dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:backgroundTint="#A4634D"
-        android:text="Forgot Password?"
-        android:textColor="#716966" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Don't have an account?"
+            android:text="You have an account?"
             android:textColor="#716966" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign up"
+            android:text="Sign in"
             android:textStyle="bold"
             android:textColor="#716966"/>
     </LinearLayout>
+
 
 </LinearLayout>
