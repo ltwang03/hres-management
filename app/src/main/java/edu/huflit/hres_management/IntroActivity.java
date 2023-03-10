@@ -1,6 +1,5 @@
 package edu.huflit.hres_management;
-
-import androidx.appcompat.app.AppCompatActivity;
+ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +14,7 @@ public class IntroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
-        mbtnSignin = (Button) findViewById(R.id.btnSignin);
+        mbtnSignin = (Button) findViewById(R.id .btnSignin);
         mbtnRegister = (Button) findViewById(R.id.btnRegister);
         mbtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,6 +30,5 @@ public class IntroActivity extends AppCompatActivity {
                 startActivity(signIn);
             }
         });
-
-    }
+     }
 }

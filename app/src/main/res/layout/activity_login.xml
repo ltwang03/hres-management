@@ -26,16 +26,13 @@
         android:textColor="@color/black"
         android:textSize="45dp"
         android:layout_marginBottom="10dp"
-        android:textFontWeight="800"
-        />
-
+        android:textFontWeight="800"        />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
@@ -45,7 +42,6 @@
             android:textStyle="bold"
             android:textSize="20dp"
             tools:ignore="TextSizeCheck" />
-
 
         <EditText
             android:layout_width="300dp"
@@ -73,8 +69,7 @@
             android:backgroundTint="@android:color/holo_orange_dark"
             android:ems="10"
             android:textColor="@color/black"
-
-            android:hint="Enter your UserName !"
+             android:hint="Enter your UserName !"
             android:textColorHint="#716966"
             android:inputType="text"
             android:minHeight="48dp" />
@@ -98,8 +93,7 @@
             android:backgroundTint="@android:color/holo_orange_dark"
             android:ems="10"
             android:textColor="@color/black"
-
-            android:hint="Enter your Pasword !"
+             android:hint="Enter your Pasword !"
             android:textColorHint="#716966"
             android:inputType="textPassword"
             android:minHeight="48dp" />
@@ -144,6 +138,4 @@
             android:textStyle="bold"
             android:textColor="#716966"/>
     </LinearLayout>
-
-
-</LinearLayout>
+ </LinearLayout>

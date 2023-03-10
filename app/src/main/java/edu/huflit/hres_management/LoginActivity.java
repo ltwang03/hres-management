@@ -1,6 +1,5 @@
 package edu.huflit.hres_management;
-
-import androidx.appcompat.app.AppCompatActivity;
+ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class LoginActivity extends AppCompatActivity {
