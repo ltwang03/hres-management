@@ -1,8 +1,12 @@
 package edu.huflit.hres_management;
 
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,16 +15,31 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import edu.huflit.hres_management.API.APIService;
+import edu.huflit.hres_management.API.model.LoginRequest;
+import edu.huflit.hres_management.API.model.LoginResponse;
 import edu.huflit.hres_management.Database.DBHelper;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText lusername, lpassword , lrestaurantID;
-    CheckBox lcbRemember;
-    Button lbtnlogin;
-    TextView ltvSignup;
-    DBHelper DB;
+    private EditText lusername, lpassword , lrestaurantID;
+    private CheckBox lcbRemember;
+    private Button lbtnlogin;
+    private TextView ltvSignup;
+    private DBHelper DB;
+    private SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedPreferences = getSharedPreferences("data", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", "");
+        if(!token.equals("")) {
+            Intent i = new Intent(LoginActivity.this, HomePageActivity.class);
+            startActivity(i);
+            finish();
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         lrestaurantID = (EditText) findViewById(R.id.lrestaurantID);
@@ -29,42 +48,38 @@ public class LoginActivity extends AppCompatActivity {
         lcbRemember = (CheckBox) findViewById(R.id.lcbRemember);
         lbtnlogin = (Button) findViewById(R.id.lbtnSignin);
         ltvSignup =(TextView) findViewById(R.id.ltvSignup);
-        DB = new DBHelper(this);
         lbtnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 String restaurantID = lrestaurantID.getText().toString();
-                String username = lusername.getText().toString();
+                String userName = lusername.getText().toString();
                 String password = lpassword.getText().toString();
-                if(username.equals("") || password.equals("") || lrestaurantID.equals("")) {
-                    Toast.makeText(LoginActivity.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Boolean checkAll = DB.checkUsernameandpassword(username,password);
-                    if(checkAll == true){
-                        Toast.makeText(LoginActivity.this, "Login successfully" , Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(LoginActivity.this, HomePageActivity.class);
-                        startActivity(i);
-                    }
-                    else {
-                        Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-
-
-
+                login(restaurantID,userName,password);
             }
         });
-        ltvSignup.setOnClickListener(new View.OnClickListener() {
+
+    }
+    private void login (String restaurantID, String userName, String password) {
+        LoginRequest loginRequest = new LoginRequest(restaurantID, userName, password);
+        APIService.apiService.login(loginRequest).enqueue(new Callback<LoginResponse>() {
             @Override
-            public void onClick(View view) {
-                Intent i = new Intent(LoginActivity.this,RegisterActivity.class);
+            public void onResponse(@NonNull Call<LoginResponse> call,@NonNull Response<LoginResponse> response) {
+                if(response.code() != 200) {
+                    Toast.makeText(LoginActivity.this, "Vui lòng kiểm tra lại tài khoản", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                LoginResponse loginResponse = response.body();
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("token", loginResponse.getToken());
+                Toast.makeText(LoginActivity.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(LoginActivity.this, HomePageActivity.class);
                 startActivity(i);
+                finish();
+            }
+            @Override
+            public void onFailure(@NonNull Call<LoginResponse> call,@NonNull Throwable t) {
+                Toast.makeText(LoginActivity.this, "Có lỗi trong quá trình đăng nhập vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
     }
 }

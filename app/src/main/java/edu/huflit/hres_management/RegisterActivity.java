@@ -21,7 +21,6 @@ public class RegisterActivity extends AppCompatActivity {
     RadioGroup rradgroup;
     RadioButton rradManage,rradStaff;
     TextView rtvSignin;
-    DBHelper DB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,45 +30,14 @@ public class RegisterActivity extends AppCompatActivity {
         rrestaurantID = (EditText) findViewById(R.id.res_edtRestaurantId);
         rbtnSignup = (Button)findViewById(R.id.btnSignup);
         rtvSignin = (TextView)findViewById(R.id.tvSignin);
+        rradgroup = (RadioGroup) findViewById(R.id.radCheckRole);
         rradManage= (RadioButton) findViewById(R.id.radManage);
         rradStaff =(RadioButton) findViewById(R.id.radStaff);
-        DB = new DBHelper(this);
-        rbtnSignup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String restaurantID = rrestaurantID.getText().toString();
-                String username = rusername.getText().toString();
-                String password = rpassword.getText().toString();
-                if(username.equals("") || password.equals("") || rrestaurantID.equals("")) {
-                    Toast.makeText(RegisterActivity.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
-                }
-                else {
-
-                    Boolean checkuser = DB.checkUsername(username);
-                    if(checkuser == false) {
-                        Boolean insert = DB.insertData(username,password);
-                        if(insert == true){
-                            Toast.makeText(RegisterActivity.this, "REGISTER SUCCESSFULLy"  , Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
-                            startActivity(i);
-                        }
-                        else {
-                            Toast.makeText(RegisterActivity.this, "Register failed", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    else {
-                        Toast.makeText(RegisterActivity.this, " User already exists! " ,  Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-
-
-
-
-
-            }
-        });
-
+        if(rradManage.isChecked() ) {
+            Toast.makeText(this, "this is manager", Toast.LENGTH_SHORT).show();
+        } else if(rradStaff.isChecked()){
+            Toast.makeText(this, "this is staff", Toast.LENGTH_SHORT).show();
+        }
 
     }
 }
