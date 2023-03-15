@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
             }
             @Override
             public void onFailure(@NonNull Call<LoginResponse> call,@NonNull Throwable t) {
-                Toast.makeText(LoginActivity.this, "Có lỗi trong quá trình đăng nhập vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Server đang có vấn đề vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();
             }
         });
     }
