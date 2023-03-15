@@ -7,6 +7,8 @@ import edu.huflit.hres_management.API.model.LoginRequest;
 import edu.huflit.hres_management.API.model.LoginResponse;
 import edu.huflit.hres_management.API.model.RegisterManagerRequest;
 import edu.huflit.hres_management.API.model.RegisterManagerResponse;
+import edu.huflit.hres_management.API.model.RegisterStaffRequest;
+import edu.huflit.hres_management.API.model.RegisterStaffResponse;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -25,8 +27,8 @@ public interface APIService {
             .create(APIService.class);
     @POST("auth/login")
     Call<LoginResponse> login(@Body LoginRequest loginRequest);
-
     @POST("auth/register/manager")
     Call<RegisterManagerResponse> registerManager(@Body RegisterManagerRequest registerManagerRequest);
-
+    @POST("auth/register/staff")
+    Call<RegisterStaffResponse> registerStaff(@Body RegisterStaffRequest registerStaffRequest);
 }
