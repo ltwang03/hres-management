@@ -7,7 +7,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.metrics.Event;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -29,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button lbtnlogin;
     private TextView ltvSignup;
     private DBHelper DB;
+    private  boolean passwordvisible;
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -48,6 +54,33 @@ public class LoginActivity extends AppCompatActivity {
         lcbRemember = (CheckBox) findViewById(R.id.lcbRemember);
         lbtnlogin = (Button) findViewById(R.id.lbtnSignin);
         ltvSignup =(TextView) findViewById(R.id.ltvSignup);
+        lpassword.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                final int right= 2;
+                if(motionEvent.getAction()==motionEvent.ACTION_UP){
+                    if(motionEvent.getRawX()>= lpassword.getRight()-lpassword.getCompoundDrawables()[right].getBounds().width()){
+                        int selection = lpassword.getSelectionEnd();
+                        if(passwordvisible){
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                                lpassword.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.baseline_visibility_off_24,0);
+                                lpassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                                passwordvisible=false;
+                            }
+                        }else {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                                lpassword.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.baseline_visibility_24,0);
+                            }
+                            lpassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            passwordvisible=true;
+                        }
+                        lpassword.setSelection(selection);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
         lbtnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
