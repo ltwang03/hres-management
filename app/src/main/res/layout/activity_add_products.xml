@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:theme="@style/AppTheme"
+    tools:context=".AddProductsAcitivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Thêm món ăn"
+        style="@style/EditNameMenu"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_gravity="center">
+        <ImageView
+            android:id="@+id/img_add_product"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/bg_edit_add"
+            android:src="@drawable/food"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/bg_edit_add"
+            android:hint="Tên món ăn"
+            android:inputType="text"
+            android:paddingLeft="10dp"
+            android:textColor="@color/orange_01"
+            android:textColorHint="@color/orange_01"
+            android:textSize="25dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/orange_01"
+            android:background="@drawable/bg_edit_add"
+            android:hint="Giá món ăn"
+            android:inputType="number"
+            android:paddingLeft="10dp"
+            android:textColorHint="@color/orange_01"
+            android:textSize="25dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:background="@drawable/bg_edit_add">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phân loại: "
+                android:layout_gravity="center"
+                android:textColor="@color/orange_01"
+                android:textSize="25dp"/>
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                tools:ignore="TouchTargetSizeCheck" />
+
+        </LinearLayout>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:padding="5dp"
+            android:textColor="@color/orange_01"
+            android:textColorHint="@color/orange_01"
+            android:paddingLeft="10dp"
+            android:textSize="25dp"
+            android:hint="Mô tả món ăn"
+            android:background="@drawable/bg_edit_add"/>
+    </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginTop="50dp"
+        android:text="ADD"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:backgroundTint="@color/orange_03"
+        android:background="@drawable/button_primary"
+
+        />
+</LinearLayout>
