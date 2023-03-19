@@ -24,27 +24,27 @@ public class IntroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
-        mbtnSignin = (Button) findViewById(R.id.btnSignin);
-        mbtnRegister = (Button) findViewById(R.id.btnRegister);
-        if (ContextCompat.checkSelfPermission(IntroActivity.this,
-                Manifest.permission.INTERNET)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(IntroActivity.this, new String[]{Manifest.permission.INTERNET}, REQUEST_INTERNET_PERMISSION);
-        } else {
-            mbtnRegister.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent register = new Intent(IntroActivity.this, RegisterActivity.class);
-                    startActivity(register);
-                }
-            });
-            mbtnSignin.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent signIn = new Intent(IntroActivity.this, LoginActivity.class);
-                    startActivity(signIn);
-                }
-            });
-        }
+//        mbtnSignin = (Button) findViewById(R.id.btnSignin);
+//        mbtnRegister = (Button) findViewById(R.id.btnRegister);
+//        if (ContextCompat.checkSelfPermission(IntroActivity.this,
+//                Manifest.permission.INTERNET)
+//                != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(IntroActivity.this, new String[]{Manifest.permission.INTERNET}, REQUEST_INTERNET_PERMISSION);
+//        } else {
+//            mbtnRegister.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Intent register = new Intent(IntroActivity.this, RegisterActivity.class);
+//                    startActivity(register);
+//                }
+//            });
+//            mbtnSignin.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Intent signIn = new Intent(IntroActivity.this, LoginActivity.class);
+//                    startActivity(signIn);
+//                }
+//            });
+//        }
     }
 }
