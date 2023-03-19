@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("data", Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("token", "");
         if(!token.equals("")) {
-            Intent i = new Intent(LoginActivity.this, HomePageActivity.class);
+            Intent i = new Intent(LoginActivity.this, Home.class);
             startActivity(i);
             finish();
         }
@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("token", loginResponse.getToken());
                 Toast.makeText(LoginActivity.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(LoginActivity.this, HomePageActivity.class);
+                Intent i = new Intent(LoginActivity.this, Home.class);
                 startActivity(i);
                 finish();
             }
