@@ -63,7 +63,7 @@
                             android:layout_height="wrap_content"
                             android:text="Nhân Viên"
                             android:textColor="@color/black"
-                            android:textSize="30sp"
+                            android:textSize="25sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -93,7 +93,7 @@
                             android:layout_height="wrap_content"
                             android:text="Đơn Hàng"
                             android:textColor="@color/black"
-                            android:textSize="30sp"
+                            android:textSize="25sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -123,7 +123,7 @@
                             android:layout_height="wrap_content"
                             android:text="Booking"
                             android:textColor="@color/black"
-                            android:textSize="30sp"
+                            android:textSize="25sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -153,7 +153,7 @@
                             android:layout_height="wrap_content"
                             android:text="Khách Hàng"
                             android:textColor="@color/black"
-                            android:textSize="30sp"
+                            android:textSize="25sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -183,7 +183,7 @@
                             android:layout_height="wrap_content"
                             android:text="Món Ăn"
                             android:textColor="@color/black"
-                            android:textSize="30sp"
+                            android:textSize="25sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
