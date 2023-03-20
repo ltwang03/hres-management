@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ListStaffActivity"
+    android:orientation="vertical"
+    android:layout_weight="40">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Danh sách Món ăn"
+        style="@style/EditNameMenu"
+        android:textSize="35dp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="36">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcy_typefood"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </ScrollView>
+
+
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        layout="@layout/activity_toolbar_below"/>
+
+</LinearLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="10dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img_typefood"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            android:src="@drawable/khaivi"/>
+        <TextView
+            android:id="@+id/name_type"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:textSize="45dp"
+            android:gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/orange_03"
+            android:layout_toRightOf="@id/img_typefood"
+            android:text="Khai vị"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_alignParentEnd="true"
+            android:gravity="end|center_horizontal"
+            android:src="@drawable/next_ic" />
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

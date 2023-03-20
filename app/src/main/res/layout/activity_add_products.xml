@@ -46,7 +46,6 @@
             android:inputType="text"
             android:paddingLeft="10dp"
             android:textColor="@color/orange_01"
-
             android:textColorHint="@color/orange_01"
             android:textSize="25dp" />
 
