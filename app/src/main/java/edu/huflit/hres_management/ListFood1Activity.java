@@ -4,24 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListTypeFoodActivity extends AppCompatActivity {
-
+public class ListFood1Activity extends AppCompatActivity {
 
     private RecyclerView rcvFood1;
     private Food1Adapter food1Adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_type_food);
+        setContentView(R.layout.activity_list_food1);
 
         rcvFood1 = findViewById(R.id.rcvFood1);
         food1Adapter = new Food1Adapter(this);
@@ -29,8 +24,6 @@ public class ListTypeFoodActivity extends AppCompatActivity {
         rcvFood1.setLayoutManager(linearLayoutManager);
         food1Adapter.setData(getListFood1());
         rcvFood1.setAdapter(food1Adapter);
-
-
     }
     private List<Food1> getListFood1(){
         List<Food1> list = new ArrayList<>();
@@ -48,5 +41,4 @@ public class ListTypeFoodActivity extends AppCompatActivity {
 
         return list;
     }
-
 }

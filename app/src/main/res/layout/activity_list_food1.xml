@@ -4,27 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListStaffActivity"
+    tools:context=".ListFood1Activity"
     android:orientation="vertical"
     android:layout_weight="40">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_weight="3"
         android:gravity="center"
-        android:padding="10dp"
-        android:text="Danh sách Nhân viên"
+        android:text="Khai vị"
         style="@style/EditNameMenu"
-        android:textSize="35dp"/>
+        android:textSize="40dp"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="36"
-        android:layout_margin="10dp">
+        android:layout_weight="36">
         <androidx.recyclerview.widget.RecyclerView
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
         </androidx.recyclerview.widget.RecyclerView>
     </ScrollView>
     <include
