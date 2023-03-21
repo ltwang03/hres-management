@@ -12,10 +12,10 @@
     tools:context=".RegisterActivity">
 
     <ImageView
-        android:layout_width="340dp"
-        android:layout_height="150dp"
+        android:layout_width="330dp"
+        android:layout_height="130dp"
         android:layout_marginTop="17dp"
-        android:src="@drawable/logo_without_title"/>
+        android:src="@drawable/logo_without_title" />
 
     <TextView
         android:id="@+id/text"
@@ -24,7 +24,7 @@
         android:layout_gravity="center"
         android:text="Let's you in"
         android:textColor="@color/black"
-        android:textSize="50dp"
+        android:textSize="45dp"
         android:layout_marginBottom="10dp"
         android:textStyle="bold" />
 
@@ -54,7 +54,47 @@
             android:minHeight="48dp"
             android:textColor="@color/black"
             android:textColorHint="#716966" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Full Name"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            tools:ignore="TextSizeCheck" />
 
+        <EditText
+            android:id="@+id/res_edtFullName"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/holo_orange_dark"
+            android:ems="10"
+            android:hint="Enter your Full Name !"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:textColor="@color/black"
+            android:textColorHint="#716966" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone Number"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            tools:ignore="TextSizeCheck" />
+
+        <EditText
+            android:id="@+id/res_edtPhoneNumber"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/holo_orange_dark"
+            android:ems="10"
+            android:hint="Enter your Phone Number !"
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:textColor="@color/black"
+            android:textColorHint="#716966" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
