@@ -25,7 +25,7 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText rusername, rpassword , rrestaurantID;
+    EditText rusername, rpassword , rrestaurantID, rfullName, rphoneNumber;
     Button rbtnSignup;
     RadioGroup rradgroup;
     RadioButton rradManage,rradStaff;
@@ -37,6 +37,8 @@ public class RegisterActivity extends AppCompatActivity {
         rusername = (EditText) findViewById(R.id.res_edtUsername);
         rpassword = (EditText) findViewById(R.id.res_edtPassword);
         rrestaurantID = (EditText) findViewById(R.id.res_edtRestaurantId);
+        rfullName = (EditText) findViewById(R.id.res_edtFullName);
+        rphoneNumber = (EditText) findViewById(R.id.res_edtPhoneNumber);
         rbtnSignup = (Button)findViewById(R.id.btnSignup);
         rtvSignin = (TextView)findViewById(R.id.tvSignin);
         rradgroup = (RadioGroup) findViewById(R.id.radCheckRole);
@@ -50,14 +52,18 @@ public class RegisterActivity extends AppCompatActivity {
                     String userName = rusername.getText().toString();
                     String password = rpassword.getText().toString();
                     String role = rradManage.getText().toString();
-                    registerManager(restaurantID, userName,password,role);
+                    String fullName = rfullName.getText().toString();
+                    Number phoneNumber = Integer.parseInt(rphoneNumber.getText().toString());
+                    registerManager(restaurantID, userName,password,role,fullName, phoneNumber);
 
                 } else if(rradStaff.isChecked()){
                     String restaurantID = rrestaurantID.getText().toString();
                     String userName = rusername.getText().toString();
                     String password = rpassword.getText().toString();
                     String role = rradManage.getText().toString();
-                    registerStaff(restaurantID, userName,password, role);
+                    String fullName = rfullName.getText().toString();
+                    Number phoneNumber = Integer.parseInt(rphoneNumber.getText().toString());
+                    registerStaff(restaurantID, userName,password, role, fullName, phoneNumber);
 
                 }else {
                     Toast.makeText(RegisterActivity.this, "Vui lòng chọn role của bạn!", Toast.LENGTH_SHORT).show();
@@ -66,8 +72,8 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
     }
-    private void registerManager(String restaurantID, String userName, String password, String role ) {
-        RegisterManagerRequest registerManagerRequest = new RegisterManagerRequest(restaurantID,userName, password, role);
+    private void registerManager(String restaurantID, String userName, String password, String role, String fullName, Number phoneNumber ) {
+        RegisterManagerRequest registerManagerRequest = new RegisterManagerRequest(restaurantID,userName, password, role, fullName, phoneNumber);
         APIService.apiService.registerManager(registerManagerRequest).enqueue(new Callback<RegisterManagerResponse>() {
             @Override
             public void onResponse(@NonNull Call<RegisterManagerResponse> call,@NonNull Response<RegisterManagerResponse> response) {
@@ -87,8 +93,8 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
-    private void registerStaff(String restaurantID, String userName, String password, String role) {
-        RegisterStaffRequest registerStaffRequest = new RegisterStaffRequest(restaurantID, userName, password, role);
+    private void registerStaff(String restaurantID, String userName, String password, String role, String fullName, Number phoneNumber) {
+        RegisterStaffRequest registerStaffRequest = new RegisterStaffRequest(restaurantID, userName, password, role, fullName, phoneNumber);
         APIService.apiService.registerStaff(registerStaffRequest).enqueue(new Callback<RegisterStaffResponse>() {
             @Override
             public void onResponse(@NonNull Call<RegisterStaffResponse> call,@NonNull Response<RegisterStaffResponse> response) {
