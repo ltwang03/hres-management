@@ -14,52 +14,111 @@ import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper    {
 
-    public static final String DBName = "Login.db";
+    public static final String DBName = "Userdata.db";
 
     public DBHelper(@Nullable Context context) {
-        super(context, "Login.db ", null, 1);
+        super(context, "Userdata.db", null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase MyDB) {
-        MyDB.execSQL("create Table users(username TEXT primary key , password TEXT)");
-
+        MyDB.execSQL("create Table Product(product_url TEXT  , product_name TEXT primary key, product_price INT , product_type TEXT , product_descripe TEXT )");
+        MyDB.execSQL("create Table Ordering(table_number TEXT ,check_in_time TEXT,check_out_time TEXT)");
+        MyDB.execSQL("create Table Tablee(location TEXT , booked boolean) ");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase MyDB, int i, int i1) {
-        MyDB.execSQL("drop Table if exists users");
+        MyDB.execSQL("drop Table if exists Product");
+        MyDB.execSQL("drop Table if exists Ordering");
+        MyDB.execSQL("drop Table if exists Tablee");
+
     }
-    public Boolean insertData(String username , String password ) {
+    public boolean insertOrderingData(String tableNumber, String checkInTime, String checkOutTime) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("table_number",tableNumber);
+        contentValues.put("check_in_time",checkInTime);
+        contentValues.put("check_out_time",checkOutTime);
+        long result = MyDB.insert("Ordering" , null,contentValues);
+        if(result == -1) return false;
+        else
+            return true;
+
+
+    }
+    public Boolean insertProductData(String productImageUrl, String productName , String productPrice, String productType, String productDescripe ) {
           SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("username" , username);
-        contentValues.put("password" , password);
-
-        long result = MyDB.insert("users",  null , contentValues);
+        contentValues.put("product_url" , productImageUrl);
+        contentValues.put("product_name" , productName);
+        contentValues.put("product_price" , productPrice);
+        contentValues.put("product_type" , productType);
+        contentValues.put("product_descripe" , productDescripe);
+        long result = MyDB.insert("Product",  null , contentValues);
         if(result == -1) return false;
         else
             return true;
     }
-    public Boolean checkUsername(String username) {
+    public Boolean updateProductData(String productImageUrl, String productName , String productPrice, String productType, String productDescripe ) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
-        Cursor cursor = MyDB.rawQuery("Select * from users where username = ?" , new String[] {username});
-        if(cursor.getCount() > 0)
-            return true;
-        else
-            return false;
-    }
-    public Boolean checkUsernameandpassword( String username ,String password) {
-        SQLiteDatabase MyDB = this.getWritableDatabase();
-        Cursor cursor = MyDB.rawQuery("Select * from users where username = ? and password = ? " , new String[] {  username,password});
-        if(cursor.getCount() > 0)
-            return true;
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("product_url" , productImageUrl);
+        contentValues.put("product_name" , productName);
+        contentValues.put("product_price" , productPrice);
+        contentValues.put("product_type" , productType);
+        contentValues.put("product_descripe" , productDescripe);
+        Cursor cursor  = MyDB.rawQuery("Select * from Product where productName = ?", new String[] {productName});
+        if(cursor.getCount() > 0 ) {
+            long result = MyDB.update("Product" , contentValues , "productName=?", new String[] {productName});
+            if(result == -1) return false;
             else
-                return false;
-        }
-
+                return true;
+        }else return false;
 
     }
+    public Boolean deleteProductData(String productName ) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+
+
+        Cursor cursor  = MyDB.rawQuery("Select * from Product where productName = ?", new String[] {productName});
+        if(cursor.getCount() > 0 ) {
+            long result = MyDB.delete("Product"  , "productName=?", new String[] {productName});
+            if(result == -1) return false;
+            else
+                return true;
+        }else return false;
+
+    }
+    public Cursor getProductData() {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+
+
+        Cursor cursor  = MyDB.rawQuery("Select * from Product1 ",null    );
+        return cursor;
+
+    }
+}
+
+//    public Boolean checkUsername(String username) {
+//        SQLiteDatabase MyDB = this.getWritableDatabase();
+//        Cursor cursor = MyDB.rawQuery("Select * from users where username = ?" , new String[] {username});
+//        if(cursor.getCount() > 0)
+//            return true;
+//        else
+//            return false;
+//    }
+//    public Boolean checkUsernameandpassword( String username ,String password) {
+//        SQLiteDatabase MyDB = this.getWritableDatabase();
+//        Cursor cursor = MyDB.rawQuery("Select * from users where username = ? and password = ? " , new String[] {  username,password});
+//        if(cursor.getCount() > 0)
+//            return true;
+//            else
+//                return false;
+//        }
+//
+//
+//    }
 
 
     

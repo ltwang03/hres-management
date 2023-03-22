@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -15,9 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
-        <activity
-            android:name=".toolbar_above"
-            android:exported="false" />
         <activity
             android:name=".toolbar_below"
             android:exported="false" />
@@ -39,6 +37,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".AddProductsAcitivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".IntroActivity"
             android:exported="true">
             <intent-filter>
@@ -48,8 +53,8 @@
             </intent-filter>
 
             <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
+                android:name="CLOUDINARY_URL"
+                android:value="cloudinary://922262966345755:Vn8ehbvPvLc0eSb9WTaxJ8uutYo@da3nhk2m6"/>
         </activity>
     </application>
 

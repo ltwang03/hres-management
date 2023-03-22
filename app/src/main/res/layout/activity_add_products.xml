@@ -21,7 +21,7 @@
         android:layout_margin="20dp"
         android:layout_gravity="center">
         <ImageView
-            android:id="@+id/img_add_product"
+            android:id="@+id/imgv_add_product"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="30dp"
@@ -38,6 +38,7 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/edt_product_name"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginBottom="15dp"
@@ -50,14 +51,15 @@
             android:textSize="25dp" />
 
         <EditText
+            android:id="@+id/edt_product_price"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginBottom="15dp"
-            android:textColor="@color/orange_01"
             android:background="@drawable/bg_edit_add"
             android:hint="Giá món ăn"
             android:inputType="number"
             android:paddingLeft="10dp"
+            android:textColor="@color/orange_01"
             android:textColorHint="@color/orange_01"
             android:textSize="25dp" />
         <LinearLayout
@@ -67,45 +69,52 @@
             android:orientation="horizontal"
             android:paddingLeft="10dp"
             android:background="@drawable/bg_edit_add">
+
             <TextView
+                android:id="@+id/tv_product_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Phân loại: "
                 android:layout_gravity="center"
+                android:text="Phân loại: "
                 android:textColor="@color/orange_01"
-                android:textSize="25dp"/>
+                android:textSize="25dp" />
 
             <Spinner
+                android:id="@+id/spn_product_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:spinnerMode="dropdown"
                 tools:ignore="TouchTargetSizeCheck" />
 
         </LinearLayout>
+
         <EditText
+            android:id="@+id/edt_product_descripe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
+            android:background="@drawable/bg_edit_add"
+            android:hint="Mô tả món ăn"
             android:padding="5dp"
+            android:paddingLeft="10dp"
             android:textColor="@color/orange_01"
             android:textColorHint="@color/orange_01"
-            android:paddingLeft="10dp"
-            android:textSize="25dp"
-            android:hint="Mô tả món ăn"
-            android:background="@drawable/bg_edit_add"/>
+            android:textSize="25dp" />
     </LinearLayout>
+
     <Button
+        android:id="@+id/btn_add_product"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginEnd="100dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="100dp"
+        android:background="@drawable/button_primary"
+        android:backgroundTint="@color/orange_03"
         android:text="ADD"
-        android:textStyle="bold"
         android:textColor="@color/white"
         android:textSize="30dp"
-        android:backgroundTint="@color/orange_03"
-        android:background="@drawable/button_primary"
 
-        />
+        android:textStyle="bold" />
 </LinearLayout>
