@@ -16,11 +16,9 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".ListFood1Activity"
-            android:exported="false"/>
-        <activity
             android:name=".ListTypeFoodActivity"
-            android:exported="false"></activity>
+            android:exported="false">
+        </activity>
         <activity
             android:name=".ListStaffActivity"
             android:exported="false" />

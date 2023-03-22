@@ -12,48 +12,48 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class Food1Adapter extends RecyclerView.Adapter<Food1Adapter.Food1ViewHolder>{
+public class MonchinhAdapter extends RecyclerView.Adapter<MonchinhAdapter.MonchinhViewHolder>{
     private Context mContext;
-    private List<Food1> mListFood1;
+    private List<Monchinh> mListMonchinh;
 
-    public Food1Adapter(Context mContext) {
+    public MonchinhAdapter(Context mContext) {
         this.mContext = mContext;
     }
-    public void setData(List<Food1> list){
-        this.mListFood1= list;
+    public void setData(List<Monchinh> list){
+        this.mListMonchinh= list;
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
 
-    public Food1ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MonchinhViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_item_listfood,parent,false);
 
-        return new Food1ViewHolder(view);
+        return new MonchinhViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Food1ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MonchinhViewHolder holder, int position) {
 
-        Food1 food1 = mListFood1.get(position);
-        if(food1 == null)
+        Monchinh monchinh = mListMonchinh.get(position);
+        if(monchinh == null)
             return;
-        holder.imgFood.setImageResource(food1.getResourceId());
-        holder.tvName.setText(food1.getName());
-        holder.tvDescribe.setText(food1.getDescribe());
-        holder.tvPrice.setText(food1.getPrice());
+        holder.imgFood.setImageResource(monchinh.getResourceId());
+        holder.tvName.setText(monchinh.getName());
+        holder.tvDescribe.setText(monchinh.getDescribe());
+        holder.tvPrice.setText(String.valueOf(monchinh.getPrice()));
     }
 
     @Override
     public int getItemCount() {
-        if(mListFood1 != null){
-            return mListFood1.size();
+        if(mListMonchinh != null){
+            return mListMonchinh.size();
         }
         return 0;
     }
 
-    public class Food1ViewHolder extends RecyclerView.ViewHolder{
+    public class MonchinhViewHolder extends RecyclerView.ViewHolder{
 
 
         private ImageView imgFood;
@@ -61,7 +61,7 @@ public class Food1Adapter extends RecyclerView.Adapter<Food1Adapter.Food1ViewHol
         private TextView tvDescribe;
         private TextView tvPrice;
 
-        public Food1ViewHolder(@NonNull View itemView) {
+        public MonchinhViewHolder(@NonNull View itemView) {
             super(itemView);
             imgFood = itemView.findViewById(R.id.img_food);
             tvName = itemView.findViewById(R.id.name_food);

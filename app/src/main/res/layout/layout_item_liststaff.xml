@@ -10,7 +10,8 @@
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/img_staff"
-            android:layout_width="80dp"
+            android:scaleType="fitStart"
+            android:layout_width="70dp"
             android:layout_height="70dp"
             android:src="@drawable/duywibu"/>
         <LinearLayout
@@ -20,21 +21,46 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:orientation="vertical">
-            <TextView
-                android:id="@+id/name_staff"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="25dp"
-                android:text="Duy"/>
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/name_staff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="25dp"
+                    android:text="Duy"/>
+                <TextView
+                    android:id="@+id/username_staff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/orange_01"
+                    android:textSize="18dp"
+                    android:text="(duywibu)"/>
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/tel_staff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:text="012345678"
-                />
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                android:text="Phone: 012345678"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_edit" />
+
         </LinearLayout>
 
     </RelativeLayout>
