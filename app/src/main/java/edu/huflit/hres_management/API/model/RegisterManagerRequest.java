@@ -1,10 +1,13 @@
 package edu.huflit.hres_management.API.model;
 
 public class RegisterManagerRequest {
-    private String restaurantID, userName, password, role;
-    public RegisterManagerRequest(String restaurantID, String uerName, String password, String role) {
+    private String restaurantID, userName, password, role, fullName;
+    private Number phoneNumber;
+    public RegisterManagerRequest(String restaurantID, String uerName, String password, String role, String fullName, Number phoneNumber) {
        this.restaurantID = restaurantID;
        this.userName = uerName;
+       this.fullName = fullName;
+       this.phoneNumber = phoneNumber;
        this.password = password;
        this.role = role;
     }
@@ -39,5 +42,21 @@ public class RegisterManagerRequest {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public Number getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(Number phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

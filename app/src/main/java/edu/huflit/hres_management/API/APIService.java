@@ -9,10 +9,13 @@ import edu.huflit.hres_management.API.model.RegisterManagerRequest;
 import edu.huflit.hres_management.API.model.RegisterManagerResponse;
 import edu.huflit.hres_management.API.model.RegisterStaffRequest;
 import edu.huflit.hres_management.API.model.RegisterStaffResponse;
+import edu.huflit.hres_management.API.model.UserResponse;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 
@@ -31,4 +34,6 @@ public interface APIService {
     Call<RegisterManagerResponse> registerManager(@Body RegisterManagerRequest registerManagerRequest);
     @POST("auth/register/staff")
     Call<RegisterStaffResponse> registerStaff(@Body RegisterStaffRequest registerStaffRequest);
+    @GET("auth/get/user")
+    Call<UserResponse> getUserRestaurant(@Header("Authorization") String token);
 }
