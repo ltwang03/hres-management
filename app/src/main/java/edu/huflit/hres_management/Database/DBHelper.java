@@ -34,6 +34,17 @@ public class DBHelper extends SQLiteOpenHelper    {
         MyDB.execSQL("drop Table if exists Tablee");
 
     }
+    public boolean insertTableeData(String location, Boolean booked) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("location",location);
+        contentValues.put("booked",booked);
+        long result = MyDB.insert("Tablee" , null,contentValues);
+        if(result == -1) return false;
+        else
+            return true;
+
+    }
     public boolean insertOrderingData(String tableNumber, String checkInTime, String checkOutTime) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -45,6 +56,34 @@ public class DBHelper extends SQLiteOpenHelper    {
         else
             return true;
 
+
+    }
+    public boolean updateOrderingData(String tableNumber, String checkInTime, String checkOutTime) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("table_number",tableNumber);
+        contentValues.put("check_in_time",checkInTime);
+        contentValues.put("check_out_time",checkOutTime);
+        Cursor cursor  = MyDB.rawQuery("Select * from Ordering where tableNumber = ?", new String[] {tableNumber});
+        if(cursor.getCount() > 0 ) {
+            long result = MyDB.update("Ordering" , contentValues , "tableNumber=?", new String[] {tableNumber});
+            if(result == -1) return false;
+            else
+                return true;
+        }else return false;
+
+    }
+    public Boolean deleteOrderingData(String tableNumber ) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+
+
+        Cursor cursor  = MyDB.rawQuery("Select * from Ordering where tableNumber = ?", new String[] {tableNumber});
+        if(cursor.getCount() > 0 ) {
+            long result = MyDB.delete("Ordering"  , "tableNumber=?", new String[] {tableNumber});
+            if(result == -1) return false;
+            else
+                return true;
+        }else return false;
 
     }
     public Boolean insertProductData(String productImageUrl, String productName , String productPrice, String productType, String productDescripe ) {

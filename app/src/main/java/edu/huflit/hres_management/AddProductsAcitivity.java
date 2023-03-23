@@ -47,7 +47,6 @@ public class AddProductsAcitivity extends AppCompatActivity {
     String imageUrl , proCate;
     Spinner spnCategory;
     ImageView imgvAddImage;
-    String selectedCategory;
     DBHelper db;
 
     @Override
@@ -67,6 +66,7 @@ public class AddProductsAcitivity extends AppCompatActivity {
         arrayAdapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         spnCategory.setAdapter(arrayAdapter);
         spnCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 //đối số postion là vị trí phần tử trong list Data
