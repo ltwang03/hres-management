@@ -1,4 +1,4 @@
-package edu.huflit.hres_management;
+package edu.huflit.hres_management.ListFood;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,48 +12,50 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class MonchinhAdapter extends RecyclerView.Adapter<MonchinhAdapter.MonchinhViewHolder>{
-    private Context mContext;
-    private List<Monchinh> mListMonchinh;
+import edu.huflit.hres_management.R;
 
-    public MonchinhAdapter(Context mContext) {
+public class AppetizerAdapter extends RecyclerView.Adapter<AppetizerAdapter.AppetizerViewHolder>{
+    private Context mContext;
+    private List<Appetizer> mListAppetizer;
+
+    public AppetizerAdapter(Context mContext) {
         this.mContext = mContext;
     }
-    public void setData(List<Monchinh> list){
-        this.mListMonchinh= list;
+    public void setData(List<Appetizer> list){
+        this.mListAppetizer= list;
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
 
-    public MonchinhViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AppetizerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_item_listfood,parent,false);
 
-        return new MonchinhViewHolder(view);
+        return new AppetizerViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MonchinhViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AppetizerViewHolder holder, int position) {
 
-        Monchinh monchinh = mListMonchinh.get(position);
-        if(monchinh == null)
+        Appetizer food1 = mListAppetizer.get(position);
+        if(food1 == null)
             return;
-        holder.imgFood.setImageResource(monchinh.getResourceId());
-        holder.tvName.setText(monchinh.getName());
-        holder.tvDescribe.setText(monchinh.getDescribe());
-        holder.tvPrice.setText(String.valueOf(monchinh.getPrice()));
+        holder.imgFood.setImageResource(food1.getResourceId());
+        holder.tvName.setText(food1.getName());
+        holder.tvDescribe.setText(food1.getDescribe());
+        holder.tvPrice.setText(String.valueOf(food1.getPrice()));
     }
 
     @Override
     public int getItemCount() {
-        if(mListMonchinh != null){
-            return mListMonchinh.size();
+        if(mListAppetizer != null){
+            return mListAppetizer.size();
         }
         return 0;
     }
 
-    public class MonchinhViewHolder extends RecyclerView.ViewHolder{
+    public class AppetizerViewHolder extends RecyclerView.ViewHolder{
 
 
         private ImageView imgFood;
@@ -61,7 +63,7 @@ public class MonchinhAdapter extends RecyclerView.Adapter<MonchinhAdapter.Monchi
         private TextView tvDescribe;
         private TextView tvPrice;
 
-        public MonchinhViewHolder(@NonNull View itemView) {
+        public AppetizerViewHolder(@NonNull View itemView) {
             super(itemView);
             imgFood = itemView.findViewById(R.id.img_food);
             tvName = itemView.findViewById(R.id.name_food);

@@ -1,4 +1,4 @@
-package edu.huflit.hres_management;
+package edu.huflit.hres_management.ListFood;
 
 public class Drinks {
     private int resourceId;

@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -12,11 +11,20 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.huflit.hres_management.ListFood.Appetizer;
+import edu.huflit.hres_management.ListFood.AppetizerAdapter;
+import edu.huflit.hres_management.ListFood.Maincourse;
+import edu.huflit.hres_management.ListFood.MaincourseAdapter;
+import edu.huflit.hres_management.ListFood.Dessert;
+import edu.huflit.hres_management.ListFood.DessertAdapter;
+import edu.huflit.hres_management.ListFood.Drinks;
+import edu.huflit.hres_management.ListFood.DrinksAdapter;
+
 public class ListTypeFoodActivity extends AppCompatActivity {
 
-    LinearLayout lnKhaiVi,lnMonchinh,lnDessert,lnDrinks;
+    LinearLayout lnAppetizer,lnMaincourse,lnDessert,lnDrinks;
 
-    private RecyclerView rcvKhaivi,rcvMonchinh,rcvDessert,rcvDrinks;
+    private RecyclerView rcvAppetizer,rcvMaincourse,rcvDessert,rcvDrinks;
 
     boolean rcvKVVisible = false;
     boolean rcvTMVisible = false;
@@ -28,58 +36,58 @@ public class ListTypeFoodActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_type_food);
 //ds mon khai vi
-        rcvKhaivi = findViewById(R.id.rcvKhaivi);
-        edu.huflit.hres_management.KhaiviAdapter khaiviAdapter = new KhaiviAdapter(this);
+        rcvAppetizer = findViewById(R.id.rcvAppetizer);
+        edu.huflit.hres_management.ListFood.AppetizerAdapter appetizerAdapter = new AppetizerAdapter(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         LinearLayoutManager linearLayoutManager_1 = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         LinearLayoutManager linearLayoutManager_2 = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         LinearLayoutManager linearLayoutManager_3 = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
 
-        rcvKhaivi.setLayoutManager(linearLayoutManager);
+        rcvAppetizer.setLayoutManager(linearLayoutManager);
 
-        khaiviAdapter.setData(getListKhaivi());
-        rcvKhaivi.setAdapter(khaiviAdapter);
+        appetizerAdapter.setData(getListAppetizer());
+        rcvAppetizer.setAdapter(appetizerAdapter);
 
-        lnKhaiVi=findViewById(R.id.lnKhaiVi);
+        lnAppetizer=findViewById(R.id.lnAppetizer);
 
-        lnKhaiVi.setOnClickListener(new View.OnClickListener() {
+        lnAppetizer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!rcvKVVisible){
-                    rcvKhaivi.setVisibility(View.VISIBLE);
+                    rcvAppetizer.setVisibility(View.VISIBLE);
                     rcvKVVisible=true;
                 }
                 else{
-                    rcvKhaivi.setVisibility(View.GONE);
+                    rcvAppetizer.setVisibility(View.GONE);
                     rcvKVVisible=false;
                 }
             }
         });
         //ds món chính
-        rcvMonchinh = findViewById(R.id.rcvMonchinh);
-        edu.huflit.hres_management.MonchinhAdapter monchinhAdapter = new MonchinhAdapter(this);
-        rcvMonchinh.setLayoutManager(linearLayoutManager_1);
-        monchinhAdapter.setData(getListMonchinh());
-        rcvMonchinh.setAdapter(monchinhAdapter);
+        rcvMaincourse = findViewById(R.id.rcvMaincourse);
+        MaincourseAdapter maincourseAdapter = new MaincourseAdapter(this);
+        rcvMaincourse.setLayoutManager(linearLayoutManager_1);
+        maincourseAdapter.setData(getListMaincourse());
+        rcvMaincourse.setAdapter(maincourseAdapter);
 
-        lnMonchinh=findViewById(R.id.lnMonchinh);
+        lnMaincourse=findViewById(R.id.lnMaincourse);
 
-        lnMonchinh.setOnClickListener(new View.OnClickListener() {
+        lnMaincourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!rcvMCVisible){
-                    rcvMonchinh.setVisibility(View.VISIBLE);
+                    rcvMaincourse.setVisibility(View.VISIBLE);
                     rcvMCVisible=true;
                 }
                 else{
-                    rcvMonchinh.setVisibility(View.GONE);
+                    rcvMaincourse.setVisibility(View.GONE);
                     rcvMCVisible=false;
                 }
             }
         });
 //ds món tráng miệng
         rcvDessert = findViewById(R.id.rcvDessert);
-        edu.huflit.hres_management.DessertAdapter dessertAdapter = new DessertAdapter(this);
+        edu.huflit.hres_management.ListFood.DessertAdapter dessertAdapter = new DessertAdapter(this);
         rcvDessert.setLayoutManager(linearLayoutManager_2);
         dessertAdapter.setData(getListDessert());
         rcvDessert.setAdapter(dessertAdapter);
@@ -101,7 +109,7 @@ public class ListTypeFoodActivity extends AppCompatActivity {
         });
 //ds món nước
         rcvDrinks = findViewById(R.id.rcvDrinks);
-        edu.huflit.hres_management.DrinksAdapter drinksAdapter = new DrinksAdapter(this);
+        edu.huflit.hres_management.ListFood.DrinksAdapter drinksAdapter = new DrinksAdapter(this);
         rcvDrinks.setLayoutManager(linearLayoutManager_3);
         drinksAdapter.setData(getListDrinks());
         rcvDrinks.setAdapter(drinksAdapter);
@@ -123,37 +131,48 @@ public class ListTypeFoodActivity extends AppCompatActivity {
         });
 
     }
-    private List<Khaivi> getListKhaivi(){
-        List<Khaivi> list = new ArrayList<>();
-        list.add(new Khaivi(R.drawable.imgkhaivi1,"Món ăn 1", "Mô tả 1", 50000));
-        list.add(new Khaivi(R.drawable.imgkhaivi1,"Món ăn 1", "Mô tả 1", 50000));
-        list.add(new Khaivi(R.drawable.imgkhaivi1,"Món ăn 1", "Mô tả 1", 50000));
+    private List<Appetizer> getListAppetizer(){
+        List<Appetizer> list = new ArrayList<>();
+        list.add(new Appetizer(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
+        list.add(new Appetizer(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
+        list.add(new Appetizer(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
+        list.add(new Appetizer(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
+        list.add(new Appetizer(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
+        list.add(new Appetizer(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
+
 
         return list;
     }
-    private List<Monchinh> getListMonchinh(){
-        List<Monchinh> list = new ArrayList<>();
-        list.add(new Monchinh(R.drawable.imgkhaivi1,"Món ăn 1", "Mô tả 1", 50000));
-        list.add(new Monchinh(R.drawable.imgkhaivi1,"Món ăn 1", "Mô tả 1", 50000));
-        list.add(new Monchinh(R.drawable.imgkhaivi1,"Món ăn 1", "Mô tả 1", 50000));
+    private List<Maincourse> getListMaincourse(){
+        List<Maincourse> list = new ArrayList<>();
+        list.add(new Maincourse(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
+        list.add(new Maincourse(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
+        list.add(new Maincourse(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
 
         return list;
     }
 
     private List<Dessert> getListDessert(){
         List<Dessert> list = new ArrayList<>();
-        list.add(new Dessert(R.drawable.imgkhaivi1,"Món ăn 1", "Mô tả 1", 50000));
-        list.add(new Dessert(R.drawable.imgkhaivi1,"Món ăn 1", "Mô tả 1", 50000));
-        list.add(new Dessert(R.drawable.imgkhaivi1,"Món ăn 1", "Mô tả 1", 50000));
+        list.add(new Dessert(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
+        list.add(new Dessert(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
+        list.add(new Dessert(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
+
+        list.add(new Dessert(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
+        list.add(new Dessert(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
+        list.add(new Dessert(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
 
         return list;
     }
 
     private List<Drinks> getListDrinks(){
         List<Drinks> list = new ArrayList<>();
-        list.add(new Drinks(R.drawable.imgkhaivi1,"Món ăn 1", "Mô tả 1", 50000));
-        list.add(new Drinks(R.drawable.imgkhaivi1,"Món ăn 1", "Mô tả 1", 50000));
-        list.add(new Drinks(R.drawable.imgkhaivi1,"Món ăn 1", "Mô tả 1", 50000));
+        list.add(new Drinks(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
+        list.add(new Drinks(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
+        list.add(new Drinks(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
+        list.add(new Drinks(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
+        list.add(new Drinks(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
+        list.add(new Drinks(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
 
         return list;
     }

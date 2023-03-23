@@ -1,12 +1,12 @@
-package edu.huflit.hres_management;
+package edu.huflit.hres_management.ListFood;
 
-public class Khaivi {
+public class Appetizer {
     private int resourceId;
     private String name;
     private String describe;
     private int price;
 
-    public Khaivi(int resourceId, String name, String describe, int price) {
+    public Appetizer(int resourceId, String name, String describe, int price) {
         this.resourceId = resourceId;
         this.name = name;
         this.describe = describe;

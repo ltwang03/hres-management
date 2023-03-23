@@ -16,224 +16,242 @@
         android:text="Danh sách Món ăn"
         style="@style/EditNameMenu"
         android:textSize="40sp"/>
-    <ScrollView
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="33">
-        <LinearLayout
-            android:id="@+id/type_food"
+        <ScrollView
             android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/type_food"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:ignore="InvalidId" >
+                <LinearLayout
+                    android:id="@+id/appetizer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/shape_item">
+                    <LinearLayout
+                        android:id="@+id/lnAppetizer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"                    >
+
+                        <ImageView
+                            android:id="@+id/img_typefood"
+                            android:layout_width="80dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/appetizer"
+                            tools:ignore="ImageContrastCheck"
+                            android:contentDescription="TODO" />
+                        <TextView
+                            android:id="@+id/name_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:textSize="33dp"
+                            android:gravity="center_vertical"
+                            android:layout_marginStart="10dp"
+                            android:textColor="@color/orange_03"
+                            android:layout_toRightOf="@id/img_typefood"
+                            android:text="Khai vị"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="end">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="100dp"
+                                android:src="@drawable/next_ic" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/show_appetizer"
+                        android:paddingLeft="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rcvAppetizer"
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        </androidx.recyclerview.widget.RecyclerView>
+
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/maincourse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_item"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical"
+                    tools:ignore="InvalidId">
+                    <LinearLayout
+                        android:id="@+id/lnMaincourse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/img_typefood"
+                            android:layout_width="80dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/maincourse"/>
+                        <TextView
+                            android:id="@+id/name_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:textSize="33dp"
+                            android:gravity="center_vertical"
+                            android:layout_marginStart="10dp"
+                            android:textColor="@color/orange_03"
+                            android:layout_toRightOf="@id/img_typefood"
+                            android:text="Món chính"/>
+                        <LinearLayout
+                            android:id="@+id/lnMaincourse"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="end">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="100dp"
+                                android:src="@drawable/next_ic" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/show_Maincourse"
+                        android:paddingLeft="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rcvMaincourse"
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        </androidx.recyclerview.widget.RecyclerView>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/dessert"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/shape_item"
+                    android:layout_margin="10dp"
+                    tools:ignore="InvalidId">
+                    <LinearLayout
+                        android:id="@+id/lnDessert"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/img_typefood"
+                            android:layout_width="80dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/dessert"/>
+                        <TextView
+                            android:id="@+id/name_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:textSize="33dp"
+                            android:gravity="center_vertical"
+                            android:layout_marginStart="10dp"
+                            android:textColor="@color/orange_03"
+                            android:layout_toRightOf="@id/img_typefood"
+                            android:text="Tráng miệng"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="end">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="100dp"
+                                android:src="@drawable/next_ic" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/show_dessert"
+                        android:paddingLeft="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rcvDessert"
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        </androidx.recyclerview.widget.RecyclerView>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/drinks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/shape_item"
+                    android:layout_margin="10dp"
+                    tools:ignore="InvalidId">
+                    <LinearLayout
+                        android:id="@+id/lnDrinks"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/img_typefood"
+                            android:layout_width="80dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/drinks"/>
+                        <TextView
+                            android:id="@+id/name_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:textSize="33dp"
+                            android:gravity="center_vertical"
+                            android:layout_marginStart="10dp"
+                            android:textColor="@color/orange_03"
+                            android:layout_toRightOf="@id/img_typefood"
+                            android:text="Nước giải khát"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="end">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="100dp"
+                                android:src="@drawable/next_ic" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/show_drinks"
+                        android:paddingLeft="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rcvDrinks"
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        </androidx.recyclerview.widget.RecyclerView>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </ScrollView>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            tools:ignore="InvalidId" >
-            <LinearLayout
-                android:id="@+id/khaivi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:orientation="vertical"
-                android:background="@drawable/shape_item">
-                <LinearLayout
-                    android:id="@+id/lnKhaiVi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"                    >
-
-                    <ImageView
-                        android:id="@+id/img_typefood"
-                        android:layout_width="80dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/khaivi"
-                        tools:ignore="ImageContrastCheck"
-                        android:contentDescription="TODO" />
-                    <TextView
-                        android:id="@+id/name_type"
-                        android:layout_width="wrap_content"
-                        android:layout_height="100dp"
-                        android:textSize="33dp"
-                        android:gravity="center_vertical"
-                        android:layout_marginStart="10dp"
-                        android:textColor="@color/orange_03"
-                        android:layout_toRightOf="@id/img_typefood"
-                        android:text="Khai vị"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="end">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="100dp"
-                            android:src="@drawable/next_ic" />
-                    </LinearLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/show_khaivi"
-                    android:paddingLeft="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rcvKhaivi"
-                        android:visibility="gone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                    </androidx.recyclerview.widget.RecyclerView>
-
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/monchinh"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_item"
-                android:layout_margin="10dp"
-                android:orientation="vertical"
-                tools:ignore="InvalidId">
-                <LinearLayout
-                    android:id="@+id/lnMonchinh"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:id="@+id/img_typefood"
-                        android:layout_width="80dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/monchinh"/>
-                    <TextView
-                        android:id="@+id/name_type"
-                        android:layout_width="wrap_content"
-                        android:layout_height="100dp"
-                        android:textSize="33dp"
-                        android:gravity="center_vertical"
-                        android:layout_marginStart="10dp"
-                        android:textColor="@color/orange_03"
-                        android:layout_toRightOf="@id/img_typefood"
-                        android:text="Món chính"/>
-                    <LinearLayout
-                        android:id="@+id/lnMonchinh"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="end">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="100dp"
-                            android:src="@drawable/next_ic" />
-                    </LinearLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/show_monchinh"
-                    android:paddingLeft="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rcvMonchinh"
-                        android:visibility="gone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                    </androidx.recyclerview.widget.RecyclerView>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/trangmieng"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/shape_item"
-                android:layout_margin="10dp"
-                tools:ignore="InvalidId">
-                <LinearLayout
-                    android:id="@+id/lnDessert"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:id="@+id/img_typefood"
-                        android:layout_width="80dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/trangmieng"/>
-                    <TextView
-                        android:id="@+id/name_type"
-                        android:layout_width="wrap_content"
-                        android:layout_height="100dp"
-                        android:textSize="33dp"
-                        android:gravity="center_vertical"
-                        android:layout_marginStart="10dp"
-                        android:textColor="@color/orange_03"
-                        android:layout_toRightOf="@id/img_typefood"
-                        android:text="Tráng miệng"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="end">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="100dp"
-                            android:src="@drawable/next_ic" />
-                    </LinearLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/show_dessert"
-                    android:paddingLeft="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rcvDessert"
-                        android:visibility="gone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                    </androidx.recyclerview.widget.RecyclerView>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/drinks"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/shape_item"
-                android:layout_margin="10dp"
-                tools:ignore="InvalidId">
-                <LinearLayout
-                    android:id="@+id/lnDrinks"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:id="@+id/img_typefood"
-                        android:layout_width="80dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/drinks"/>
-                    <TextView
-                        android:id="@+id/name_type"
-                        android:layout_width="wrap_content"
-                        android:layout_height="100dp"
-                        android:textSize="33dp"
-                        android:gravity="center_vertical"
-                        android:layout_marginStart="10dp"
-                        android:textColor="@color/orange_03"
-                        android:layout_toRightOf="@id/img_typefood"
-                        android:text="Nước giải khát"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="end">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="100dp"
-                            android:src="@drawable/next_ic" />
-                    </LinearLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/show_drinks"
-                    android:paddingLeft="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rcvDrinks"
-                        android:visibility="gone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                    </androidx.recyclerview.widget.RecyclerView>
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+            android:layout_gravity="bottom|end"
+            android:layout_margin="20dp"
+            app:fabCustomSize="70dp"
+            android:backgroundTint="@color/white"
+            app:maxImageSize="70dp"
+            android:src="@drawable/add_item"/>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <include
         android:layout_width="match_parent"

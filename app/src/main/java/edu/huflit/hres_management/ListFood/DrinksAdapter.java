@@ -1,4 +1,4 @@
-package edu.huflit.hres_management;
+package edu.huflit.hres_management.ListFood;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+
+import edu.huflit.hres_management.R;
 
 public class DrinksAdapter extends RecyclerView.Adapter<DrinksAdapter.DrinksViewHolder>{
     private Context mContext;

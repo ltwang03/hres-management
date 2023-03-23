@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,12 +9,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/img_staff"
-            android:scaleType="fitStart"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:src="@drawable/duywibu"/>
+            android:padding="5dp"
+            android:src="@drawable/imgdessert1" />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,9 +48,10 @@
                 android:id="@+id/tel_staff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Phone: 012345678"
                 android:textColor="@color/black"
                 android:textSize="10dp"
-                android:text="Phone: 012345678"/>
+                tools:ignore="TextSizeCheck" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -60,10 +63,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_edit" />
-
         </LinearLayout>
-
     </RelativeLayout>
-
-
 </androidx.cardview.widget.CardView>
