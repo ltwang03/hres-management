@@ -7,13 +7,13 @@
     android:orientation="vertical"
     android:theme="@style/AppTheme"
     tools:context=".Home"
-    android:weightSum="30">
+    android:weightSum="40">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_weight="2"
+        android:layout_weight="4"
         android:background="@color/orange_03"
         android:gravity="center"
         android:text="Home"
@@ -24,7 +24,7 @@
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="26"
+        android:layout_weight="33"
         android:layout_gravity="center">
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,7 +37,6 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:columnCount="2">
-
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -166,6 +165,7 @@
                     app:cardElevation="2dp">
 
                     <LinearLayout
+                        android:id="@+id/food_home"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -221,7 +221,7 @@
         </LinearLayout>
     </ScrollView>
     <include
-        android:layout_weight="2"
+        android:layout_weight="3"
         layout="@layout/activity_toolbar_below"
         android:layout_width="match_parent"
         android:layout_height="0dp" />
