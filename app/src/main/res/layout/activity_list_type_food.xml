@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ListStaffActivity"
     android:orientation="vertical"
+    android:theme="@style/AppTheme"
     android:layout_weight="40">
     <TextView
         android:layout_width="match_parent"
@@ -15,7 +16,7 @@
         android:padding="10dp"
         android:text="Danh sách Món ăn"
         style="@style/EditNameMenu"
-        android:textSize="40sp"/>
+        android:textSize="40dp"/>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -45,14 +46,16 @@
                             android:id="@+id/img_typefood"
                             android:layout_width="80dp"
                             android:layout_height="100dp"
+                            android:layout_marginStart="10dp"
+                            android:contentDescription="TODO"
                             android:src="@drawable/appetizer"
-                            tools:ignore="ImageContrastCheck"
-                            android:contentDescription="TODO" />
+                            tools:ignore="ImageContrastCheck" />
+
                         <TextView
                             android:id="@+id/name_type"
                             android:layout_width="wrap_content"
                             android:layout_height="100dp"
-                            android:textSize="33dp"
+                            android:textSize="27dp"
                             android:gravity="center_vertical"
                             android:layout_marginStart="10dp"
                             android:textColor="@color/orange_03"
@@ -98,12 +101,13 @@
                             android:id="@+id/img_typefood"
                             android:layout_width="80dp"
                             android:layout_height="100dp"
+                            android:layout_marginStart="10dp"
                             android:src="@drawable/maincourse"/>
                         <TextView
                             android:id="@+id/name_type"
                             android:layout_width="wrap_content"
                             android:layout_height="100dp"
-                            android:textSize="33dp"
+                            android:textSize="27dp"
                             android:gravity="center_vertical"
                             android:layout_marginStart="10dp"
                             android:textColor="@color/orange_03"
@@ -150,12 +154,13 @@
                             android:id="@+id/img_typefood"
                             android:layout_width="80dp"
                             android:layout_height="100dp"
+                            android:layout_marginStart="10dp"
                             android:src="@drawable/dessert"/>
                         <TextView
                             android:id="@+id/name_type"
                             android:layout_width="wrap_content"
                             android:layout_height="100dp"
-                            android:textSize="33dp"
+                            android:textSize="27dp"
                             android:gravity="center_vertical"
                             android:layout_marginStart="10dp"
                             android:textColor="@color/orange_03"
@@ -197,16 +202,19 @@
                         android:id="@+id/lnDrinks"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
+
                         <ImageView
                             android:id="@+id/img_typefood"
                             android:layout_width="80dp"
                             android:layout_height="100dp"
-                            android:src="@drawable/drinks"/>
+                            android:layout_marginStart="10dp"
+                            android:src="@drawable/drinks" />
+
                         <TextView
                             android:id="@+id/name_type"
                             android:layout_width="wrap_content"
                             android:layout_height="100dp"
-                            android:textSize="33dp"
+                            android:textSize="27dp"
                             android:gravity="center_vertical"
                             android:layout_marginStart="10dp"
                             android:textColor="@color/orange_03"
@@ -237,12 +245,11 @@
 
                 </LinearLayout>
 
-
-
             </LinearLayout>
 
         </ScrollView>
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_food"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"

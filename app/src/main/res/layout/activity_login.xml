@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:theme="@style/AppTheme"
     android:background="@color/white"
     tools:context=".LoginActivity">
 
@@ -74,7 +75,6 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/holo_orange_dark"
             android:ems="10"
-
             android:hint="Enter your UserName !"
             android:inputType="text"
             android:minHeight="48dp"
@@ -109,6 +109,7 @@
             android:layout_height="wrap_content"
             android:minHeight="48dp"
             android:text="Remember"
+            android:textStyle="bold"
             android:textColor="#716966"
             app:buttonTint="#716966" />
     </LinearLayout>
@@ -122,6 +123,7 @@
         android:layout_marginEnd="32dp"
         android:background="@drawable/button_primary"
         android:text="Sign in"
+        android:textStyle="bold"
         android:textColor="@color/white"
         android:textSize="30dp"
         app:backgroundTint="#A4634D" />
@@ -136,6 +138,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Don't have an account?"
+            android:textSize="17dp"
             android:textColor="#716966" />
 
         <TextView
@@ -144,7 +147,7 @@
             android:layout_height="wrap_content"
             android:text="Sign up"
             android:textColor="#716966"
-            android:textSize="15dp"
+            android:textSize="23dp"
             android:textStyle="bold" />
     </LinearLayout>
 

@@ -1,4 +1,4 @@
-package edu.huflit.hres_management.ListFood;
+package edu.huflit.hres_management.Model;
 
 public class Dessert {
     private int resourceId;

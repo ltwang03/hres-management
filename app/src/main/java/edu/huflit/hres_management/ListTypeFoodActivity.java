@@ -11,14 +11,14 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.huflit.hres_management.ListFood.Appetizer;
-import edu.huflit.hres_management.ListFood.AppetizerAdapter;
-import edu.huflit.hres_management.ListFood.Maincourse;
-import edu.huflit.hres_management.ListFood.MaincourseAdapter;
-import edu.huflit.hres_management.ListFood.Dessert;
-import edu.huflit.hres_management.ListFood.DessertAdapter;
-import edu.huflit.hres_management.ListFood.Drinks;
-import edu.huflit.hres_management.ListFood.DrinksAdapter;
+import edu.huflit.hres_management.Model.Appetizer;
+import edu.huflit.hres_management.Adapter.AppetizerAdapter;
+import edu.huflit.hres_management.Model.Maincourse;
+import edu.huflit.hres_management.Adapter.MaincourseAdapter;
+import edu.huflit.hres_management.Model.Dessert;
+import edu.huflit.hres_management.Adapter.DessertAdapter;
+import edu.huflit.hres_management.Model.Drinks;
+import edu.huflit.hres_management.Adapter.DrinksAdapter;
 
 public class ListTypeFoodActivity extends AppCompatActivity {
 
@@ -37,7 +37,7 @@ public class ListTypeFoodActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_type_food);
 //ds mon khai vi
         rcvAppetizer = findViewById(R.id.rcvAppetizer);
-        edu.huflit.hres_management.ListFood.AppetizerAdapter appetizerAdapter = new AppetizerAdapter(this);
+        edu.huflit.hres_management.Adapter.AppetizerAdapter appetizerAdapter = new AppetizerAdapter(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         LinearLayoutManager linearLayoutManager_1 = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         LinearLayoutManager linearLayoutManager_2 = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
@@ -87,7 +87,7 @@ public class ListTypeFoodActivity extends AppCompatActivity {
         });
 //ds món tráng miệng
         rcvDessert = findViewById(R.id.rcvDessert);
-        edu.huflit.hres_management.ListFood.DessertAdapter dessertAdapter = new DessertAdapter(this);
+        edu.huflit.hres_management.Adapter.DessertAdapter dessertAdapter = new DessertAdapter(this);
         rcvDessert.setLayoutManager(linearLayoutManager_2);
         dessertAdapter.setData(getListDessert());
         rcvDessert.setAdapter(dessertAdapter);
@@ -109,7 +109,7 @@ public class ListTypeFoodActivity extends AppCompatActivity {
         });
 //ds món nước
         rcvDrinks = findViewById(R.id.rcvDrinks);
-        edu.huflit.hres_management.ListFood.DrinksAdapter drinksAdapter = new DrinksAdapter(this);
+        edu.huflit.hres_management.Adapter.DrinksAdapter drinksAdapter = new DrinksAdapter(this);
         rcvDrinks.setLayoutManager(linearLayoutManager_3);
         drinksAdapter.setData(getListDrinks());
         rcvDrinks.setAdapter(drinksAdapter);

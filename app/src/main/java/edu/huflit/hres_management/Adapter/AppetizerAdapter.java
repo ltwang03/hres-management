@@ -1,4 +1,4 @@
-package edu.huflit.hres_management.ListFood;
+package edu.huflit.hres_management.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import edu.huflit.hres_management.Model.Appetizer;
 import edu.huflit.hres_management.R;
 
 public class AppetizerAdapter extends RecyclerView.Adapter<AppetizerAdapter.AppetizerViewHolder>{
@@ -30,7 +31,7 @@ public class AppetizerAdapter extends RecyclerView.Adapter<AppetizerAdapter.Appe
     @Override
 
     public AppetizerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_item_listfood,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_item_list_food,parent,false);
 
         return new AppetizerViewHolder(view);
     }
