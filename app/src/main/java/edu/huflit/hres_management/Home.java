@@ -23,10 +23,25 @@ public class Home extends AppCompatActivity {
         linear_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Home.this,AddProductsAcitivity.class);
+                Intent i = new Intent(Home.this,ListTypeFoodActivity.class);
                 startActivity(i);
             }
         });
+        mstaffHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Home.this,ListStaffActivity.class);
+                startActivity(i);
+            }
+        });
+        mcustomerHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Home.this,ListCustomerActivity.class);
+                startActivity(i);
+            }
+        });
+
         linear_foodList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
