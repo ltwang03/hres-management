@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import edu.huflit.hres_management.Model.Appetizer;
 import edu.huflit.hres_management.R;
 
 public class AppetizerAdapter extends RecyclerView.Adapter<AppetizerAdapter.AppetizerViewHolder>{

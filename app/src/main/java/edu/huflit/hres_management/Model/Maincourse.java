@@ -1,12 +1,12 @@
-package edu.huflit.hres_management.Adapter;
+package edu.huflit.hres_management.Model;
 
-public class Drinks {
+public class Maincourse {
     private int resourceId;
     private String name;
     private String describe;
     private int price;
 
-    public Drinks(int resourceId, String name, String describe, int price) {
+    public Maincourse(int resourceId, String name, String describe, int price) {
         this.resourceId = resourceId;
         this.name = name;
         this.describe = describe;

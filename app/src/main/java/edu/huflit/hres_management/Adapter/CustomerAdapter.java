@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import edu.huflit.hres_management.Model.Customer;
 import edu.huflit.hres_management.R;
 
 public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder> {

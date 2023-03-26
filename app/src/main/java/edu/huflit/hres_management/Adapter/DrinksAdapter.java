@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import edu.huflit.hres_management.Model.Drinks;
 import edu.huflit.hres_management.R;
 
 public class DrinksAdapter extends RecyclerView.Adapter<DrinksAdapter.DrinksViewHolder>{

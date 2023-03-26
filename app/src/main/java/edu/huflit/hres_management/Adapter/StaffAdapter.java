@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import edu.huflit.hres_management.Model.Staff;
 import edu.huflit.hres_management.R;
 
 public class StaffAdapter extends RecyclerView.Adapter<StaffAdapter.StaffViewHolder> {

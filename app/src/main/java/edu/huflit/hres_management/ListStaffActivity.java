@@ -9,7 +9,7 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.huflit.hres_management.Adapter.Staff;
+import edu.huflit.hres_management.Model.Staff;
 import edu.huflit.hres_management.Adapter.StaffAdapter;
 
 public class ListStaffActivity extends AppCompatActivity {
@@ -30,6 +30,18 @@ public class ListStaffActivity extends AppCompatActivity {
     }
     public List<Staff> getListStaff(){
         List<Staff> list = new ArrayList<>();
+        list.add(new Staff("Dang Phuong"));
+        list.add(new Staff("Dang Phuong"));
+        list.add(new Staff("Dang Phuong"));
+        list.add(new Staff("Dang Phuong"));
+        list.add(new Staff("Dang Phuong"));
+        list.add(new Staff("Dang Phuong"));
+        list.add(new Staff("Dang Phuong"));
+        list.add(new Staff("Dang Phuong"));
+        list.add(new Staff("Dang Phuong"));
+        list.add(new Staff("Dang Phuong"));
+        list.add(new Staff("Dang Phuong"));
+        list.add(new Staff("Dang Phuong"));
         list.add(new Staff("Dang Phuong"));
         list.add(new Staff("Dang Phuong"));
         list.add(new Staff("Dang Phuong"));

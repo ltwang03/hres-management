@@ -1,9 +1,9 @@
-package edu.huflit.hres_management.Adapter;
+package edu.huflit.hres_management.Model;
 
-public class Customer {
+public class Staff {
     private String name;
 
-    public Customer(String name) {
+    public Staff(String name) {
         this.name = name;
     }
 

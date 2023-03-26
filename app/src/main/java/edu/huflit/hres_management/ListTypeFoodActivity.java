@@ -11,13 +11,13 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.huflit.hres_management.Adapter.Appetizer;
+import edu.huflit.hres_management.Model.Appetizer;
 import edu.huflit.hres_management.Adapter.AppetizerAdapter;
-import edu.huflit.hres_management.Adapter.Maincourse;
+import edu.huflit.hres_management.Model.Maincourse;
 import edu.huflit.hres_management.Adapter.MaincourseAdapter;
-import edu.huflit.hres_management.Adapter.Dessert;
+import edu.huflit.hres_management.Model.Dessert;
 import edu.huflit.hres_management.Adapter.DessertAdapter;
-import edu.huflit.hres_management.Adapter.Drinks;
+import edu.huflit.hres_management.Model.Drinks;
 import edu.huflit.hres_management.Adapter.DrinksAdapter;
 
 public class ListTypeFoodActivity extends AppCompatActivity {

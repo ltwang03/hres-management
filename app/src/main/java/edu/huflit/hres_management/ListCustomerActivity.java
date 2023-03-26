@@ -9,7 +9,7 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.huflit.hres_management.Adapter.Customer;
+import edu.huflit.hres_management.Model.Customer;
 import edu.huflit.hres_management.Adapter.CustomerAdapter;
 
 public class ListCustomerActivity extends AppCompatActivity {

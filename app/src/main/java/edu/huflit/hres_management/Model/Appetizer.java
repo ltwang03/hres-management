@@ -1,4 +1,4 @@
-package edu.huflit.hres_management.Adapter;
+package edu.huflit.hres_management.Model;
 
 public class Appetizer {
     private int resourceId;
