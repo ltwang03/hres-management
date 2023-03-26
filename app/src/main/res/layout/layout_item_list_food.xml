@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10dp"
+    android:theme="@style/AppTheme"
     app:cardCornerRadius="10dp">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,11 +18,12 @@
             android:src="@drawable/imgdessert1"
             android:contentDescription="TODO" />
         <LinearLayout
+            android:id="@+id/info_dishes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/img_food"
+            android:layout_marginTop="8dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -43,16 +45,29 @@
                 tools:ignore="TextSizeCheck" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/price_food"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/info_dishes"
             android:layout_centerInParent="true"
-            android:layout_marginEnd="25dp"
-            android:text="70 000"
-            android:textColor="@color/orange_01"
-            android:textSize="20dp"
-            tools:ignore="TextSizeCheck" />
+            android:gravity="center">
+            <TextView
+                android:id="@+id/price_food"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="70 000"
+                android:layout_gravity="center"
+                android:textColor="@color/orange_01"
+                android:textSize="20dp"
+                tools:ignore="TextSizeCheck" />
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_edit"/>
+        </LinearLayout>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

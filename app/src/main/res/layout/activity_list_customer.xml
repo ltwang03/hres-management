@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListStaffActivity"
-    android:orientation="vertical"
     android:theme="@style/AppTheme"
+    android:orientation="vertical"
+    tools:context=".ListCustomerActivity"
     android:layout_weight="40">
     <TextView
         android:layout_width="match_parent"
@@ -14,10 +14,9 @@
         android:layout_weight="4"
         android:gravity="center"
         android:padding="10dp"
-        android:text="Danh sách Nhân viên"
+        android:text="Danh sách Khách hàng"
         style="@style/EditNameMenu"
         android:textSize="35dp"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -31,14 +30,14 @@
             android:src="@drawable/baseline_search_24" />
 
         <EditText
-            android:id="@+id/search_staff"
+            android:id="@+id/search_customer"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:hint="Search"
             android:minHeight="48dp" />
         <ImageView
-            android:id="@+id/clear_search_staff"
+            android:id="@+id/clear_search_customer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -54,7 +53,7 @@
             android:layout_margin="10dp"
             android:layout_gravity="center">
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcvListStaff"
+                android:id="@+id/rcvListCustomer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -62,7 +61,7 @@
         </ScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/add_staff"
+            android:id="@+id/add_customer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
@@ -78,5 +77,6 @@
         android:layout_height="0dp"
         android:layout_weight="3"
         layout="@layout/activity_toolbar_below"/>
+
 
 </LinearLayout>
