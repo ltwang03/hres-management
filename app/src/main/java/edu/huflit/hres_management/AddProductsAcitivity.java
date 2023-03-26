@@ -89,6 +89,7 @@ public class AddProductsAcitivity extends AppCompatActivity {
                 RequestPermission();
 
 
+
             }
         });
         btnAddProduct.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +99,7 @@ public class AddProductsAcitivity extends AppCompatActivity {
                     @Override
                     public void onStart(String requestId) {
                         Log.d(TAG, "onStart: " + "started");
+                        Toast.makeText(AddProductsAcitivity.this,"Adding" , Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

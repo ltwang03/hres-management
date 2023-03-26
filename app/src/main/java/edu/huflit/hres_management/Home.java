@@ -27,5 +27,12 @@ public class Home extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        linear_foodList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i1 = new Intent(Home.this, ListTypeFoodActivity.class);
+                startActivity(i1);
+            }
+        });
     }
 }
