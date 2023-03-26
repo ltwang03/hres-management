@@ -1,4 +1,4 @@
-package edu.huflit.hres_management.ListFood;
+package edu.huflit.hres_management.Food_Staff;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,56 +14,56 @@ import java.util.List;
 
 import edu.huflit.hres_management.R;
 
-public class DrinksAdapter extends RecyclerView.Adapter<DrinksAdapter.DrinksViewHolder>{
+public class AppetizerAdapter extends RecyclerView.Adapter<AppetizerAdapter.AppetizerViewHolder>{
     private Context mContext;
-    private List<Drinks> mListDrinks;
+    private List<Appetizer> mListAppetizer;
 
-    public DrinksAdapter(Context mContext) {
+    public AppetizerAdapter(Context mContext) {
         this.mContext = mContext;
     }
-    public void setData(List<Drinks> list){
-        this.mListDrinks= list;
+    public void setData(List<Appetizer> list){
+        this.mListAppetizer= list;
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
 
-    public DrinksViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AppetizerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_item_listfood,parent,false);
 
-        return new DrinksViewHolder(view);
+        return new AppetizerViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DrinksViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AppetizerViewHolder holder, int position) {
 
-        Drinks drinks = mListDrinks.get(position);
-        if(drinks == null)
+        Appetizer food1 = mListAppetizer.get(position);
+        if(food1 == null)
             return;
-        holder.imgFood.setImageResource(drinks.getResourceId());
-        holder.tvName.setText(drinks.getName());
-        holder.tvDescribe.setText(drinks.getDescribe());
-        holder.tvPrice.setText(String.valueOf(drinks.getPrice()));
+        holder.imgFood.setImageResource(food1.getResourceId());
+        holder.tvName.setText(food1.getName());
+        holder.tvDescribe.setText(food1.getDescribe());
+        holder.tvPrice.setText(String.valueOf(food1.getPrice()));
     }
 
     @Override
     public int getItemCount() {
-        if(mListDrinks != null){
-            return mListDrinks.size();
+        if(mListAppetizer != null){
+            return mListAppetizer.size();
         }
         return 0;
     }
 
-    public class DrinksViewHolder extends RecyclerView.ViewHolder{
+    public class AppetizerViewHolder extends RecyclerView.ViewHolder{
 
 
-        private final ImageView imgFood;
+        private ImageView imgFood;
         private TextView tvName;
         private TextView tvDescribe;
         private TextView tvPrice;
 
-        public DrinksViewHolder(@NonNull View itemView) {
+        public AppetizerViewHolder(@NonNull View itemView) {
             super(itemView);
             imgFood = itemView.findViewById(R.id.img_food);
             tvName = itemView.findViewById(R.id.name_food);

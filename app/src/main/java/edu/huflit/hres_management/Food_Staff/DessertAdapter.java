@@ -1,4 +1,4 @@
-package edu.huflit.hres_management.ListFood;
+package edu.huflit.hres_management.Food_Staff;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,48 +14,48 @@ import java.util.List;
 
 import edu.huflit.hres_management.R;
 
-public class MaincourseAdapter extends RecyclerView.Adapter<MaincourseAdapter.MaincourseViewHolder>{
+public class DessertAdapter extends RecyclerView.Adapter<DessertAdapter.DessertViewHolder>{
     private Context mContext;
-    private List<Maincourse> mListMaincourse;
+    private List<Dessert> mListDessert;
 
-    public MaincourseAdapter(Context mContext) {
+    public DessertAdapter(Context mContext) {
         this.mContext = mContext;
     }
-    public void setData(List<Maincourse> list){
-        this.mListMaincourse= list;
+    public void setData(List<Dessert> list){
+        this.mListDessert= list;
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
 
-    public MaincourseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DessertViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_item_listfood,parent,false);
 
-        return new MaincourseViewHolder(view);
+        return new DessertViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MaincourseViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DessertViewHolder holder, int position) {
 
-        Maincourse maincourse = mListMaincourse.get(position);
-        if(maincourse == null)
+        Dessert dessert = mListDessert.get(position);
+        if(dessert == null)
             return;
-        holder.imgFood.setImageResource(maincourse.getResourceId());
-        holder.tvName.setText(maincourse.getName());
-        holder.tvDescribe.setText(maincourse.getDescribe());
-        holder.tvPrice.setText(String.valueOf(maincourse.getPrice()));
+        holder.imgFood.setImageResource(dessert.getResourceId());
+        holder.tvName.setText(dessert.getName());
+        holder.tvDescribe.setText(dessert.getDescribe());
+        holder.tvPrice.setText(String.valueOf(dessert.getPrice()));
     }
 
     @Override
     public int getItemCount() {
-        if(mListMaincourse != null){
-            return mListMaincourse.size();
+        if(mListDessert != null){
+            return mListDessert.size();
         }
         return 0;
     }
 
-    public class MaincourseViewHolder extends RecyclerView.ViewHolder{
+    public class DessertViewHolder extends RecyclerView.ViewHolder{
 
 
         private ImageView imgFood;
@@ -63,7 +63,7 @@ public class MaincourseAdapter extends RecyclerView.Adapter<MaincourseAdapter.Ma
         private TextView tvDescribe;
         private TextView tvPrice;
 
-        public MaincourseViewHolder(@NonNull View itemView) {
+        public DessertViewHolder(@NonNull View itemView) {
             super(itemView);
             imgFood = itemView.findViewById(R.id.img_food);
             tvName = itemView.findViewById(R.id.name_food);

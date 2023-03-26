@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ListStaffActivity"
     android:orientation="vertical"
+    android:theme="@style/AppTheme"
     android:layout_weight="40">
     <TextView
         android:layout_width="match_parent"
@@ -16,17 +17,60 @@
         android:text="Danh sách Nhân viên"
         style="@style/EditNameMenu"
         android:textSize="35dp"/>
-    <ScrollView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="36"
-        android:layout_margin="10dp">
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        android:layout_weight="3"
+        android:orientation="horizontal">
 
-        </androidx.recyclerview.widget.RecyclerView>
-    </ScrollView>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/baseline_search_24" />
+
+        <EditText
+            android:id="@+id/search_liststaff"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Search"
+            android:minHeight="48dp" />
+        <ImageView
+            android:id="@+id/clear_search_liststaff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/baseline_clear_24" />
+    </LinearLayout>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="30">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_gravity="center">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvListStaff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </androidx.recyclerview.widget.RecyclerView>
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="20dp"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/add_item"
+            app:fabCustomSize="70dp"
+            app:maxImageSize="70dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
     <include
         android:layout_width="match_parent"
         android:layout_height="0dp"
