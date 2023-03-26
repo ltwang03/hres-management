@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="fontFamily">@font/sofia</item>
+        <item name="fontFamily">@font/mplus_regular</item>
     </style>
     <style name="EditNameMenu" parent="@android:style/Widget.EditText">
         <item name="android:textColor">@color/white</item>
