@@ -1,4 +1,4 @@
-package edu.huflit.hres_management.Food_Staff;
+package edu.huflit.hres_management.Adapter;
 
 public class Staff {
     private String name;

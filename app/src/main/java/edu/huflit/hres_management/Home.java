@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 public class Home extends AppCompatActivity {
-    LinearLayout mfoodHome,mstaffHome;
+    LinearLayout mfoodHome,mstaffHome,mcustomerHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +16,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         mfoodHome = (LinearLayout) findViewById(R.id.food_home);
         mstaffHome = (LinearLayout) findViewById(R.id.staff_home);
+        mcustomerHome = (LinearLayout) findViewById(R.id.customer_home);
 
         mfoodHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,5 +32,13 @@ public class Home extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        mcustomerHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Home.this,ListCustomerActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 }

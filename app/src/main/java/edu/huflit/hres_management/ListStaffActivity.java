@@ -5,13 +5,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.huflit.hres_management.Food_Staff.Staff;
-import edu.huflit.hres_management.Food_Staff.StaffAdapter;
+import edu.huflit.hres_management.Adapter.Staff;
+import edu.huflit.hres_management.Adapter.StaffAdapter;
 
 public class ListStaffActivity extends AppCompatActivity {
     private RecyclerView rcvListStaff;

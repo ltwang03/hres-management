@@ -1,12 +1,12 @@
-package edu.huflit.hres_management.Food_Staff;
+package edu.huflit.hres_management.Adapter;
 
-public class Appetizer {
+public class Maincourse {
     private int resourceId;
     private String name;
     private String describe;
     private int price;
 
-    public Appetizer(int resourceId, String name, String describe, int price) {
+    public Maincourse(int resourceId, String name, String describe, int price) {
         this.resourceId = resourceId;
         this.name = name;
         this.describe = describe;

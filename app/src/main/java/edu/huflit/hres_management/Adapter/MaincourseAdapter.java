@@ -1,4 +1,4 @@
-package edu.huflit.hres_management.Food_Staff;
+package edu.huflit.hres_management.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -30,7 +30,7 @@ public class MaincourseAdapter extends RecyclerView.Adapter<MaincourseAdapter.Ma
     @Override
 
     public MaincourseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_item_listfood,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_item_list_food,parent,false);
 
         return new MaincourseViewHolder(view);
     }

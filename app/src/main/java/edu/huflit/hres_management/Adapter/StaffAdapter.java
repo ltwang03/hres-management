@@ -1,4 +1,4 @@
-package edu.huflit.hres_management.Food_Staff;
+package edu.huflit.hres_management.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -21,18 +21,15 @@ public class StaffAdapter extends RecyclerView.Adapter<StaffAdapter.StaffViewHol
         this.mContext = mContext;
     }
 
-
     public void setData(List<Staff> list){
         this.mListStaff = list;
         notifyDataSetChanged();
     }
 
-
-
     @NonNull
     @Override
     public StaffViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_item_liststaff,parent,false) ;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_item_list_staff,parent,false) ;
         return new StaffViewHolder(view);
     }
 
@@ -42,7 +39,6 @@ public class StaffAdapter extends RecyclerView.Adapter<StaffAdapter.StaffViewHol
         if(staff == null)
             return;
         holder.tvName.setText(staff.getName());
-
     }
 
     @Override
@@ -58,7 +54,6 @@ public class StaffAdapter extends RecyclerView.Adapter<StaffAdapter.StaffViewHol
         public StaffViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.name_staff);
-
         }
     }
 }
