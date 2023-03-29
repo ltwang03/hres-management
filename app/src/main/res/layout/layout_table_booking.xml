@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+    <RelativeLayout
+        android:id="@+id/table_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+        <ImageView
+            android:id="@+id/img_empty1"
+            android:layout_width="150dp"
+            android:layout_height="170dp"
+            android:visibility="visible"
+            android:src="@drawable/table_empty"
+            tools:ignore="MissingConstraints" />
+        <ImageView
+            android:id="@+id/img_booking1"
+            android:layout_width="150dp"
+            android:layout_height="170dp"
+            android:visibility="invisible"
+            android:src="@drawable/table_booking"
+            tools:ignore="MissingConstraints" />
+
+        <LinearLayout
+            android:id="@+id/ln_info_booking1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:visibility="invisible">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Số người: " />
+
+                <TextView
+                    android:id="@+id/tv_amount_people1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="0"
+                    tools:ignore="MissingConstraints" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_time_booking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="13h" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="Table 1"
+            android:textSize="18dp"
+            android:textColor="@color/black"/>
+    </RelativeLayout>
+
+</LinearLayout>

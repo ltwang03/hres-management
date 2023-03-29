@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main_booking"
+    android:theme="@style/AppTheme"
+    android:orientation="vertical"
+    tools:context=".BookingTableActivity"
+    android:layout_weight="40">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Booking"
+        style="@style/EditNameMenu"
+        android:textSize="40dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="center|left"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:text="Số lượng bàn (20)"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="30">
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:columnCount="2">
+            <RelativeLayout
+                android:id="@+id/table_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp">
+                <ImageView
+                    android:id="@+id/img_empty1"
+                    android:layout_width="150dp"
+                    android:layout_height="170dp"
+                    android:visibility="visible"
+                    android:src="@drawable/table_empty"
+                    tools:ignore="MissingConstraints" />
+                <ImageView
+                    android:id="@+id/img_booking1"
+                    android:layout_width="150dp"
+                    android:layout_height="170dp"
+                    android:visibility="invisible"
+                    android:src="@drawable/table_booking"
+                    tools:ignore="MissingConstraints" />
+
+                <LinearLayout
+                    android:id="@+id/ln_info_booking1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical"
+                    android:visibility="invisible">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Số người: " />
+
+                        <TextView
+                            android:id="@+id/tv_amount_people1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="0"
+                            tools:ignore="MissingConstraints" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_time_booking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="13h" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Table 1"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/table_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp">
+                <ImageView
+                    android:id="@+id/img_empty1"
+                    android:layout_width="150dp"
+                    android:layout_height="170dp"
+                    android:visibility="visible"
+                    android:src="@drawable/table_empty"
+                    tools:ignore="MissingConstraints" />
+                <ImageView
+                    android:id="@+id/img_booking1"
+                    android:layout_width="150dp"
+                    android:layout_height="170dp"
+                    android:visibility="gone"
+                    android:src="@drawable/table_booking"
+                    tools:ignore="MissingConstraints" />
+                <LinearLayout
+                    android:id="@+id/ln_info_booking1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Số người: "/>
+                        <TextView
+                            android:id="@+id/tv_amount_people1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10"
+                            android:layout_gravity="center"
+                            tools:ignore="MissingConstraints" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tv_time_booking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="13h\n22/2/2022"/>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Table 1"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/table_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp">
+                <ImageView
+                    android:id="@+id/img_empty1"
+                    android:layout_width="150dp"
+                    android:layout_height="170dp"
+                    android:visibility="visible"
+                    android:src="@drawable/table_empty"
+                    tools:ignore="MissingConstraints" />
+                <ImageView
+                    android:id="@+id/img_booking1"
+                    android:layout_width="150dp"
+                    android:layout_height="170dp"
+                    android:visibility="gone"
+                    android:src="@drawable/table_booking"
+                    tools:ignore="MissingConstraints" />
+                <LinearLayout
+                    android:id="@+id/ln_info_booking1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Số người: "/>
+                        <TextView
+                            android:id="@+id/tv_amount_people1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10"
+                            android:layout_gravity="center"
+                            tools:ignore="MissingConstraints" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tv_time_booking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="13h\n22/2/2022"/>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Table 1"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/table_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp">
+                <ImageView
+                    android:id="@+id/img_empty1"
+                    android:layout_width="150dp"
+                    android:layout_height="170dp"
+                    android:visibility="visible"
+                    android:src="@drawable/table_empty"
+                    tools:ignore="MissingConstraints" />
+                <ImageView
+                    android:id="@+id/img_booking1"
+                    android:layout_width="150dp"
+                    android:layout_height="170dp"
+                    android:visibility="gone"
+                    android:src="@drawable/table_booking"
+                    tools:ignore="MissingConstraints" />
+                <LinearLayout
+                    android:id="@+id/ln_info_booking1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Số người: "/>
+                        <TextView
+                            android:id="@+id/tv_amount_people1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10"
+                            android:layout_gravity="center"
+                            tools:ignore="MissingConstraints" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tv_time_booking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="13h\n22/2/2022"/>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Table 1"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"/>
+            </RelativeLayout>
+
+        </GridLayout>
+    </ScrollView>
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        layout="@layout/activity_toolbar_below"/>
+</LinearLayout>
