@@ -98,7 +98,10 @@
             android:ems="10"
 
             android:hint="Enter your Pasword !"
+            android:longClickable="false"
+
             android:inputType="textPassword"
+            android:drawableRight="@drawable/baseline_visibility_off_24"
             android:minHeight="48dp"
             android:textColor="@color/black"
             android:textColorHint="#716966" />

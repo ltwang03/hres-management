@@ -10,6 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.huflit.hres_management.Model.Maincourse;
@@ -17,15 +20,13 @@ import edu.huflit.hres_management.R;
 
 public class MaincourseAdapter extends RecyclerView.Adapter<MaincourseAdapter.MaincourseViewHolder>{
     private Context mContext;
-    private List<Maincourse> mListMaincourse;
+    private ArrayList<Maincourse> mListMaincourse;
 
-    public MaincourseAdapter(Context mContext) {
-        this.mContext = mContext;
-    }
-    public void setData(List<Maincourse> list){
-        this.mListMaincourse= list;
+    public MaincourseAdapter(ArrayList<Maincourse> list) {
+        this.mContext = mContext; this.mListMaincourse= list;
         notifyDataSetChanged();
     }
+
 
     @NonNull
     @Override
@@ -42,10 +43,12 @@ public class MaincourseAdapter extends RecyclerView.Adapter<MaincourseAdapter.Ma
         Maincourse maincourse = mListMaincourse.get(position);
         if(maincourse == null)
             return;
-        holder.imgFood.setImageResource(maincourse.getResourceId());
-        holder.tvName.setText(maincourse.getName());
-        holder.tvDescribe.setText(maincourse.getDescribe());
-        holder.tvPrice.setText(String.valueOf(maincourse.getPrice()));
+        Picasso.get().load(mListMaincourse.get(position).getResourceId()).into(holder.imgFoodReal);
+
+        //holder.imgFood.setText(mListMaincourse.get(position).getResourceId());
+        holder.tvName.setText(mListMaincourse.get(position).getName());
+        holder.tvDescribe.setText(mListMaincourse.get(position).getDescribe());
+        holder.tvPrice.setText(mListMaincourse.get(position).getPrice());
     }
 
     @Override
@@ -59,13 +62,15 @@ public class MaincourseAdapter extends RecyclerView.Adapter<MaincourseAdapter.Ma
     public class MaincourseViewHolder extends RecyclerView.ViewHolder{
 
 
-        private ImageView imgFood;
+        private TextView imgFood;
         private TextView tvName;
         private TextView tvDescribe;
         private TextView tvPrice;
+        private ImageView imgFoodReal;
 
         public MaincourseViewHolder(@NonNull View itemView) {
             super(itemView);
+            imgFoodReal = itemView.findViewById(R.id.img_food_real);
             imgFood = itemView.findViewById(R.id.img_food);
             tvName = itemView.findViewById(R.id.name_food);
             tvDescribe = itemView.findViewById(R.id.describe_food);
