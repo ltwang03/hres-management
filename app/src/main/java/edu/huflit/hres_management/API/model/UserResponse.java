@@ -2,27 +2,29 @@ package edu.huflit.hres_management.API.model;
 
 import java.util.List;
 
+import edu.huflit.hres_management.Model.Staff;
+
 public class UserResponse {
-    private String message;
-    private List<String> user;
-    public UserResponse(String message, List<String> user) {
-        this.message = message;
+    private String status;
+    private List<Staff> user;
+    public UserResponse(String message, List<Staff> user) {
+        this.status = status;
         this.user = user;
     }
 
-    public String getMessage() {
-        return message;
+    public String getStatus() {
+        return status;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public List<String> getUser() {
+    public List<Staff> getUser() {
         return user;
     }
 
-    public void setUser(List<String> user) {
+    public void setUser(List<Staff> user) {
         this.user = user;
     }
 }

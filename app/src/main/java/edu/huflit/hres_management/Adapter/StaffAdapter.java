@@ -1,9 +1,13 @@
 package edu.huflit.hres_management.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import edu.huflit.hres_management.ListStaffActivity;
 import edu.huflit.hres_management.Model.Staff;
 import edu.huflit.hres_management.R;
 
@@ -18,13 +23,9 @@ public class StaffAdapter extends RecyclerView.Adapter<StaffAdapter.StaffViewHol
     private Context mContext;
     private List<Staff> mListStaff;
 
-    public StaffAdapter(Context mContext) {
+    public StaffAdapter(Context mContext, List<Staff> mListStaff) {
         this.mContext = mContext;
-    }
-
-    public void setData(List<Staff> list){
-        this.mListStaff = list;
-        notifyDataSetChanged();
+        this.mListStaff = mListStaff;
     }
 
     @NonNull
@@ -39,7 +40,20 @@ public class StaffAdapter extends RecyclerView.Adapter<StaffAdapter.StaffViewHol
         Staff staff = mListStaff.get(position);
         if(staff == null)
             return;
-        holder.tvName.setText(staff.getName());
+        holder.tvName.setText(staff.getFullName());
+        holder.ivPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String phoneNumber = String.valueOf(staff.getPhoneNumber());
+                Intent i = new Intent(Intent.ACTION_DIAL);
+                i.setData(Uri.parse("tel:" + "0" + phoneNumber));
+                if(mContext != null) {
+                    mContext.startActivity(i);
+                }else {
+                    Log.e("staffAdapter", "Context is null");
+                }
+            }
+        });
     }
 
     @Override
@@ -51,10 +65,12 @@ public class StaffAdapter extends RecyclerView.Adapter<StaffAdapter.StaffViewHol
     }
     public class StaffViewHolder extends RecyclerView.ViewHolder{
         private TextView tvName;
+        private ImageView ivPhone;
 
         public StaffViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.name_staff);
+            ivPhone = itemView.findViewById(R.id.call_staff);
         }
     }
 }
