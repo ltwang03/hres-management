@@ -23,8 +23,8 @@ public class DBHelper extends SQLiteOpenHelper    {
     @Override
     public void onCreate(SQLiteDatabase MyDB) {
         MyDB.execSQL("create Table Product(product_url TEXT  , product_name TEXT primary key, product_price INT , product_type TEXT , product_descripe TEXT )");
-        MyDB.execSQL("create Table Ordering(table_number TEXT ,check_in_time TEXT,check_out_time TEXT)");
-        MyDB.execSQL("create Table Tablee(location TEXT , booked boolean) ");
+        MyDB.execSQL("create Table Ordering(table_number TEXT primary key ,check_in_time TEXT,check_out_time TEXT)");
+        MyDB.execSQL("create Table Tablee(location TEXT primary key, booked boolean) ");
     }
 
     @Override
@@ -43,6 +43,33 @@ public class DBHelper extends SQLiteOpenHelper    {
         if(result == -1) return false;
         else
             return true;
+
+    }
+    public boolean updateTableeData(String location, boolean booked) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("location",location);
+        contentValues.put("booked",booked);
+        Cursor cursor  = MyDB.rawQuery("Select * from Tablee where location = ?", new String[] {location});
+        if(cursor.getCount() > 0 ) {
+            long result = MyDB.update("Tablee" , contentValues , "location=?", new String[] {location});
+            if(result == -1) return false;
+            else
+                return true;
+        }else return false;
+
+    }
+    public Boolean deleteTableeData(String location ) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+
+
+        Cursor cursor  = MyDB.rawQuery("Select * from Tablee where location = ?", new String[] {location});
+        if(cursor.getCount() > 0 ) {
+            long result = MyDB.delete("Table"  , "Location=?", new String[] {location});
+            if(result == -1) return false;
+            else
+                return true;
+        }else return false;
 
     }
     public boolean insertOrderingData(String tableNumber, String checkInTime, String checkOutTime) {
@@ -133,7 +160,23 @@ public class DBHelper extends SQLiteOpenHelper    {
         SQLiteDatabase MyDB = this.getWritableDatabase();
 
 
-        Cursor cursor  = MyDB.rawQuery("Select * from Product1 ",null    );
+        Cursor cursor  = MyDB.rawQuery("Select * from Product ",null    );
+        return cursor;
+
+    }
+    public Cursor getOrdering() {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+
+
+        Cursor cursor  = MyDB.rawQuery("Select * from Ordering ",null    );
+        return cursor;
+
+    }
+    public Cursor getTableeData() {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+
+
+        Cursor cursor  = MyDB.rawQuery("Select * from Tablee ",null    );
         return cursor;
 
     }

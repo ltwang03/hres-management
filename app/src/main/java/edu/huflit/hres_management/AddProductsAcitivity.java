@@ -37,11 +37,13 @@ import java.util.Map;
 import edu.huflit.hres_management.Database.DBHelper;
 
 
+
 public class AddProductsAcitivity extends AppCompatActivity {
+    private static boolean checkInit = false;
     private static int IMAGE_REQ=1;
     private static final String TAG = "Upload image  ###";
     private Uri imagePath;
-    String cate[] = {"Nước" , "Đồ nước" , "Đồ khô" , "Bia/Rượu" , "Khác"};
+    String cate[] = {"Khai vị" , "Món chính" , "Tráng miệng" , "Nước giải khát"};
     EditText edtProductName, edtProductPrice, edtProductDescripe;
     Button btnAddProduct;
     String imageUrl , proCate;
@@ -61,7 +63,10 @@ public class AddProductsAcitivity extends AppCompatActivity {
         btnAddProduct = (Button) findViewById(R.id.btn_add_product);
         db = new DBHelper(this);
 
-        initConfig();
+        if (!checkInit) {
+           initConfig();
+            checkInit = true;
+        }
         ArrayAdapter arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,cate);
         arrayAdapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         spnCategory.setAdapter(arrayAdapter);
@@ -124,6 +129,11 @@ public class AddProductsAcitivity extends AppCompatActivity {
                         }else {
                             Toast.makeText(AddProductsAcitivity.this, "New entry inserted Failed", Toast.LENGTH_SHORT ).show();
                         }
+                        imageUrl = "";
+                        edtProductName.setText("");
+                        edtProductDescripe.setText("");
+                        edtProductPrice.setText("");
+                        proCate= "";
 
 
 
@@ -160,7 +170,7 @@ public class AddProductsAcitivity extends AppCompatActivity {
         config.put("cloud_name", "da3nhk2m6");
         config.put("api_key" , "922262966345755");
         config.put("api_secret" , "Vn8ehbvPvLc0eSb9WTaxJ8uutYo");
-//        config.put("secure", true);
+//      config.put("secure", true);
         MediaManager.init(this, config);
 
     }

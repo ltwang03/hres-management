@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 public class Home extends AppCompatActivity {
@@ -12,7 +13,9 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_home);
+
 
         linear_add = (LinearLayout) findViewById(R.id.linear_add);
         linear_customer = (LinearLayout) findViewById(R.id.linear_customer);
@@ -23,18 +26,18 @@ public class Home extends AppCompatActivity {
         linear_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Home.this,ListTypeFoodActivity.class);
+                Intent i = new Intent(Home.this,Testing.class);
                 startActivity(i);
             }
         });
-        mstaffHome.setOnClickListener(new View.OnClickListener() {
+        linear_staff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Home.this,ListStaffActivity.class);
                 startActivity(i);
             }
         });
-        mcustomerHome.setOnClickListener(new View.OnClickListener() {
+        linear_customer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Home.this,ListCustomerActivity.class);

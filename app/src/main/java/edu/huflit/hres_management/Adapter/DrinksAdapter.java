@@ -1,6 +1,7 @@
 package edu.huflit.hres_management.Adapter;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.huflit.hres_management.Model.Drinks;
@@ -17,15 +21,13 @@ import edu.huflit.hres_management.R;
 
 public class DrinksAdapter extends RecyclerView.Adapter<DrinksAdapter.DrinksViewHolder>{
     private Context mContext;
-    private List<Drinks> mListDrinks;
+    private ArrayList<Drinks> mListDrinks;
 
-    public DrinksAdapter(Context mContext) {
-        this.mContext = mContext;
-    }
-    public void setData(List<Drinks> list){
-        this.mListDrinks= list;
+    public DrinksAdapter(ArrayList<Drinks> list) {
+        this.mContext = mContext; this.mListDrinks= list;
         notifyDataSetChanged();
     }
+
 
     @NonNull
     @Override
@@ -42,10 +44,12 @@ public class DrinksAdapter extends RecyclerView.Adapter<DrinksAdapter.DrinksView
         Drinks drinks = mListDrinks.get(position);
         if(drinks == null)
             return;
-        holder.imgFood.setImageResource(drinks.getResourceId());
-        holder.tvName.setText(drinks.getName());
-        holder.tvDescribe.setText(drinks.getDescribe());
-        holder.tvPrice.setText(String.valueOf(drinks.getPrice()));
+        Picasso.get().load(mListDrinks.get(position).getResourceId()).into(holder.imgFoodReal);
+
+       // holder.imgFood.setText(mListDrinks.get(position).getResourceId());
+        holder.tvName.setText(mListDrinks.get(position).getName());
+        holder.tvDescribe.setText(mListDrinks.get(position).getDescribe());
+        holder.tvPrice.setText(mListDrinks.get(position).getPrice());
     }
 
     @Override
@@ -59,13 +63,15 @@ public class DrinksAdapter extends RecyclerView.Adapter<DrinksAdapter.DrinksView
     public class DrinksViewHolder extends RecyclerView.ViewHolder{
 
 
-        private final ImageView imgFood;
+        private final TextView imgFood;
         private TextView tvName;
         private TextView tvDescribe;
         private TextView tvPrice;
+        private ImageView imgFoodReal;
 
         public DrinksViewHolder(@NonNull View itemView) {
             super(itemView);
+            imgFoodReal = itemView.findViewById(R.id.img_food_real);
             imgFood = itemView.findViewById(R.id.img_food);
             tvName = itemView.findViewById(R.id.name_food);
             tvDescribe = itemView.findViewById(R.id.describe_food);

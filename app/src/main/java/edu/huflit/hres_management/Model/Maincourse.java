@@ -1,24 +1,34 @@
 package edu.huflit.hres_management.Model;
 
 public class Maincourse {
-    private int resourceId;
+    private String resourceId;
     private String name;
+    private String category;
     private String describe;
-    private int price;
+    private String price;
 
-    public Maincourse(int resourceId, String name, String describe, int price) {
+    public Maincourse(String resourceId, String name,String category, String describe, String price) {
         this.resourceId = resourceId;
         this.name = name;
+        this.category = category;
         this.describe = describe;
         this.price = price;
     }
 
-    public int getResourceId() {
+    public String getResourceId() {
         return resourceId;
     }
 
-    public void setResourceId(int resourceId) {
+    public void setResourceId(String resourceId) {
         this.resourceId = resourceId;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getName() {
@@ -37,11 +47,11 @@ public class Maincourse {
         this.describe = describe;
     }
 
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 }
