@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -71,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                 LoginResponse loginResponse = response.body();
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("token", loginResponse.getToken());
+                editor.apply();
                 Toast.makeText(LoginActivity.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(LoginActivity.this, Home.class);
                 startActivity(i);
