@@ -20,14 +20,9 @@
             android:name=".booking"
             android:exported="false" />
         <activity
-            android:name=".TestBooking"
-            android:exported="false" />
-        <activity
             android:name=".Testing"
             android:exported="false" />
-        <activity
-            android:name=".Test"
-            android:exported="false" />
+
         <activity
             android:name=".StaffInformationActivity"
             android:exported="false" />
