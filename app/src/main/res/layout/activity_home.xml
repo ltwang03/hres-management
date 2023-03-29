@@ -45,7 +45,7 @@
                     app:cardElevation="2dp">
 
                     <LinearLayout
-                        android:id="@+id/staff_home"
+                        android:id="@+id/linear_staff"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -53,6 +53,7 @@
                         tools:ignore="UseCompoundDrawables">
 
                         <ImageView
+                            android:id="@+id/imgv_staff_logo"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_gravity="center"
@@ -76,6 +77,7 @@
                     app:cardElevation="2dp">
 
                     <LinearLayout
+                        android:id="@+id/linear_order"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -83,6 +85,7 @@
                         tools:ignore="UseCompoundDrawables">
 
                         <ImageView
+                            android:id="@+id/imgv_order"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_gravity="center"
@@ -106,6 +109,7 @@
                     app:cardElevation="2dp">
 
                     <LinearLayout
+                        android:id="@+id/linear_booking"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -136,7 +140,7 @@
                     app:cardElevation="2dp">
 
                     <LinearLayout
-                        android:id="@+id/customer_home"
+                        android:id="@+id/linear_customer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -167,7 +171,7 @@
                     app:cardElevation="2dp">
 
                     <LinearLayout
-                        android:id="@+id/food_home"
+                        android:id="@+id/linear_foodList"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -197,6 +201,7 @@
                     app:cardElevation="2dp">
 
                     <LinearLayout
+                        android:id="@+id/linear_add"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"

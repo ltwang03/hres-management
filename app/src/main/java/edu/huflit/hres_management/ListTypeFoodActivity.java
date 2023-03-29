@@ -1,16 +1,27 @@
 package edu.huflit.hres_management;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.huflit.hres_management.Database.DBHelper;
 import edu.huflit.hres_management.Model.Appetizer;
 import edu.huflit.hres_management.Adapter.AppetizerAdapter;
 import edu.huflit.hres_management.Model.Maincourse;
@@ -23,157 +34,157 @@ import edu.huflit.hres_management.Adapter.DrinksAdapter;
 public class ListTypeFoodActivity extends AppCompatActivity {
 
     LinearLayout lnAppetizer,lnMaincourse,lnDessert,lnDrinks;
-
+    FloatingActionButton add_food;
+        DBHelper db;
+    ArrayList<Appetizer> appetizerDataHolder = new ArrayList<>();
+    ArrayList<Dessert> dessertDataHolder  = new ArrayList<>();
+    ArrayList<Drinks> drinkDataHolder  = new ArrayList<>();
+    ArrayList<Maincourse> maincoursesDataHolder = new ArrayList<>();
     private RecyclerView rcvAppetizer,rcvMaincourse,rcvDessert,rcvDrinks;
-
     boolean rcvKVVisible = false;
     boolean rcvTMVisible = false;
     boolean rcvMCVisible = false;
     boolean rcvDVisible = false;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_type_food);
+        add_food = (FloatingActionButton) findViewById(R.id.add_food);
+        add_food.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ListTypeFoodActivity.this, AddProductsAcitivity.class);
+                startActivity(i);
+
+            }
+        });
+
+        db = new DBHelper(this);
+        Cursor cursor = db.getProductData();
+        while (cursor.moveToNext()) {
+            Log.e(TAG, "onCreate: " + cursor.getString(0) + " / " + cursor.getString(1) + " / " + cursor.getString(2) + " / " + cursor.getString(3) + " / " + cursor.getString(4));
+            if (cursor.getString(3).equals("Khai vị")) {
+                Appetizer obj = new Appetizer(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                appetizerDataHolder.add(obj);
+
+            }
+            if (cursor.getString(3).equals("Món chính")) {
+                Maincourse obj1 = new Maincourse(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                maincoursesDataHolder.add(obj1);
+
+            }
+            if (cursor.getString(3).equals("Nước giải khát")) {
+                Drinks obj2 = new Drinks(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                drinkDataHolder.add(obj2);
+
+            }
+            if (cursor.getString(3).equals("Tráng miệng")) {
+                Dessert obj3 = new Dessert(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                dessertDataHolder.add(obj3);
+
+            }
+
+//
+
+
 //ds mon khai vi
-        rcvAppetizer = findViewById(R.id.rcvAppetizer);
-        edu.huflit.hres_management.Adapter.AppetizerAdapter appetizerAdapter = new AppetizerAdapter(this);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
-        LinearLayoutManager linearLayoutManager_1 = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
-        LinearLayoutManager linearLayoutManager_2 = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
-        LinearLayoutManager linearLayoutManager_3 = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
+            rcvAppetizer = findViewById(R.id.rcvAppetizer);
 
-        rcvAppetizer.setLayoutManager(linearLayoutManager);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+            LinearLayoutManager linearLayoutManager_1 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+            LinearLayoutManager linearLayoutManager_2 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+            LinearLayoutManager linearLayoutManager_3 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
 
-        appetizerAdapter.setData(getListAppetizer());
-        rcvAppetizer.setAdapter(appetizerAdapter);
+            rcvAppetizer.setLayoutManager(linearLayoutManager);
 
-        lnAppetizer=findViewById(R.id.lnAppetizer);
+            edu.huflit.hres_management.Adapter.AppetizerAdapter appetizerAdapter = new AppetizerAdapter(appetizerDataHolder);
+            rcvAppetizer.setAdapter(appetizerAdapter);
 
-        lnAppetizer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!rcvKVVisible){
-                    rcvAppetizer.setVisibility(View.VISIBLE);
-                    rcvKVVisible=true;
+            lnAppetizer = findViewById(R.id.lnAppetizer);
+
+            lnAppetizer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!rcvKVVisible) {
+                        rcvAppetizer.setVisibility(View.VISIBLE);
+                        rcvKVVisible = true;
+                    } else {
+                        rcvAppetizer.setVisibility(View.GONE);
+                        rcvKVVisible = false;
+                    }
                 }
-                else{
-                    rcvAppetizer.setVisibility(View.GONE);
-                    rcvKVVisible=false;
-                }
-            }
-        });
-        //ds món chính
-        rcvMaincourse = findViewById(R.id.rcvMaincourse);
-        MaincourseAdapter maincourseAdapter = new MaincourseAdapter(this);
-        rcvMaincourse.setLayoutManager(linearLayoutManager_1);
-        maincourseAdapter.setData(getListMaincourse());
-        rcvMaincourse.setAdapter(maincourseAdapter);
+            });
+            //ds món chính
+            rcvMaincourse = findViewById(R.id.rcvMaincourse);
+            MaincourseAdapter maincourseAdapter = new MaincourseAdapter(maincoursesDataHolder);
+            rcvMaincourse.setLayoutManager(linearLayoutManager_1);
 
-        lnMaincourse=findViewById(R.id.lnMaincourse);
+            rcvMaincourse.setAdapter(maincourseAdapter);
 
-        lnMaincourse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!rcvMCVisible){
-                    rcvMaincourse.setVisibility(View.VISIBLE);
-                    rcvMCVisible=true;
+            lnMaincourse = findViewById(R.id.lnMaincourse);
+            add_food.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i1 = new Intent(ListTypeFoodActivity.this, AddProductsAcitivity.class);
+                    startActivity(i1);
                 }
-                else{
-                    rcvMaincourse.setVisibility(View.GONE);
-                    rcvMCVisible=false;
+            });
+            lnMaincourse.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!rcvMCVisible) {
+                        rcvMaincourse.setVisibility(View.VISIBLE);
+                        rcvMCVisible = true;
+                    } else {
+                        rcvMaincourse.setVisibility(View.GONE);
+                        rcvMCVisible = false;
+                    }
                 }
-            }
-        });
+            });
 //ds món tráng miệng
-        rcvDessert = findViewById(R.id.rcvDessert);
-        edu.huflit.hres_management.Adapter.DessertAdapter dessertAdapter = new DessertAdapter(this);
-        rcvDessert.setLayoutManager(linearLayoutManager_2);
-        dessertAdapter.setData(getListDessert());
-        rcvDessert.setAdapter(dessertAdapter);
+            rcvDessert = findViewById(R.id.rcvDessert);
+            edu.huflit.hres_management.Adapter.DessertAdapter dessertAdapter = new DessertAdapter(dessertDataHolder);
+            rcvDessert.setLayoutManager(linearLayoutManager_2);
+            rcvDessert.setAdapter(dessertAdapter);
 
-        lnDessert=findViewById(R.id.lnDessert);
+            lnDessert = findViewById(R.id.lnDessert);
 
-        lnDessert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!rcvTMVisible){
-                    rcvDessert.setVisibility(View.VISIBLE);
-                    rcvTMVisible=true;
+            lnDessert.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!rcvTMVisible) {
+                        rcvDessert.setVisibility(View.VISIBLE);
+                        rcvTMVisible = true;
+                    } else {
+                        rcvDessert.setVisibility(View.GONE);
+                        rcvTMVisible = false;
+                    }
                 }
-                else{
-                    rcvDessert.setVisibility(View.GONE);
-                    rcvTMVisible=false;
-                }
-            }
-        });
+            });
 //ds món nước
-        rcvDrinks = findViewById(R.id.rcvDrinks);
-        edu.huflit.hres_management.Adapter.DrinksAdapter drinksAdapter = new DrinksAdapter(this);
-        rcvDrinks.setLayoutManager(linearLayoutManager_3);
-        drinksAdapter.setData(getListDrinks());
-        rcvDrinks.setAdapter(drinksAdapter);
+            rcvDrinks = findViewById(R.id.rcvDrinks);
+            edu.huflit.hres_management.Adapter.DrinksAdapter drinksAdapter = new DrinksAdapter(drinkDataHolder);
+            rcvDrinks.setLayoutManager(linearLayoutManager_3);
 
-        lnDrinks=findViewById(R.id.lnDrinks);
+            rcvDrinks.setAdapter(drinksAdapter);
 
-        lnDrinks.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!rcvDVisible){
-                    rcvDrinks.setVisibility(View.VISIBLE);
-                    rcvDVisible=true;
+            lnDrinks = findViewById(R.id.lnDrinks);
+
+            lnDrinks.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!rcvDVisible) {
+                        rcvDrinks.setVisibility(View.VISIBLE);
+                        rcvDVisible = true;
+                    } else {
+                        rcvDrinks.setVisibility(View.GONE);
+                        rcvDVisible = false;
+                    }
                 }
-                else{
-                    rcvDrinks.setVisibility(View.GONE);
-                    rcvDVisible=false;
-                }
-            }
-        });
+            });
 
-    }
-    private List<Appetizer> getListAppetizer(){
-        List<Appetizer> list = new ArrayList<>();
-        list.add(new Appetizer(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
-        list.add(new Appetizer(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
-        list.add(new Appetizer(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
-        list.add(new Appetizer(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
-        list.add(new Appetizer(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
-        list.add(new Appetizer(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
-
-
-        return list;
-    }
-    private List<Maincourse> getListMaincourse(){
-        List<Maincourse> list = new ArrayList<>();
-        list.add(new Maincourse(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
-        list.add(new Maincourse(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
-        list.add(new Maincourse(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
-
-        return list;
-    }
-
-    private List<Dessert> getListDessert(){
-        List<Dessert> list = new ArrayList<>();
-        list.add(new Dessert(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
-        list.add(new Dessert(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
-        list.add(new Dessert(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
-
-        list.add(new Dessert(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
-        list.add(new Dessert(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
-        list.add(new Dessert(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
-
-        return list;
-    }
-
-    private List<Drinks> getListDrinks(){
-        List<Drinks> list = new ArrayList<>();
-        list.add(new Drinks(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
-        list.add(new Drinks(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
-        list.add(new Drinks(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
-        list.add(new Drinks(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
-        list.add(new Drinks(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
-        list.add(new Drinks(R.drawable.imgdessert1,"Món ăn 1", "Mô tả 1", 50000));
-
-        return list;
+        }
     }
 }
