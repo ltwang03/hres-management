@@ -256,7 +256,7 @@
             android:layout_margin="20dp"
             app:fabCustomSize="70dp"
             android:backgroundTint="@color/white"
-            app:maxImageSize="70dp"
+            app:maxImageSize="40dp"
             android:src="@drawable/add_item"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
