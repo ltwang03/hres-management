@@ -4,8 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:allowBackup="true"
@@ -18,13 +18,22 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31" >
         <activity
-            android:name=".BookingTableActivity"
-            android:exported="true"/>
-
-
+            android:name=".booking"
+            android:exported="false" />
         <activity
             android:name=".Testing"
             android:exported="false" />
+        <activity android:name=".MotionLayout"
+            android:exported="true"     >
+        <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter>
+        </activity>
+
+
+        />
         <activity
             android:name=".StaffInformationActivity"
             android:exported="false" />
@@ -32,34 +41,26 @@
             android:name=".CustomerOrdered"
             android:exported="false" />
         <activity
-            android:name=".AddProductsAcitivity"
+            android:name=".AddTableActivity"
             android:exported="false" />
         <activity
             android:name=".ListCustomerActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustPan" />
+            android:exported="false" />
         <activity
             android:name=".ListTypeFoodActivity"
             android:exported="false" />
         <activity
             android:name=".ListStaffActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustPan" />
+            android:exported="false" />
         <activity
-            android:name=".MotionLayout"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".AddProductsAcitivity"
+            android:exported="false" />
         <activity
             android:name=".toolbar_below"
             android:exported="false" />
         <activity
             android:name=".Home"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".RegisterActivity"
             android:exported="false" >
@@ -77,6 +78,7 @@
         <activity
             android:name=".IntroActivity"
             android:exported="true" >
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

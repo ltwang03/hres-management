@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -104,6 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                 LoginResponse loginResponse = response.body();
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("token", loginResponse.getToken());
+                editor.apply();
                 Toast.makeText(LoginActivity.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(LoginActivity.this, Home.class);
                 startActivity(i);
