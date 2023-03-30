@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:allowBackup="true"
@@ -18,23 +19,11 @@
         tools:targetApi="31" >
         <activity
             android:name=".BookingTableActivity"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="true"/>
 
-        </activity>
-            android:name=".booking"
-            android:exported="false" />
-        <activity
-            android:name=".TestBooking"
-            android:exported="false" />
+
         <activity
             android:name=".Testing"
-            android:exported="false" />
-        <activity
-            android:name=".Test"
             android:exported="false" />
         <activity
             android:name=".StaffInformationActivity"
@@ -43,7 +32,7 @@
             android:name=".CustomerOrdered"
             android:exported="false" />
         <activity
-            android:name=".AddTableActivity"
+            android:name=".AddProductsAcitivity"
             android:exported="false" />
         <activity
             android:name=".ListCustomerActivity"
@@ -56,9 +45,6 @@
             android:name=".ListStaffActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".AddProductsAcitivity"
-            android:exported="false" />
         <activity
             android:name=".MotionLayout"
             android:exported="true" >
@@ -73,7 +59,7 @@
             android:exported="false" />
         <activity
             android:name=".Home"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".RegisterActivity"
             android:exported="false" >

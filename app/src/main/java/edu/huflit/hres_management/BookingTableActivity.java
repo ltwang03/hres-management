@@ -58,13 +58,14 @@ public class BookingTableActivity extends AppCompatActivity {
 
         builder.setView(view1);
         dialog = builder.create();
+        Date currentTime = Calendar.getInstance().getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        etTimeCheckin.setText(sdf.format(currentTime));
         PopupMenu popupMenu = new PopupMenu(this,rltTable1);
         mbtnBooking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Date currentTime = Calendar.getInstance().getTime();
-                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-                etTimeCheckin.setText(sdf.format(currentTime));
+
                 tvTimeCheckIn.setText(etTimeCheckin.getText().toString());
                 tvAmountPeople.setText(edtAmountPeople.getText().toString());
                 setVisibleTable();

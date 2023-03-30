@@ -22,7 +22,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.cloudinary.Url;
+import  com.cloudinary.Url;
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
@@ -48,8 +48,9 @@ public class AddProductsAcitivity extends AppCompatActivity {
     Button btnAddProduct;
     String imageUrl , proCate;
     Spinner spnCategory;
-    ImageView imgvAddImage;
+    ImageView imgvAddImage,imgBackList;
     DBHelper db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,16 @@ public class AddProductsAcitivity extends AppCompatActivity {
         imgvAddImage = (ImageView) findViewById(R.id.imgv_add_product);
         spnCategory = (Spinner) findViewById(R.id.spn_product_category);
         btnAddProduct = (Button) findViewById(R.id.btn_add_product);
+        imgBackList = (ImageView) findViewById(R.id.back_to_listfood);
+
+        imgBackList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(AddProductsAcitivity.this,ListTypeFoodActivity.class);
+                startActivity(i);
+            }
+        });
+
         db = new DBHelper(this);
 
         if (!checkInit) {
@@ -82,19 +93,11 @@ public class AddProductsAcitivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parentView) {
                 Toast.makeText(AddProductsAcitivity.this, "onNothingSelected", Toast.LENGTH_SHORT).show();
             }
-
-
         });
-
-
-
         imgvAddImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 RequestPermission();
-
-
-
             }
         });
         btnAddProduct.setOnClickListener(new View.OnClickListener() {
@@ -134,9 +137,6 @@ public class AddProductsAcitivity extends AppCompatActivity {
                         edtProductDescripe.setText("");
                         edtProductPrice.setText("");
                         proCate= "";
-
-
-
                     }
 
                     @Override
@@ -149,19 +149,9 @@ public class AddProductsAcitivity extends AppCompatActivity {
                         Log.d(TAG, "onStart: " + "error");
                     }
                 }).dispatch();
-
-
-
                 Log.e(TAG, "onClick: " + proCate + imageUrl );
-
-
-
-
-
             }
         });
-
-
     }
 //cloudinary init
 
@@ -185,7 +175,7 @@ public class AddProductsAcitivity extends AppCompatActivity {
             },IMAGE_REQ);
         }
 
-        }
+    }
 
     private void selectImage() {
         Intent i = new Intent();
@@ -200,10 +190,6 @@ public class AddProductsAcitivity extends AppCompatActivity {
             imagePath = data.getData();
 
             Picasso.get().load(imagePath).into(imgvAddImage);
-
-
-
-
         }
     }
 
