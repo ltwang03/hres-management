@@ -48,7 +48,7 @@ public class AddProductsAcitivity extends AppCompatActivity {
     Button btnAddProduct;
     String imageUrl , proCate;
     Spinner spnCategory;
-    ImageView imgvAddImage;
+    ImageView imgvAddImage, imgbackToFood;
     DBHelper db;
 
     @Override
@@ -86,14 +86,19 @@ public class AddProductsAcitivity extends AppCompatActivity {
 
         });
 
+        imgbackToFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(AddProductsAcitivity.this, ListTypeFoodActivity.class);
+                startActivity(i);
+            }
+        });
 
 
         imgvAddImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 RequestPermission();
-
-
 
             }
         });
