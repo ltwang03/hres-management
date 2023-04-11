@@ -4,6 +4,8 @@ import static edu.huflit.hres_management.R.menu.popup_booking;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -17,88 +19,61 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+
+import edu.huflit.hres_management.Adapter.TableBookingAdapter;
+import edu.huflit.hres_management.Model.TableBooking;
 
 public class BookingTableActivity extends AppCompatActivity {
 
-    TextView tvAmountPeople,tvTimeCheckIn;
-    RelativeLayout rltTable1;
-    ImageView imgEmpty1,imgBooking1;
-    LinearLayout lnInfoBooking1;
-    Button mbtnCancel,mbtnBooking;
-    EditText edtAmountPeople,etTimeCheckin;
-    AlertDialog dialog;
-
-    boolean setVisibleTable1 = false;
+    private RecyclerView mrcvBooking;
+    private TableBookingAdapter mTableBookingAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_table);
-        View view1 = getLayoutInflater().inflate(R.layout.dialog_form_booking,null);
+        //View view1 = getLayoutInflater().inflate(R.layout.dialog_form_booking,null);
+        mrcvBooking = findViewById(R.id.rcvBooking);
+        mTableBookingAdapter = new TableBookingAdapter(this);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,3);
+        mrcvBooking.setLayoutManager(gridLayoutManager);
+        mTableBookingAdapter.setData(getListBooking());
+        mrcvBooking.setAdapter(mTableBookingAdapter);
 
-        tvAmountPeople =findViewById(R.id.tv_amount_people1);
-        tvTimeCheckIn = findViewById(R.id.tv_time_booking);
-        rltTable1=findViewById(R.id.table_1);
-        imgEmpty1 = findViewById(R.id.img_empty1);
-        imgBooking1 = findViewById(R.id.img_booking1);
-        lnInfoBooking1= findViewById(R.id.ln_info_booking1);
-        //khai báo cho dialog
-        mbtnCancel = view1.findViewById((R.id.btn_cancel));
-        mbtnBooking = view1.findViewById(R.id.btn_booking);
-        etTimeCheckin = view1.findViewById(R.id.time_checkin);
-        edtAmountPeople = view1.findViewById(R.id.amount_people);
-        //nếu số lượng khách từ 1 trở lên thì hiện thị đã booking
-//        if(Integer.parseInt(tvAmountPeople.getText().toString())>0) {
-//            setVisibleTable1 = true;
-//        }
-//
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-        builder.setView(view1);
-        dialog = builder.create();
-        Date currentTime = Calendar.getInstance().getTime();
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        etTimeCheckin.setText(sdf.format(currentTime));
-        PopupMenu popupMenu = new PopupMenu(this,rltTable1);
-        mbtnBooking.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                tvTimeCheckIn.setText(etTimeCheckin.getText().toString());
-                tvAmountPeople.setText(edtAmountPeople.getText().toString());
-                setVisibleTable();
-                dialog.dismiss();
-
-            }
-        });
-
-        mbtnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-
-        rltTable1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.show();
-            }
-        });
     }
-    private boolean setVisibleTable(){
-        if(setVisibleTable1==true){
-            lnInfoBooking1.setVisibility(View.VISIBLE);
-            imgBooking1.setVisibility(View.VISIBLE);
-            imgEmpty1.setVisibility(View.INVISIBLE);
-        }
-        else {
-            lnInfoBooking1.setVisibility(View.VISIBLE);
-            imgBooking1.setVisibility(View.VISIBLE);
-            imgEmpty1.setVisibility(View.INVISIBLE);
-        }
-        return false;
+    private List<TableBooking> getListBooking(){
+        List<TableBooking> list = new ArrayList<>();
+        list.add(new TableBooking(1,10,10 + "h"));
+        list.add(new TableBooking(2,10,10 + "h"));
+        list.add(new TableBooking(3,10,10 + "h"));
+
+        list.add(new TableBooking(1,10,10 + "h"));
+        list.add(new TableBooking(2,10,10 + "h"));
+        list.add(new TableBooking(3,10,10 + "h"));
+
+        list.add(new TableBooking(1,10,10 + "h"));
+        list.add(new TableBooking(2,10,10 + "h"));
+        list.add(new TableBooking(3,10,10 + "h"));
+
+        list.add(new TableBooking(1,10,10 + "h"));
+        list.add(new TableBooking(2,10,10 + "h"));
+        list.add(new TableBooking(3,10,10 + "h"));
+
+        list.add(new TableBooking(1,10,10 + "h"));
+        list.add(new TableBooking(2,10,10 + "h"));
+        list.add(new TableBooking(3,10,10 + "h"));
+
+        list.add(new TableBooking(1,10,10 + "h"));
+        list.add(new TableBooking(2,10,10 + "h"));
+        list.add(new TableBooking(3,10,10 + "h"));
+
+        list.add(new TableBooking(1,10,10 + "h"));
+        list.add(new TableBooking(2,10,10 + "h"));
+
+
+        return list;
     }
 }

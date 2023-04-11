@@ -44,10 +44,10 @@ public class ListCustomerActivity extends AppCompatActivity {
     }
     public List<Customer> getListCustomer(){
         List<Customer> list = new ArrayList<>();
-        list.add(new Customer("Khách hàng 123"));
-        list.add(new Customer("Khách hàng 123"));
-        list.add(new Customer("Khách hàng 123"));
-        list.add(new Customer("Khách hàng 123"));
+        list.add(0,new Customer("Khách hàng 123"));
+        list.add(1,new Customer("Khách hàng 123"));
+        list.add(2,new Customer("Khách hàng 123"));
+        list.add(3,new Customer("Khách hàng 123"));
 
         return list;
     }

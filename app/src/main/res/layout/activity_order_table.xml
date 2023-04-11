@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/main_booking"
+    android:id="@+id/main_order"
     android:theme="@style/AppTheme"
     android:orientation="vertical"
-    tools:context=".BookingTableActivity"
+    tools:context=".OrderTableActivity"
     android:layout_weight="40">
     <TextView
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         android:layout_weight="4"
         android:gravity="center"
         android:padding="10dp"
-        android:text="Booking"
+        android:text="Order"
         style="@style/EditNameMenu"
         android:textSize="40dp"/>
     <TextView
@@ -34,7 +34,7 @@
         android:layout_margin="10dp"
         android:layout_weight="30">
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcvBooking"
+            android:id="@+id/rcvOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 

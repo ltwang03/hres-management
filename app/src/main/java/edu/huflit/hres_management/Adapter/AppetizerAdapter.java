@@ -43,8 +43,8 @@ public class AppetizerAdapter extends RecyclerView.Adapter<AppetizerAdapter.Appe
     @Override
     public void onBindViewHolder(@NonNull AppetizerViewHolder holder, int position) {
 
-        Appetizer food1 = mListAppetizer.get(position);
-        if(food1 == null)
+        Appetizer appetizer = mListAppetizer.get(position);
+        if(appetizer == null)
             return;
 //        holder.imgFood.setImageResource(food1.getResourceId());
 
