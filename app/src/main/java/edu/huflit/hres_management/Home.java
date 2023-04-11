@@ -52,5 +52,12 @@ public class Home extends AppCompatActivity {
                 startActivity(i1);
             }
         });
+        linear_booking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Home.this,BookingTableActivity.class);
+                startActivity(i);
+            }
+        });
     }
 }

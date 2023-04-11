@@ -8,13 +8,29 @@
     android:theme="@style/AppTheme"
     tools:context=".AddProductsAcitivity">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="Thêm món ăn"
-        style="@style/EditNameMenu"/>
+        style="@style/EditNameMenu">
+
+        <TextView
+            style="@style/EditNameMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Thêm món ăn"
+            tools:ignore="MissingConstraints"/>
+
+        <ImageView
+            android:id="@+id/back_to_listfood"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:paddingLeft="30dp"
+            android:paddingTop="10dp"
+            android:src="@drawable/ic_back"
+            tools:ignore="MissingConstraints"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -97,6 +113,7 @@
             android:layout_marginBottom="15dp"
             android:background="@drawable/bg_edit_add"
             android:hint="Mô tả món ăn"
+            android:minHeight="48dp"
             android:padding="5dp"
             android:paddingLeft="10dp"
             android:textColor="@color/orange_01"
