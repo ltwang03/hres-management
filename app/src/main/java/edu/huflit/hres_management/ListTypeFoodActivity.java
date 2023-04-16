@@ -3,25 +3,24 @@ package edu.huflit.hres_management;
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import edu.huflit.hres_management.Database.DBHelper;
+import edu.huflit.hres_management.Fragment.BottomBarFragment;
 import edu.huflit.hres_management.Model.Appetizer;
 import edu.huflit.hres_management.Adapter.AppetizerAdapter;
 import edu.huflit.hres_management.Model.Maincourse;
@@ -51,6 +50,10 @@ public class ListTypeFoodActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_type_food);
+        Fragment bottomBar = new BottomBarFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.bottom_bar, bottomBar).commit();
+
         add_food = (FloatingActionButton) findViewById(R.id.add_food);
         add_food.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,16 +1,18 @@
 package edu.huflit.hres_management;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.widget.AdapterView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import edu.huflit.hres_management.Adapter.BillAdapter;
+import edu.huflit.hres_management.Fragment.BottomBarFragment;
 import edu.huflit.hres_management.Model.Bill;
 import edu.huflit.hres_management.Model.FoodBill;
 
@@ -23,7 +25,10 @@ public class ListBillActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_bill);
+        setContentView(R.layout.activity_list_bill); Fragment bottomBar = new BottomBarFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.bottom_bar, bottomBar).commit();
+
         billAdapter = new BillAdapter(ListBillActivity.this,getBillList());
         LinearLayoutManager linearLayoutManager_Bill=new LinearLayoutManager(ListBillActivity.this,RecyclerView.VERTICAL,false);
         rcvListBill=findViewById(R.id.rcv_listBill);

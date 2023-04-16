@@ -60,9 +60,6 @@
             android:name=".AddProductsAcitivity"
             android:exported="false" />
         <activity
-            android:name=".toolbar_below"
-            android:exported="false" />
-        <activity
             android:name=".Home"
             android:exported="false" />
         <activity

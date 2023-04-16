@@ -1,30 +1,18 @@
 package edu.huflit.hres_management;
 
-import static edu.huflit.hres_management.R.menu.popup_booking;
-
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.PopupMenu;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import edu.huflit.hres_management.Adapter.TableBookingAdapter;
+import edu.huflit.hres_management.Fragment.BottomBarFragment;
 import edu.huflit.hres_management.Model.TableBooking;
 
 public class BookingTableActivity extends AppCompatActivity {
@@ -35,7 +23,10 @@ public class BookingTableActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_table);
-        //View view1 = getLayoutInflater().inflate(R.layout.dialog_form_booking,null);
+        Fragment bottomBar = new BottomBarFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.bottom_bar, bottomBar).commit();
+
         mrcvBooking = findViewById(R.id.rcvBooking);
         mTableBookingAdapter = new TableBookingAdapter(this);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,3);

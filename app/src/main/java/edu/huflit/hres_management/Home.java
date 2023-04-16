@@ -1,20 +1,27 @@
 package edu.huflit.hres_management;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.LinearLayout;
+
+import edu.huflit.hres_management.Fragment.BottomBarFragment;
 
 public class Home extends AppCompatActivity {
     LinearLayout linear_staff , linear_customer , linear_orderList, linear_booking, linear_foodList,linear_add;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_home);
+        Fragment bottomBar = new BottomBarFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.bottom_bar, bottomBar).commit();
+
 
 
         linear_add = (LinearLayout) findViewById(R.id.linear_add);
@@ -56,6 +63,13 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Home.this,BookingTableActivity.class);
+                startActivity(i);
+            }
+        });
+        linear_orderList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Home.this,OrderTableActivity.class);
                 startActivity(i);
             }
         });

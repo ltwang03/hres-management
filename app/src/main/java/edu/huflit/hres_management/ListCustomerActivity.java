@@ -1,6 +1,8 @@
 package edu.huflit.hres_management;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +14,7 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.huflit.hres_management.Fragment.BottomBarFragment;
 import edu.huflit.hres_management.Model.Customer;
 import edu.huflit.hres_management.Adapter.CustomerAdapter;
 
@@ -25,6 +28,10 @@ public class ListCustomerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_customer);
+        Fragment bottomBar = new BottomBarFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.bottom_bar, bottomBar).commit();
+
         clearSearchCustomer = (ImageView)findViewById(R.id.clear_search_customer);
         searchCustomer = (EditText) findViewById(R.id.search_customer);
 
