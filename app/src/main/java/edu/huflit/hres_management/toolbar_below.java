@@ -8,13 +8,13 @@ import android.view.View;
 import android.widget.ImageView;
 
 public class toolbar_below extends AppCompatActivity {
-ImageView icHonme;
+ImageView icHome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toolbar_below);
-        icHonme = (ImageView) findViewById(R.id.ic_home);
-        icHonme.setOnClickListener(new View.OnClickListener() {
+        icHome = (ImageView) findViewById(R.id.ic_home);
+        icHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(toolbar_below.this,Home.class);

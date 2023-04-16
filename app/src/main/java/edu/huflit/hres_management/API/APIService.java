@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 
 import edu.huflit.hres_management.API.model.LoginRequest;
 import edu.huflit.hres_management.API.model.LoginResponse;
+import edu.huflit.hres_management.API.model.ProfileResponse;
 import edu.huflit.hres_management.API.model.RegisterManagerRequest;
 import edu.huflit.hres_management.API.model.RegisterManagerResponse;
 import edu.huflit.hres_management.API.model.RegisterStaffRequest;
@@ -36,4 +37,6 @@ public interface APIService {
     Call<RegisterStaffResponse> registerStaff(@Body RegisterStaffRequest registerStaffRequest);
     @GET("auth/get/user")
     Call<UserResponse> getUserRestaurant(@Header("Authorization") String token);
+    @GET("auth/get/profile")
+    Call<ProfileResponse> getProfile(@Header("Authorization") String token);
 }
