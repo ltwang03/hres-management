@@ -15,7 +15,7 @@
         android:layout_marginTop="-150dp"
         android:src="@drawable/bg_profile"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"/>
     <ImageView
         android:id="@+id/ic_back_profile"
         android:layout_width="wrap_content"
@@ -32,11 +32,6 @@
 
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/bottom_bar"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:ignore="MissingConstraints" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

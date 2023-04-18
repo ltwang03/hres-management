@@ -47,8 +47,11 @@ public class AppetizerAdapter extends RecyclerView.Adapter<AppetizerAdapter.Appe
         if(appetizer == null)
             return;
 //        holder.imgFood.setImageResource(food1.getResourceId());
+        holder.imgFoodReal.getLayoutParams().width = 150;
+        holder.imgFoodReal.getLayoutParams().height = 170;
 
-        Picasso.get().load(mListAppetizer.get(position).getResourceId()).into(holder.imgFoodReal);
+
+        Picasso.get().load(mListAppetizer.get(position).getResourceId()).resize(holder.imgFoodReal.getLayoutParams().width, holder.imgFoodReal.getLayoutParams().height).centerCrop().into(holder.imgFoodReal);
 //        holder.imgFood.setText(mListAppetizer.get(position).getResourceId());
         holder.tvName.setText(mListAppetizer.get(position).getName());
         holder.tvDescribe.setText(mListAppetizer.get(position).getDescribe());
@@ -75,7 +78,6 @@ public class AppetizerAdapter extends RecyclerView.Adapter<AppetizerAdapter.Appe
         public AppetizerViewHolder(@NonNull View itemView) {
             super(itemView);
             imgFoodReal =itemView.findViewById(R.id.img_food_real);
-            imgFood = itemView.findViewById(R.id.img_food);
             tvName = itemView.findViewById(R.id.name_food);
             tvDescribe = itemView.findViewById(R.id.describe_food);
             tvPrice = itemView.findViewById(R.id.price_food);

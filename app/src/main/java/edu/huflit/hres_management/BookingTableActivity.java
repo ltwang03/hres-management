@@ -64,7 +64,6 @@ public class BookingTableActivity extends AppCompatActivity {
         list.add(new TableBooking(1,10,10 + "h"));
         list.add(new TableBooking(2,10,10 + "h"));
 
-
         return list;
     }
 }

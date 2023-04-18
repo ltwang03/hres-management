@@ -12,23 +12,18 @@
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/img_food_real"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/imgdessert1"
-            android:contentDescription="TODO" />
-        <TextView
-            android:id="@+id/img_food"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:scaleType="fitCenter"
-            android:text=""/>
+            android:src="@drawable/imgdessert1"
+            android:contentDescription="TODO" />
+
 
         <LinearLayout
             android:id="@+id/info_dishes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/img_food"
+            android:layout_toRightOf="@id/img_food_real"
             android:layout_marginTop="8dp"
             android:layout_marginStart="10dp"
             android:orientation="vertical">
@@ -39,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:text="Món ăn 1"
                 android:textColor="@color/black"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:textStyle="bold"
                 tools:ignore="TextSizeCheck" />
 
@@ -47,8 +42,8 @@
                 android:id="@+id/describe_food"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Thành phần chính: Cua, bắp, ..."
-                android:textSize="17dp"
+                android:text="Thành phần chính: Cua, ..."
+                android:textSize="15dp"
                 tools:ignore="TextSizeCheck" />
         </LinearLayout>
 
@@ -67,7 +62,7 @@
                 android:text="70 000"
                 android:layout_gravity="center"
                 android:textColor="@color/orange_01"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 tools:ignore="TextSizeCheck" />
             <ImageView
                 android:layout_width="20dp"

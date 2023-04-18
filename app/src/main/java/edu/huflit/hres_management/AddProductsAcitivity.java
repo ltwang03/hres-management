@@ -3,6 +3,8 @@ package edu.huflit.hres_management;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.app.Activity;
@@ -35,7 +37,7 @@ import java.util.List;
 import java.util.Map;
 
 import edu.huflit.hres_management.Database.DBHelper;
-
+import edu.huflit.hres_management.Fragment.BottomBarFragment;
 
 
 public class AddProductsAcitivity extends AppCompatActivity {
@@ -56,6 +58,10 @@ public class AddProductsAcitivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_products);
+        Fragment bottomBar = new BottomBarFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.bottom_bar, bottomBar).commit();
+
         edtProductName = (EditText) findViewById(R.id.edt_product_name);
         edtProductPrice = (EditText) findViewById(R.id.edt_product_price);
         edtProductDescripe = (EditText) findViewById(R.id.edt_product_descripe);
@@ -166,12 +172,12 @@ public class AddProductsAcitivity extends AppCompatActivity {
     }
 
     private void RequestPermission(){
-        if(ContextCompat.checkSelfPermission(AddProductsAcitivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+        if(ContextCompat.checkSelfPermission(AddProductsAcitivity.this, Manifest.permission.READ_MEDIA_IMAGES) == PackageManager.PERMISSION_GRANTED){
             selectImage();
 
         }else {
             ActivityCompat.requestPermissions(AddProductsAcitivity.this,new String[]{
-                    Manifest.permission.READ_EXTERNAL_STORAGE
+                    Manifest.permission.READ_MEDIA_IMAGES
             },IMAGE_REQ);
         }
 

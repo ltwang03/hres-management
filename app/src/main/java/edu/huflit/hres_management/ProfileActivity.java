@@ -15,9 +15,6 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        Fragment bottomBar = new BottomBarFragment();
-        FragmentTransaction fragmentBottomBar = getSupportFragmentManager().beginTransaction();
-        fragmentBottomBar.add(R.id.bottom_bar, bottomBar).commit();
 
         Fragment infoProfile = new InfoProfileFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
