@@ -24,8 +24,10 @@ public class DBHelper extends SQLiteOpenHelper    {
     public void onCreate(SQLiteDatabase MyDB) {
         MyDB.execSQL("create Table Product(product_url TEXT  , product_name TEXT primary key, product_price INT , product_type TEXT , product_descripe TEXT )");
         MyDB.execSQL("create Table Ordering(table_number TEXT primary key ,check_in_time TEXT,check_out_time TEXT)");
-        MyDB.execSQL("create Table Tablee(location TEXT primary key, booked boolean) ");
+        MyDB.execSQL("create Table Tablee(location TEXT primary key, amount_customer TEXT,booked boolean , checkin TEXT, customer_name TEXT)");
+
     }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase MyDB, int i, int i1) {
@@ -34,22 +36,28 @@ public class DBHelper extends SQLiteOpenHelper    {
         MyDB.execSQL("drop Table if exists Tablee");
 
     }
-    public boolean insertTableeData(String location, Boolean booked) {
+    public boolean insertTableeData(String location,String amount_customer, Boolean booked , String checkin , String customer_name) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("location",location);
         contentValues.put("booked",booked);
+        contentValues.put("amount_customer" , amount_customer);
+        contentValues.put("customer_name",customer_name);
+        contentValues.put("checkin" , checkin);
         long result = MyDB.insert("Tablee" , null,contentValues);
         if(result == -1) return false;
         else
             return true;
 
     }
-    public boolean updateTableeData(String location, boolean booked) {
+    public boolean updateTableeData(String location,String amount_customer, Boolean booked , String checkin , String customer_name) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("location",location);
         contentValues.put("booked",booked);
+        contentValues.put("amount_customer" , amount_customer);
+        contentValues.put("customer_name",customer_name);
+        contentValues.put("checkin" , checkin);
         Cursor cursor  = MyDB.rawQuery("Select * from Tablee where location = ?", new String[] {location});
         if(cursor.getCount() > 0 ) {
             long result = MyDB.update("Tablee" , contentValues , "location=?", new String[] {location});
@@ -59,13 +67,21 @@ public class DBHelper extends SQLiteOpenHelper    {
         }else return false;
 
     }
+    public boolean isTableEmpty( String tableName) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("SELECT COUNT(*) FROM " + tableName, null);
+        cursor.moveToFirst();
+        int count = cursor.getInt(0);
+        cursor.close();
+        return count == 0;
+    }
     public Boolean deleteTableeData(String location ) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
 
 
         Cursor cursor  = MyDB.rawQuery("Select * from Tablee where location = ?", new String[] {location});
         if(cursor.getCount() > 0 ) {
-            long result = MyDB.delete("Table"  , "Location=?", new String[] {location});
+            long result = MyDB.delete("Tablee"  , "Location=?", new String[] {location});
             if(result == -1) return false;
             else
                 return true;
