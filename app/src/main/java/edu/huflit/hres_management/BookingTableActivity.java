@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -44,7 +45,7 @@ public class BookingTableActivity extends AppCompatActivity {
 
     private RecyclerView mrcvBooking;
     TextView number_table;
-    DBHelper db;
+    DBHelper db = new DBHelper(BookingTableActivity.this);
 
 
     boolean setVisibility = false;
@@ -55,15 +56,12 @@ public class BookingTableActivity extends AppCompatActivity {
 
 
     private TableBookingAdapter mTableBookingAdapter;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dialog = new Dialog(BookingTableActivity.this);
         setContentView(R.layout.activity_booking_table);
-        Fragment bottomBar = new BottomBarFragment();
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.bottom_bar, bottomBar).commit();
-
         mrcvBooking = findViewById(R.id.rcvBooking);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
         mrcvBooking.setLayoutManager(gridLayoutManager);
@@ -73,11 +71,12 @@ public class BookingTableActivity extends AppCompatActivity {
         tvTime = (TextView) findViewById(R.id.tv_time_booking);
         db= new DBHelper(BookingTableActivity.this);
 
-    }
 
+        Fragment bottomBar = new BottomBarFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.bottom_bar, bottomBar).commit();
 
-        //create table data
-            if (db.isTableEmpty("Tablee")) {
+        if(db.isTableEmpty("Tablee")) {
             for (int i = 1; i <= 20; i++) {
                 String amount = "1";
                 String sr1 = String.valueOf(i);
@@ -86,7 +85,6 @@ public class BookingTableActivity extends AppCompatActivity {
                 db.insertTableeData(sr1, amount, false, checkin, name);
             }
         }
-        //push data to adapter
         Cursor cursor = db.getTableeData();
         while (cursor.moveToNext()) {
             boolean checkBool = getBooleanValue(cursor, "booked");
@@ -96,6 +94,15 @@ public class BookingTableActivity extends AppCompatActivity {
         TableBookingAdapter tableBookingAdapter = new TableBookingAdapter(this, tableBookingDataHolder);
         mrcvBooking.setAdapter(tableBookingAdapter);
     }
+
+
+
+
+    //create table data
+
+
+        //push data to adapter
+
 
 //checkBooked
     public static boolean getBooleanValue(Cursor cursor, String columnName) {
