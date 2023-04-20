@@ -169,8 +169,8 @@ public class TableBookingAdapter extends RecyclerView.Adapter<TableBookingAdapte
                 } else {
                     Toast.makeText(mContext, "Update failed", Toast.LENGTH_SHORT).show();
                 }
-                Intent i = new Intent(mContext,BookingTableActivity.class);
-                mContext.startActivity(i);
+//                Intent i = new Intent(mContext,BookingTableActivity.class);
+//                mContext.startActivity(i);
 
             }
 
