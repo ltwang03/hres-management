@@ -43,6 +43,14 @@ public class TableBooking {
         return timeCheckin;
     }
 
+    public boolean isBooked() {
+        return booked;
+    }
+
+    public void setBooked(boolean booked) {
+        this.booked = booked;
+    }
+
     public void setTimeCheckin(String timeCheckin) {
         this.timeCheckin = timeCheckin;
     }
