@@ -5,12 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:weightSum="40"
     android:theme="@style/AppTheme"
     tools:context=".AddProductsAcitivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="4"
         style="@style/EditNameMenu">
 
         <TextView
@@ -30,26 +32,28 @@
             android:paddingTop="10dp"
             android:src="@drawable/ic_back"
             tools:ignore="MissingConstraints"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_height="0dp"
+        android:layout_weight="13"
         android:layout_gravity="center">
+
         <ImageView
             android:id="@+id/imgv_add_product"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:scaleType="centerCrop"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="50dp"
+            android:layout_centerInParent="true"
             android:background="@drawable/bg_edit_add"
-            android:src="@drawable/food"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/food" />
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="18"
+        android:paddingTop="20dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:orientation="vertical">
@@ -124,15 +128,21 @@
     <Button
         android:id="@+id/btn_add_product"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:layout_marginBottom="60dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="50dp"
         android:layout_marginEnd="100dp"
         android:background="@drawable/button_primary"
         android:backgroundTint="@color/orange_03"
         android:text="ADD"
         android:textColor="@color/white"
         android:textSize="30dp"
-
         android:textStyle="bold" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:id="@+id/bottom_bar">
+    </FrameLayout>
 </LinearLayout>

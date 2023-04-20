@@ -2,31 +2,30 @@ package edu.huflit.hres_management;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import edu.huflit.hres_management.API.APIService;
 import edu.huflit.hres_management.API.model.UserResponse;
+import edu.huflit.hres_management.Fragment.BottomBarFragment;
 import edu.huflit.hres_management.Model.Staff;
 import edu.huflit.hres_management.Adapter.StaffAdapter;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ListStaffActivity extends AppCompatActivity {
@@ -38,10 +37,15 @@ public class ListStaffActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private SharedPreferences sharedPreferences;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_staff);
+        Fragment bottomBar = new BottomBarFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.bottom_bar, bottomBar).commit();
+
         progressBar =  findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
         getListUser();

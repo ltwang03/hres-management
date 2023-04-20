@@ -226,12 +226,15 @@
 
             </GridLayout>
         </LinearLayout>
+
     </ScrollView>
-    <include
-        android:layout_weight="3"
-        layout="@layout/activity_toolbar_below"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp" />
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:id="@+id/bottom_bar">
+    </FrameLayout>
+
 
 </LinearLayout>
 

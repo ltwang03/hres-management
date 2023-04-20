@@ -7,6 +7,8 @@ import static edu.huflit.hres_management.R.menu.popup_booking;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,13 +32,11 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import edu.huflit.hres_management.Adapter.TableBookingAdapter;
+import edu.huflit.hres_management.Fragment.BottomBarFragment;
 import edu.huflit.hres_management.Database.DBHelper;
 import edu.huflit.hres_management.Model.TableBooking;
 
@@ -55,12 +55,15 @@ public class BookingTableActivity extends AppCompatActivity {
 
 
     private TableBookingAdapter mTableBookingAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dialog = new Dialog(BookingTableActivity.this);
         setContentView(R.layout.activity_booking_table);
+        Fragment bottomBar = new BottomBarFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.bottom_bar, bottomBar).commit();
+
         mrcvBooking = findViewById(R.id.rcvBooking);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
         mrcvBooking.setLayoutManager(gridLayoutManager);
@@ -70,6 +73,7 @@ public class BookingTableActivity extends AppCompatActivity {
         tvTime = (TextView) findViewById(R.id.tv_time_booking);
         db= new DBHelper(BookingTableActivity.this);
 
+    }
 
 
         //create table data
@@ -82,8 +86,6 @@ public class BookingTableActivity extends AppCompatActivity {
                 db.insertTableeData(sr1, amount, false, checkin, name);
             }
         }
-
-
         //push data to adapter
         Cursor cursor = db.getTableeData();
         while (cursor.moveToNext()) {
