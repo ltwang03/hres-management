@@ -11,8 +11,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import edu.huflit.hres_management.API.model.ProfileResponse;
 
-public class DBHelper extends SQLiteOpenHelper    {
+
+public class DBHelper extends SQLiteOpenHelper {
 
     public static final String DBName = "Userdata.db";
 
@@ -22,13 +24,26 @@ public class DBHelper extends SQLiteOpenHelper    {
 
     @Override
     public void onCreate(SQLiteDatabase MyDB) {
-        MyDB.execSQL("create Table Product(product_url TEXT  , product_name TEXT primary key, product_price INT , product_type TEXT , product_descripe TEXT )");
-        MyDB.execSQL("create Table Ordering(table_number TEXT primary key ,check_in_time TEXT,check_out_time TEXT)");
-        MyDB.execSQL("create Table Tablee(location TEXT primary key, amount_customer TEXT,booked boolean , checkin TEXT, customer_name TEXT)");
-
+        CreateDatabase(MyDB);
     }
 
-
+    public void CreateDatabase(SQLiteDatabase MyDB) {
+        String createTableProduct = ("CREATE TABLE Product" +
+                "(product_url TEXT," +
+                " product_name TEXT primary key," +
+                " product_price INT , product_type TEXT," +
+                " product_descripe TEXT)");
+        String createTableOrdering = ("CREATE TABLE Ordering" +
+                "(table_number TEXT primary key," +
+                " check_in_time TEXT, " +
+                "check_out_time TEXT)");
+        String createTableTableNumber = ("CREATE TABLE Tablee" +
+                "(location TEXT primary key," +
+                " booked boolean) ");
+        MyDB.execSQL(createTableProduct);
+        MyDB.execSQL(createTableOrdering);
+        MyDB.execSQL(createTableTableNumber);
+    }
     @Override
     public void onUpgrade(SQLiteDatabase MyDB, int i, int i1) {
         MyDB.execSQL("drop Table if exists Product");
