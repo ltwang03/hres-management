@@ -75,7 +75,7 @@ public class BookingTableActivity extends AppCompatActivity {
         Fragment bottomBar = new BottomBarFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.bottom_bar, bottomBar).commit();
-
+        //create table data
         if(db.isTableEmpty("Tablee")) {
             for (int i = 1; i <= 20; i++) {
                 String amount = "1";
@@ -85,6 +85,7 @@ public class BookingTableActivity extends AppCompatActivity {
                 db.insertTableeData(sr1, amount, false, checkin, name);
             }
         }
+        //push data to adapter
         Cursor cursor = db.getTableeData();
         while (cursor.moveToNext()) {
             boolean checkBool = getBooleanValue(cursor, "booked");
@@ -93,15 +94,9 @@ public class BookingTableActivity extends AppCompatActivity {
         }
         TableBookingAdapter tableBookingAdapter = new TableBookingAdapter(this, tableBookingDataHolder);
         mrcvBooking.setAdapter(tableBookingAdapter);
+        cursor.close();
     }
 
-
-
-
-    //create table data
-
-
-        //push data to adapter
 
 
 //checkBooked

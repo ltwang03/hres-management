@@ -15,7 +15,7 @@
         android:layout_weight="4"
         android:gravity="center"
         android:padding="10dp"
-        android:text="Order"
+        android:text="Orderrr"
         style="@style/EditNameMenu"
         android:textSize="40dp"/>
     <TextView
@@ -32,11 +32,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="10dp"
+        android:id="@+id/scrollViewOrder"
         android:layout_weight="30">
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcvOrder"
+            android:id="@+id/rcviewOrder"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            >
 
         </androidx.recyclerview.widget.RecyclerView>
     </ScrollView>

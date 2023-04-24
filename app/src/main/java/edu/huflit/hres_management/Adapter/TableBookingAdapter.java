@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -169,8 +170,9 @@ public class TableBookingAdapter extends RecyclerView.Adapter<TableBookingAdapte
                 } else {
                     Toast.makeText(mContext, "Update failed", Toast.LENGTH_SHORT).show();
                 }
-//                Intent i = new Intent(mContext,BookingTableActivity.class);
-//                mContext.startActivity(i);
+
+                Intent i = new Intent(mContext,BookingTableActivity.class);
+                mContext.startActivity(i);
 
             }
 
@@ -204,6 +206,7 @@ public class TableBookingAdapter extends RecyclerView.Adapter<TableBookingAdapte
         private TextView tvNumberTable;
         private TextView tvAmountCustomer;
         private TextView tvTimeCheckin;
+        ScrollView srcView ;
         LinearLayout lnInfoBooking;
         TextView tvNameBookingCustomer;
         ImageView imgBooking;
@@ -220,6 +223,7 @@ public class TableBookingAdapter extends RecyclerView.Adapter<TableBookingAdapte
             tvAmountCustomer = itemView.findViewById(R.id.tv_amount_people);
             tvTimeCheckin = itemView.findViewById(R.id.tv_time_booking);
             tvNameBookingCustomer = itemView.findViewById(R.id.tv_name_booking_customer);
+            srcView = itemView.findViewById(R.id.scrollView2);
 
 
         }
