@@ -9,15 +9,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import edu.huflit.hres_management.Database.DBHelper;
 import edu.huflit.hres_management.Fragment.BottomBarFragment;
@@ -44,10 +47,12 @@ public class ListTypeFoodActivity extends AppCompatActivity {
     boolean rcvTMVisible = false;
     boolean rcvMCVisible = false;
     boolean rcvDVisible = false;
+    SharedPreferences sharedPreferences;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedPreferences = getSharedPreferences("data", MODE_PRIVATE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_type_food);
         Fragment bottomBar = new BottomBarFragment();
@@ -58,6 +63,11 @@ public class ListTypeFoodActivity extends AppCompatActivity {
         add_food.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String getRole = sharedPreferences.getString("role","");
+                if(Objects.equals(getRole,"staff")) {
+                    Toast.makeText(ListTypeFoodActivity.this, "Bạn không có quyền để sử dụng chức năng này!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent i = new Intent(ListTypeFoodActivity.this, AddProductsAcitivity.class);
                 startActivity(i);
 

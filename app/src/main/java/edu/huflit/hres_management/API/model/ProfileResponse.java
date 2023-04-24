@@ -2,8 +2,8 @@ package edu.huflit.hres_management.API.model;
 
 public class ProfileResponse {
     private String restaurantID, userName, role, fullName;
-    private Number phoneNumber;
-    public ProfileResponse(String restaurantID, String userName, String role, String fullName, Number phoneNumber) {
+    private int phoneNumber;
+    public ProfileResponse(String restaurantID, String userName, String role, String fullName, int phoneNumber) {
         this.restaurantID = restaurantID;
         this.userName = userName;
         this.role = role;
@@ -28,7 +28,7 @@ public class ProfileResponse {
         return fullName;
     }
 
-    public Number getPhoneNumber() {
+    public int getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -48,7 +48,7 @@ public class ProfileResponse {
         this.fullName = fullName;
     }
 
-    public void setPhoneNumber(Number phoneNumber) {
+    public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 }

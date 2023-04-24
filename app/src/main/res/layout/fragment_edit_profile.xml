@@ -34,7 +34,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Đặng Phương"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="28dp"/>
 
@@ -59,7 +59,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="0123456"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="28dp"/>
 
