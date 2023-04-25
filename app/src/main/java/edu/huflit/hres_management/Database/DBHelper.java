@@ -80,7 +80,6 @@ public class DBHelper extends SQLiteOpenHelper {
             else
                 return true;
         }else return false;
-
     }
     public boolean isTableEmpty( String tableName) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
