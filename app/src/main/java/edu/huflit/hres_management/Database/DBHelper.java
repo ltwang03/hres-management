@@ -39,6 +39,9 @@ public class DBHelper extends SQLiteOpenHelper {
                 "check_out_time TEXT)");
         String createTableTableNumber = ("CREATE TABLE Tablee" +
                 "(location TEXT primary key," +
+                "customer_name TEXT," +
+                "amount_customer TEXT," +
+                "checkin TEXT," +
                 " booked boolean) ");
         MyDB.execSQL(createTableProduct);
         MyDB.execSQL(createTableOrdering);
