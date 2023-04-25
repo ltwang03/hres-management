@@ -3,35 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://  schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10dp"
     android:theme="@style/AppTheme"
-    app:cardCornerRadius="25dp">
-
-    <TextView
-        android:id="@+id/name_staff"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:layout_marginStart="20dp"
-        android:text="Dang Phuong"
-        android:textSize="25dp"/>
+    app:cardCornerRadius="15dp">
     <LinearLayout
-        android:id="@+id/ln_liststaff"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="end">
-        <ImageView
-            android:id="@+id/call_staff"
-            android:layout_width="50dp"
+        android:layout_height="match_parent"
+        style="@style/CardBackground">
+
+        <TextView
+            android:id="@+id/name_staff"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:src="@drawable/ic_call"/>
-        <ImageView
-            android:id="@+id/message_staff"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_message"
-            android:layout_marginEnd="20dp"/>
+            android:gravity="center"
+            style="@style/TextColor"
+            android:layout_marginStart="20dp"
+            android:text="Dang Phuong"
+            android:textSize="25dp"/>
+        <LinearLayout
+            android:id="@+id/ln_liststaff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end">
+            <ImageView
+                android:id="@+id/call_staff"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_call"/>
+            <ImageView
+                android:id="@+id/message_staff"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_message"
+                android:layout_marginEnd="20dp"/>
+        </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

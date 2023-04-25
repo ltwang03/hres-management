@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    style="@style/ScreenBackground"
     android:theme="@style/AppTheme"
-    android:background="@color/white"
     tools:context=".LoginActivity">
 
     <ImageView
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Welcome Back "
-        android:textColor="@color/black"
+        style="@style/TextColor"
         android:textSize="45dp"
         android:layout_marginBottom="10dp"
         android:textStyle="bold"/>
@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ID Restaurant"
-            android:textColor="@color/black"
+            style="@style/TextColor"
             android:textStyle="bold"
             android:textSize="20dp"
             tools:ignore="TextSizeCheck" />
@@ -56,15 +56,14 @@
             android:inputType="text"
             android:maxEms="3"
             android:minHeight="48dp"
-            android:textColor="@color/black"
+            style="@style/TextColor"
             android:textColorHint="#716966" />
-        <!--            android:fontFamily="@font/urbanist_bold"-->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="User Name"
-            android:textColor="@color/black"
+            style="@style/TextColor"
             android:textStyle="bold"
             android:textSize="20dp"
             tools:ignore="TextSizeCheck" />
@@ -78,14 +77,14 @@
             android:hint="Enter your UserName !"
             android:inputType="text"
             android:minHeight="48dp"
-            android:textColor="@color/black"
+            style="@style/TextColor"
             android:textColorHint="#716966" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Password"
-            android:textColor="@color/black"
+            style="@style/TextColor"
             android:textStyle="bold"
             android:textSize="20dp"
             tools:ignore="TextSizeCheck" />
@@ -96,14 +95,12 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/holo_orange_dark"
             android:ems="10"
-
             android:hint="Enter your Pasword !"
             android:longClickable="false"
-
             android:inputType="textPassword"
             android:drawableRight="@drawable/baseline_visibility_off_24"
             android:minHeight="48dp"
-            android:textColor="@color/black"
+            style="@style/TextColor"
             android:textColorHint="#716966" />
 
         <CheckBox
@@ -112,8 +109,8 @@
             android:layout_height="wrap_content"
             android:minHeight="48dp"
             android:text="Remember"
+            style="@style/TextColor"
             android:textStyle="bold"
-            android:textColor="#716966"
             app:buttonTint="#716966" />
     </LinearLayout>
 
@@ -142,14 +139,14 @@
             android:layout_gravity="center"
             android:text="Don't have an account?"
             android:textSize="17dp"
-            android:textColor="#716966" />
+            style="@style/TextColor"/>
 
         <TextView
             android:id="@+id/ltvSignup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sign up"
-            android:textColor="#716966"
+            style="@style/TextColor"
             android:textSize="23dp"
             android:textStyle="bold" />
     </LinearLayout>

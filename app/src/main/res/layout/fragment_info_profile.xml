@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/ScreenBackground"
     tools:context=".Fragment.InfoProfileFragment">
 
         <LinearLayout
@@ -23,6 +24,7 @@
                     android:id="@+id/tv_idRes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    style="@style/TextColor"
                     android:layout_marginStart="40dp"
                     android:layout_gravity="center"
                     android:text="HRes"
@@ -49,6 +51,7 @@
                     android:layout_marginStart="40dp"
                     android:layout_gravity="center"
                     android:text="Đặng Phương"
+                    style="@style/TextColor"
                     android:textSize="28dp"/>
             </LinearLayout>
             <ImageView
@@ -72,6 +75,7 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="40dp"
                     android:text="dfuong123"
+                    style="@style/TextColor"
                     android:textSize="28dp" />
             </LinearLayout>
             <ImageView
@@ -94,6 +98,7 @@
                     android:layout_marginStart="40dp"
                     android:layout_gravity="center"
                     android:text="0123456"
+                    style="@style/TextColor"
                     android:textSize="28dp"/>
             </LinearLayout>
             <ImageView

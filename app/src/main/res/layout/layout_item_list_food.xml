@@ -9,7 +9,8 @@
     app:cardCornerRadius="10dp">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        style="@style/CardBackground">
         <ImageView
             android:id="@+id/img_food_real"
             android:layout_width="70dp"
@@ -33,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Món ăn 1"
-                android:textColor="@color/black"
+                style="@style/TextColor"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 tools:ignore="TextSizeCheck" />
@@ -42,6 +43,7 @@
                 android:id="@+id/describe_food"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/TextColor"
                 android:text="Thành phần chính: Cua, ..."
                 android:textSize="15dp"
                 tools:ignore="TextSizeCheck" />

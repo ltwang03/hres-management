@@ -31,9 +31,6 @@
             android:name=".booking"
             android:exported="false" />
         <activity
-            android:name=".Testing"
-            android:exported="false" />
-        <activity
             android:name=".MotionLayout"
             android:exported="true">
             <intent-filter>
@@ -62,7 +59,7 @@
             android:exported="false" />
         <activity
             android:name=".Home"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".RegisterActivity"
             android:exported="false">

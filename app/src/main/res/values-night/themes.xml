@@ -1,3 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
+    <style name="ScreenBackground" > <item name="android:background">#3E3E3E</item></style>
+    <style name="CardBackground" > <item name="android:background">#929292</item></style>
+    <style name="TextColor" > <item name="android:textColor">#FFFFFF</item></style>
+    <style name="TextColorHint" > <item name="android:textColorHint">#FFFFFF</item></style>
+
 </resources>
