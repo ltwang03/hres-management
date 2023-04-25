@@ -27,7 +27,7 @@
                     style="@style/TextColor"
                     android:layout_marginStart="40dp"
                     android:layout_gravity="center"
-                    android:text="HRes"
+                    android:text=""
                     android:textSize="28dp"/>
 
             </LinearLayout>
@@ -50,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
                     android:layout_gravity="center"
-                    android:text="Đặng Phương"
+                    android:text=""
                     style="@style/TextColor"
                     android:textSize="28dp"/>
             </LinearLayout>
@@ -74,8 +74,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="40dp"
-                    android:text="dfuong123"
                     style="@style/TextColor"
+                    android:text=""
                     android:textSize="28dp" />
             </LinearLayout>
             <ImageView
@@ -86,6 +86,7 @@
                 android:src="@drawable/line"/>
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_marginBottom="5dp"
                 android:layout_height="wrap_content">
                 <ImageView
                     android:layout_width="40dp"
@@ -97,8 +98,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
                     android:layout_gravity="center"
-                    android:text="0123456"
                     style="@style/TextColor"
+                    android:text=""
                     android:textSize="28dp"/>
             </LinearLayout>
             <ImageView
@@ -108,10 +109,21 @@
                 android:layout_marginBottom="10dp"
                 android:src="@drawable/line"/>
             <Button
+                android:id="@+id/btn_sign_out"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sign Out"
+                android:textSize="28dp"
+                android:textColor="@color/orange_01"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:background="@drawable/button_sign_out"
+                />
+            <Button
                 android:id="@+id/btn_editFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="20dp"
                 android:text="Edit Profile"
                 android:textSize="28dp"
                 android:textColor="@color/white"

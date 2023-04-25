@@ -1,14 +1,14 @@
 package edu.huflit.hres_management;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.media.Image;
 import android.net.Uri;
@@ -35,9 +35,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
+import edu.huflit.hres_management.API.APIService;
+import edu.huflit.hres_management.API.model.AddFoodRequest;
+import edu.huflit.hres_management.API.model.AddFoodResponse;
+import edu.huflit.hres_management.API.model.EditProfileRequest;
 import edu.huflit.hres_management.Database.DBHelper;
-import edu.huflit.hres_management.Fragment.BottomBarFragment;
+import retrofit2.Call;
+import retrofit2.Response;
 
 
 public class AddProductsAcitivity extends AppCompatActivity {
@@ -52,16 +58,14 @@ public class AddProductsAcitivity extends AppCompatActivity {
     Spinner spnCategory;
     ImageView imgvAddImage,imgBackList;
     DBHelper db;
+    SharedPreferences sharedPreferences;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_products);
-        Fragment bottomBar = new BottomBarFragment();
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.bottom_bar, bottomBar).commit();
-
+        sharedPreferences = getSharedPreferences("data", MODE_PRIVATE);
         edtProductName = (EditText) findViewById(R.id.edt_product_name);
         edtProductPrice = (EditText) findViewById(R.id.edt_product_price);
         edtProductDescripe = (EditText) findViewById(R.id.edt_product_descripe);
@@ -133,6 +137,7 @@ public class AddProductsAcitivity extends AppCompatActivity {
                         // procate  + imageUrl;
 
                         Boolean checkInsertProductData = db.insertProductData(imageUrl , productName,productPrice,proCate,productDesc);
+                        SaveFoodOnServer(imageUrl,productName,proCate,productDesc, productPrice);
                         if(checkInsertProductData== true) {
                             Toast.makeText(AddProductsAcitivity.this, "New entry inserted", Toast.LENGTH_SHORT ).show();
                         }else {
@@ -172,12 +177,12 @@ public class AddProductsAcitivity extends AppCompatActivity {
     }
 
     private void RequestPermission(){
-        if(ContextCompat.checkSelfPermission(AddProductsAcitivity.this, Manifest.permission.READ_MEDIA_IMAGES) == PackageManager.PERMISSION_GRANTED){
+        if(ContextCompat.checkSelfPermission(AddProductsAcitivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
             selectImage();
 
         }else {
             ActivityCompat.requestPermissions(AddProductsAcitivity.this,new String[]{
-                    Manifest.permission.READ_MEDIA_IMAGES
+                    Manifest.permission.READ_EXTERNAL_STORAGE
             },IMAGE_REQ);
         }
 
@@ -197,6 +202,30 @@ public class AddProductsAcitivity extends AppCompatActivity {
 
             Picasso.get().load(imagePath).into(imgvAddImage);
         }
+    }
+    public void SaveFoodOnServer(String resourceId, String name, String category, String describe, String price) {
+        String token = sharedPreferences.getString("token", "");
+        AddFoodRequest addFoodRequest = new AddFoodRequest(resourceId, name, price, category, describe);
+        if(Objects.equals(token,"")) {
+            Toast.makeText(this, "Token không hợp lệ!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+            APIService.apiService.postFood("Bearer " + token, addFoodRequest).enqueue(new retrofit2.Callback<AddFoodResponse>() {
+                @Override
+                public void onResponse(@NonNull Call call, @NonNull Response response) {
+                    if(response.code() != 200) {
+                        Toast.makeText(AddProductsAcitivity.this, "không thể cập nhật dữ liệu!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    AddFoodResponse addFoodResponse = (AddFoodResponse) response.body();
+                    Toast.makeText(AddProductsAcitivity.this, addFoodResponse.getStatus(), Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(@NonNull Call call, @NonNull Throwable t) {
+                    Toast.makeText(AddProductsAcitivity.this, "thêm sản phẩm thất bại!", Toast.LENGTH_SHORT).show();
+                }
+            });
     }
 
 }
