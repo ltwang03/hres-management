@@ -1,17 +1,17 @@
 package edu.huflit.hres_management.Model;
 
-public class TableBooking {
+public class TableOrder {
     private String numberTable;
     private String nameCustomer;
     private String  amountCustomer;
     private String timeCheckin;
     private boolean booked;
 
-    public TableBooking(String numberTable, String amountCustomer, String timeCheckin, String nameCustomer , boolean booked) {
+    public TableOrder(String numberTable, String nameCustomer, String amountCustomer, String timeCheckin, boolean booked) {
         this.numberTable = numberTable;
+        this.nameCustomer = nameCustomer;
         this.amountCustomer = amountCustomer;
         this.timeCheckin = timeCheckin;
-        this.nameCustomer = nameCustomer;
         this.booked = booked;
     }
 
@@ -23,16 +23,16 @@ public class TableBooking {
         this.numberTable = numberTable;
     }
 
-    public String getAmountCustomer() {
-        return amountCustomer;
-    }
-
     public String getNameCustomer() {
         return nameCustomer;
     }
 
     public void setNameCustomer(String nameCustomer) {
         this.nameCustomer = nameCustomer;
+    }
+
+    public String getAmountCustomer() {
+        return amountCustomer;
     }
 
     public void setAmountCustomer(String amountCustomer) {
@@ -43,15 +43,15 @@ public class TableBooking {
         return timeCheckin;
     }
 
+    public void setTimeCheckin(String timeCheckin) {
+        this.timeCheckin = timeCheckin;
+    }
+
     public boolean isBooked() {
         return booked;
     }
 
     public void setBooked(boolean booked) {
         this.booked = booked;
-    }
-
-    public void setTimeCheckin(String timeCheckin) {
-        this.timeCheckin = timeCheckin;
     }
 }

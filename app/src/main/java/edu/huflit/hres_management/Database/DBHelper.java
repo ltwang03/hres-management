@@ -24,6 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase MyDB) {
+
         CreateDatabase(MyDB);
     }
 
@@ -51,9 +52,10 @@ public class DBHelper extends SQLiteOpenHelper {
         MyDB.execSQL("drop Table if exists Tablee");
 
     }
-    public boolean insertTableeData(String location, Boolean booked) {
+    public boolean insertTableeData(String location,String amount_customer, Boolean booked , String checkin , String customer_name) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+
         contentValues.put("location", location);
         contentValues.put("booked", booked);
         long result = MyDB.insert("Tablee", null, contentValues);
@@ -62,6 +64,7 @@ public class DBHelper extends SQLiteOpenHelper {
             return true;
 
     }
+
 
     public boolean updateTableeData(String location, boolean booked) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
