@@ -94,6 +94,7 @@ public class TableBookingAdapter extends RecyclerView.Adapter<TableBookingAdapte
 
 
         }
+
                         db = new DBHelper(mContext);
 
 
