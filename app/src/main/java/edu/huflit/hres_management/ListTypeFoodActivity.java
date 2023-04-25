@@ -77,24 +77,25 @@ public class ListTypeFoodActivity extends AppCompatActivity {
         db = new DBHelper(this);
         Cursor cursor = db.getProductData();
         while (cursor.moveToNext()) {
-            Log.e(TAG, "onCreate: " + cursor.getString(0) + " / " + cursor.getString(1) + " / " + cursor.getString(2) + " / " + cursor.getString(3) + " / " + cursor.getString(4));
+            Log.e(TAG, "onCreate: " + cursor.getString(0) + " / " + cursor.getString(1) + " / " + cursor.getString(4) + " / " + cursor.getString(3) + " / " + cursor.getString(2));
             if (cursor.getString(3).equals("Khai vị")) {
-                Appetizer obj = new Appetizer(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                Appetizer obj = new Appetizer(cursor.getString(0), cursor.getString(1), cursor.getString(3), cursor.getString(4), cursor.getString(2));
                 appetizerDataHolder.add(obj);
 
             }
             if (cursor.getString(3).equals("Món chính")) {
-                Maincourse obj1 = new Maincourse(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                Maincourse obj1 = new Maincourse(cursor.getString(0), cursor.getString(1), cursor.getString(3), cursor.getString(4), cursor.getString(2));
                 maincoursesDataHolder.add(obj1);
 
             }
             if (cursor.getString(3).equals("Nước giải khát")) {
-                Drinks obj2 = new Drinks(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                Drinks obj2 = new Drinks(cursor.getString(0), cursor.getString(1), cursor.getString(3), cursor.getString(4), cursor.getString(2));
+
                 drinkDataHolder.add(obj2);
 
             }
             if (cursor.getString(3).equals("Tráng miệng")) {
-                Dessert obj3 = new Dessert(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                Dessert obj3 = new Dessert(cursor.getString(0), cursor.getString(1), cursor.getString(3), cursor.getString(4), cursor.getString(2));
                 dessertDataHolder.add(obj3);
 
             }
