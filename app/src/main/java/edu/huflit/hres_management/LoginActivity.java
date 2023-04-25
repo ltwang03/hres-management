@@ -105,6 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                 LoginResponse loginResponse = response.body();
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("token", loginResponse.getToken());
+                editor.putString("role", loginResponse.getRole());
                 editor.apply();
                 Toast.makeText(LoginActivity.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(LoginActivity.this, Home.class);
