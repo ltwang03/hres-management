@@ -20,9 +20,7 @@
             android:name=".Services.SyncService"
             android:enabled="true"
             android:exported="false" />
-        <activity
-            android:name=".OrderFoodActivity"
-            android:exported="false" />
+
         <activity
             android:name=".OrderTableActivity"
             android:exported="false" />
