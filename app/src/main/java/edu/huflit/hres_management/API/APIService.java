@@ -7,6 +7,7 @@ import edu.huflit.hres_management.API.model.AddFoodRequest;
 import edu.huflit.hres_management.API.model.AddFoodResponse;
 import edu.huflit.hres_management.API.model.EditProfileRequest;
 import edu.huflit.hres_management.API.model.EditProfileResponse;
+import edu.huflit.hres_management.API.model.GetFoodResponse;
 import edu.huflit.hres_management.API.model.LoginRequest;
 import edu.huflit.hres_management.API.model.LoginResponse;
 import edu.huflit.hres_management.API.model.ProfileResponse;
@@ -50,5 +51,7 @@ public interface APIService {
     Call<EditProfileResponse> editProfile(@Header("Authorization") String token, @Body EditProfileRequest editProfileRequest);
     @POST("api/post/food")
     Call<AddFoodResponse> postFood(@Header("Authorization") String token, @Body AddFoodRequest addFoodRequest);
+    @GET ("api/get/food")
+    Call<GetFoodResponse> getFoods(@Header("Authorization") String token);
 
 }

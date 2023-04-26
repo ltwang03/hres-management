@@ -7,7 +7,7 @@ import edu.huflit.hres_management.Model.Staff;
 public class UserResponse {
     private String status;
     private List<Staff> user;
-    public UserResponse(String message, List<Staff> user) {
+    public UserResponse(String status, List<Staff> user) {
         this.status = status;
         this.user = user;
     }
