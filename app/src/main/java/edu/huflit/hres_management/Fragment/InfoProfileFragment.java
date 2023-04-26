@@ -21,6 +21,7 @@ import java.util.Objects;
 
 import edu.huflit.hres_management.API.APIService;
 import edu.huflit.hres_management.API.model.ProfileResponse;
+import edu.huflit.hres_management.Database.DBHelper;
 import edu.huflit.hres_management.Home;
 import edu.huflit.hres_management.IntroActivity;
 import edu.huflit.hres_management.LoginActivity;
@@ -36,6 +37,7 @@ public class InfoProfileFragment extends Fragment {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     TextView resID, fullName, userName, phoneNumber;
+    DBHelper dbHelper;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

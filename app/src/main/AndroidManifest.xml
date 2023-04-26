@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
 
     <application
@@ -17,6 +18,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31" >
+        <service
+            android:name=".Services.SyncService"
+            android:enabled="true"
+            android:exported="false" />
         <activity
             android:name=".OrderTableActivity"
             android:exported="false" />
@@ -26,12 +31,10 @@
         <activity
             android:name=".ListBillActivity"
             android:exported="true" />
-        <activity
-        <activity
-            android:name=".MotionLayout"
+        <activity android:name=".MotionLayout"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
 
         <category android:name="android.intent.category.LAUNCHER" />
     </intent-filter>
@@ -41,9 +44,6 @@
         />
         <activity
             android:name=".StaffInformationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AddTableActivity"
             android:exported="false" />
         <activity
             android:name=".ListCustomerActivity"
@@ -61,7 +61,7 @@
             android:exported="false" />
         <activity
             android:name=".Home"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".RegisterActivity"
             android:exported="false" >

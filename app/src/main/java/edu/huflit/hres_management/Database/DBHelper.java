@@ -2,6 +2,7 @@ package edu.huflit.hres_management.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 
 
@@ -94,8 +95,6 @@ public class DBHelper extends SQLiteOpenHelper {
     }
     public Boolean deleteTableeData(String location ) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
-
-
         Cursor cursor  = MyDB.rawQuery("Select * from Tablee where location = ?", new String[] {location});
         if(cursor.getCount() > 0 ) {
             long result = MyDB.delete("Tablee"  , "Location=?", new String[] {location});
@@ -191,8 +190,6 @@ public class DBHelper extends SQLiteOpenHelper {
     }
     public Cursor getProductData() {
         SQLiteDatabase MyDB = this.getWritableDatabase();
-
-
         Cursor cursor  = MyDB.rawQuery("Select * from Product ",null    );
         return cursor;
 
@@ -212,6 +209,22 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor  = MyDB.rawQuery("Select * from Tablee ",null    );
         return cursor;
 
+    }
+    public void deleteAllDatabase() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DROP TABLE IF EXISTS " + "Product");
+        db.execSQL("DROP TABLE IF EXISTS " + "Ordering");
+        String createTableProduct = ("CREATE TABLE Product" +
+                "(product_url TEXT," +
+                " product_name TEXT primary key," +
+                " product_price INT , product_type TEXT," +
+                " product_descripe TEXT)");
+        String createTableOrdering = ("CREATE TABLE Ordering" +
+                "(table_number TEXT primary key," +
+                " check_in_time TEXT, " +
+                "check_out_time TEXT)");
+        db.execSQL(createTableProduct);
+        db.execSQL(createTableOrdering);
     }
 }
 
