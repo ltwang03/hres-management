@@ -39,6 +39,9 @@ public class DBHelper extends SQLiteOpenHelper {
                 "check_out_time TEXT)");
         String createTableTableNumber = ("CREATE TABLE Tablee" +
                 "(location TEXT primary key," +
+                "customer_name TEXT," +
+                "amount_customer TEXT," +
+                "checkin TEXT," +
                 " booked boolean) ");
         MyDB.execSQL(createTableProduct);
         MyDB.execSQL(createTableOrdering);
@@ -51,160 +54,162 @@ public class DBHelper extends SQLiteOpenHelper {
         MyDB.execSQL("drop Table if exists Tablee");
 
     }
-    public boolean insertTableeData(String location, Boolean booked) {
+    public boolean insertTableeData(String location,String amount_customer, Boolean booked , String checkin , String customer_name) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("location", location);
-        contentValues.put("booked", booked);
-        long result = MyDB.insert("Tablee", null, contentValues);
-        if (result == -1) return false;
+        contentValues.put("location",location);
+        contentValues.put("booked",booked);
+        contentValues.put("amount_customer" , amount_customer);
+        contentValues.put("customer_name",customer_name);
+        contentValues.put("checkin" , checkin);
+        long result = MyDB.insert("Tablee" , null,contentValues);
+        if(result == -1) return false;
         else
             return true;
 
     }
-
-    public boolean updateTableeData(String location, boolean booked) {
+    public boolean updateTableeData(String location,String amount_customer, Boolean booked , String checkin , String customer_name) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("location", location);
-        contentValues.put("booked", booked);
-        Cursor cursor = MyDB.rawQuery("Select * from Tablee where location = ?", new String[]{location});
-        if (cursor.getCount() > 0) {
-            long result = MyDB.update("Tablee", contentValues, "location=?", new String[]{location});
-            if (result == -1) return false;
+        contentValues.put("location",location);
+        contentValues.put("booked",booked);
+        contentValues.put("amount_customer" , amount_customer);
+        contentValues.put("customer_name",customer_name);
+        contentValues.put("checkin" , checkin);
+        Cursor cursor  = MyDB.rawQuery("Select * from Tablee where location = ?", new String[] {location});
+        if(cursor.getCount() > 0 ) {
+            long result = MyDB.update("Tablee" , contentValues , "location=?", new String[] {location});
+            if(result == -1) return false;
             else
                 return true;
-        } else return false;
-
+        }else return false;
     }
-
-    public Boolean deleteTableeData(String location) {
+    public boolean isTableEmpty( String tableName) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("SELECT COUNT(*) FROM " + tableName, null);
+        cursor.moveToFirst();
+        int count = cursor.getInt(0);
+        cursor.close();
+        return count == 0;
+    }
+    public Boolean deleteTableeData(String location ) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
 
 
-        Cursor cursor = MyDB.rawQuery("Select * from Tablee where location = ?", new String[]{location});
-        if (cursor.getCount() > 0) {
-            long result = MyDB.delete("Table", "Location=?", new String[]{location});
-            if (result == -1) return false;
+        Cursor cursor  = MyDB.rawQuery("Select * from Tablee where location = ?", new String[] {location});
+        if(cursor.getCount() > 0 ) {
+            long result = MyDB.delete("Tablee"  , "Location=?", new String[] {location});
+            if(result == -1) return false;
             else
                 return true;
-        } else return false;
+        }else return false;
 
     }
-
     public boolean insertOrderingData(String tableNumber, String checkInTime, String checkOutTime) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("table_number", tableNumber);
-        contentValues.put("check_in_time", checkInTime);
-        contentValues.put("check_out_time", checkOutTime);
-        long result = MyDB.insert("Ordering", null, contentValues);
-        if (result == -1) return false;
+        contentValues.put("table_number",tableNumber);
+        contentValues.put("check_in_time",checkInTime);
+        contentValues.put("check_out_time",checkOutTime);
+        long result = MyDB.insert("Ordering" , null,contentValues);
+        if(result == -1) return false;
         else
             return true;
 
 
     }
-
     public boolean updateOrderingData(String tableNumber, String checkInTime, String checkOutTime) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("table_number", tableNumber);
-        contentValues.put("check_in_time", checkInTime);
-        contentValues.put("check_out_time", checkOutTime);
-        Cursor cursor = MyDB.rawQuery("Select * from Ordering where tableNumber = ?", new String[]{tableNumber});
-        if (cursor.getCount() > 0) {
-            long result = MyDB.update("Ordering", contentValues, "tableNumber=?", new String[]{tableNumber});
-            if (result == -1) return false;
+        contentValues.put("table_number",tableNumber);
+        contentValues.put("check_in_time",checkInTime);
+        contentValues.put("check_out_time",checkOutTime);
+        Cursor cursor  = MyDB.rawQuery("Select * from Ordering where tableNumber = ?", new String[] {tableNumber});
+        if(cursor.getCount() > 0 ) {
+            long result = MyDB.update("Ordering" , contentValues , "tableNumber=?", new String[] {tableNumber});
+            if(result == -1) return false;
             else
                 return true;
-        } else return false;
+        }else return false;
 
     }
-
-    public Boolean deleteOrderingData(String tableNumber) {
+    public Boolean deleteOrderingData(String tableNumber ) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
 
 
-        Cursor cursor = MyDB.rawQuery("Select * from Ordering where tableNumber = ?", new String[]{tableNumber});
-        if (cursor.getCount() > 0) {
-            long result = MyDB.delete("Ordering", "tableNumber=?", new String[]{tableNumber});
-            if (result == -1) return false;
+        Cursor cursor  = MyDB.rawQuery("Select * from Ordering where tableNumber = ?", new String[] {tableNumber});
+        if(cursor.getCount() > 0 ) {
+            long result = MyDB.delete("Ordering"  , "tableNumber=?", new String[] {tableNumber});
+            if(result == -1) return false;
             else
                 return true;
-        } else return false;
+        }else return false;
 
     }
-
-    public Boolean insertProductData(String productImageUrl, String productName, String productPrice, String productType, String productDescripe) {
-        SQLiteDatabase MyDB = this.getWritableDatabase();
+    public Boolean insertProductData(String productImageUrl, String productName , String productPrice, String productType, String productDescripe ) {
+          SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("product_url", productImageUrl);
-        contentValues.put("product_name", productName);
-        contentValues.put("product_price", productPrice);
-        contentValues.put("product_type", productType);
-        contentValues.put("product_descripe", productDescripe);
-        long result = MyDB.insert("Product", null, contentValues);
-        if (result == -1) return false;
+        contentValues.put("product_url" , productImageUrl);
+        contentValues.put("product_name" , productName);
+        contentValues.put("product_price" , productPrice);
+        contentValues.put("product_type" , productType);
+        contentValues.put("product_descripe" , productDescripe);
+        long result = MyDB.insert("Product",  null , contentValues);
+        if(result == -1) return false;
         else
             return true;
     }
-
-    public Boolean updateProductData(String productImageUrl, String productName, String productPrice, String productType, String productDescripe) {
+    public Boolean updateProductData(String productImageUrl, String productName , String productPrice, String productType, String productDescripe ) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("product_url", productImageUrl);
-        contentValues.put("product_name", productName);
-        contentValues.put("product_price", productPrice);
-        contentValues.put("product_type", productType);
-        contentValues.put("product_descripe", productDescripe);
-        Cursor cursor = MyDB.rawQuery("Select * from Product where productName = ?", new String[]{productName});
-        if (cursor.getCount() > 0) {
-            long result = MyDB.update("Product", contentValues, "productName=?", new String[]{productName});
-            if (result == -1) return false;
+        contentValues.put("product_url" , productImageUrl);
+        contentValues.put("product_name" , productName);
+        contentValues.put("product_price" , productPrice);
+        contentValues.put("product_type" , productType);
+        contentValues.put("product_descripe" , productDescripe);
+        Cursor cursor  = MyDB.rawQuery("Select * from Product where productName = ?", new String[] {productName});
+        if(cursor.getCount() > 0 ) {
+            long result = MyDB.update("Product" , contentValues , "productName=?", new String[] {productName});
+            if(result == -1) return false;
             else
                 return true;
-        } else return false;
+        }else return false;
 
     }
-
-    public Boolean deleteProductData(String productName) {
+    public Boolean deleteProductData(String productName ) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
 
 
-        Cursor cursor = MyDB.rawQuery("Select * from Product where productName = ?", new String[]{productName});
-        if (cursor.getCount() > 0) {
-            long result = MyDB.delete("Product", "productName=?", new String[]{productName});
-            if (result == -1) return false;
+        Cursor cursor  = MyDB.rawQuery("Select * from Product where productName = ?", new String[] {productName});
+        if(cursor.getCount() > 0 ) {
+            long result = MyDB.delete("Product"  , "productName=?", new String[] {productName});
+            if(result == -1) return false;
             else
                 return true;
-        } else return false;
+        }else return false;
 
     }
-
     public Cursor getProductData() {
         SQLiteDatabase MyDB = this.getWritableDatabase();
 
 
-        Cursor cursor = MyDB.rawQuery("Select * from Product ", null);
+        Cursor cursor  = MyDB.rawQuery("Select * from Product ",null    );
         return cursor;
 
     }
-
     public Cursor getOrdering() {
         SQLiteDatabase MyDB = this.getWritableDatabase();
 
 
-        Cursor cursor = MyDB.rawQuery("Select * from Ordering ", null);
+        Cursor cursor  = MyDB.rawQuery("Select * from Ordering ",null    );
         return cursor;
 
     }
-
     public Cursor getTableeData() {
         SQLiteDatabase MyDB = this.getWritableDatabase();
 
 
-        Cursor cursor = MyDB.rawQuery("Select * from Tablee ", null);
+        Cursor cursor  = MyDB.rawQuery("Select * from Tablee ",null    );
         return cursor;
 
     }

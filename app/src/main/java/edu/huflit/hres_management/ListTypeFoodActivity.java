@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -52,7 +53,7 @@ public class ListTypeFoodActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        sharedPreferences = getSharedPreferences("data", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("data", Context.MODE_PRIVATE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_type_food);
         Fragment bottomBar = new BottomBarFragment();
@@ -64,37 +65,37 @@ public class ListTypeFoodActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String getRole = sharedPreferences.getString("role","");
-                if(Objects.equals(getRole,"staff")) {
+                if(Objects.equals(getRole, "staff")) {
                     Toast.makeText(ListTypeFoodActivity.this, "Bạn không có quyền để sử dụng chức năng này!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Intent i = new Intent(ListTypeFoodActivity.this, AddProductsAcitivity.class);
-                startActivity(i);
-
+                    Intent i = new Intent(ListTypeFoodActivity.this, AddProductsAcitivity.class);
+                    startActivity(i);
             }
         });
 
         db = new DBHelper(this);
         Cursor cursor = db.getProductData();
         while (cursor.moveToNext()) {
-            Log.e(TAG, "onCreate: " + cursor.getString(0) + " / " + cursor.getString(1) + " / " + cursor.getString(2) + " / " + cursor.getString(3) + " / " + cursor.getString(4));
+            Log.e(TAG, "onCreate: " + cursor.getString(0) + " / " + cursor.getString(1) + " / " + cursor.getString(4) + " / " + cursor.getString(3) + " / " + cursor.getString(2));
             if (cursor.getString(3).equals("Khai vị")) {
-                Appetizer obj = new Appetizer(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                Appetizer obj = new Appetizer(cursor.getString(0), cursor.getString(1), cursor.getString(3), cursor.getString(4), cursor.getString(2));
                 appetizerDataHolder.add(obj);
 
             }
             if (cursor.getString(3).equals("Món chính")) {
-                Maincourse obj1 = new Maincourse(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                Maincourse obj1 = new Maincourse(cursor.getString(0), cursor.getString(1), cursor.getString(3), cursor.getString(4), cursor.getString(2));
                 maincoursesDataHolder.add(obj1);
 
             }
             if (cursor.getString(3).equals("Nước giải khát")) {
-                Drinks obj2 = new Drinks(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                Drinks obj2 = new Drinks(cursor.getString(0), cursor.getString(1), cursor.getString(3), cursor.getString(4), cursor.getString(2));
+
                 drinkDataHolder.add(obj2);
 
             }
             if (cursor.getString(3).equals("Tráng miệng")) {
-                Dessert obj3 = new Dessert(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                Dessert obj3 = new Dessert(cursor.getString(0), cursor.getString(1), cursor.getString(3), cursor.getString(4), cursor.getString(2));
                 dessertDataHolder.add(obj3);
 
             }
@@ -137,13 +138,6 @@ public class ListTypeFoodActivity extends AppCompatActivity {
             rcvMaincourse.setAdapter(maincourseAdapter);
 
             lnMaincourse = findViewById(R.id.lnMaincourse);
-            add_food.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent i1 = new Intent(ListTypeFoodActivity.this, AddProductsAcitivity.class);
-                    startActivity(i1);
-                }
-            });
             lnMaincourse.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

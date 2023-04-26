@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,9 +55,17 @@ public class EditProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 UpdateInfo();
-                Fragment infoProfile = new InfoProfileFragment();
-                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.layout_profile, infoProfile).addToBackStack(null).commit();
+
+                final int timeoutMillis = 300; // thời gian timeout
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Fragment infoProfile = new InfoProfileFragment();
+                        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.layout_profile, infoProfile).addToBackStack(null).commit();
+                    }
+                }, timeoutMillis);
             }
         });
         return view;
