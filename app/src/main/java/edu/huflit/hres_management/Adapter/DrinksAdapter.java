@@ -44,7 +44,9 @@ public class DrinksAdapter extends RecyclerView.Adapter<DrinksAdapter.DrinksView
         Drinks drinks = mListDrinks.get(position);
         if(drinks == null)
             return;
-        Picasso.get().load(mListDrinks.get(position).getResourceId()).into(holder.imgFoodReal);
+        holder.imgFoodReal.getLayoutParams().width = 150;
+        holder.imgFoodReal.getLayoutParams().height = 170;
+        Picasso.get().load(mListDrinks.get(position).getResourceId()).resize(holder.imgFoodReal.getLayoutParams().width, holder.imgFoodReal.getLayoutParams().height).centerCrop().into(holder.imgFoodReal);
 
        // holder.imgFood.setText(mListDrinks.get(position).getResourceId());
         holder.tvName.setText(mListDrinks.get(position).getName());
@@ -63,7 +65,7 @@ public class DrinksAdapter extends RecyclerView.Adapter<DrinksAdapter.DrinksView
     public class DrinksViewHolder extends RecyclerView.ViewHolder{
 
 
-        private final TextView imgFood;
+
         private TextView tvName;
         private TextView tvDescribe;
         private TextView tvPrice;
@@ -72,7 +74,6 @@ public class DrinksAdapter extends RecyclerView.Adapter<DrinksAdapter.DrinksView
         public DrinksViewHolder(@NonNull View itemView) {
             super(itemView);
             imgFoodReal = itemView.findViewById(R.id.img_food_real);
-            imgFood = itemView.findViewById(R.id.img_food);
             tvName = itemView.findViewById(R.id.name_food);
             tvDescribe = itemView.findViewById(R.id.describe_food);
             tvPrice = itemView.findViewById(R.id.price_food);

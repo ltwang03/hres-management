@@ -1,3 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
+    <style name="ScreenBackground" > <item name="android:background">@color/white</item></style>
+    <style name="CardBackground" > <item name="android:background">@color/white</item></style>
+    <style name="TextColor" > <item name="android:textColor">@color/black</item></style>
+    <style name="TextColorHint" > <item name="android:textColorHint">#716966</item></style>
+    <style name="IconSearch"> <item name="android:src">@drawable/search_black</item></style>
+    <style name="IconClear"> <item name="android:src">@drawable/clear_black</item></style>
+    <style name="IconEdit"> <item name="android:src">@drawable/ic_edit_black</item></style>
+
 </resources>

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="40"
+    style="@style/ScreenBackground"
     android:theme="@style/AppTheme"
     tools:context=".AddProductsAcitivity">
 

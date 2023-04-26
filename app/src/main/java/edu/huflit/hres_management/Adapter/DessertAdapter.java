@@ -44,7 +44,9 @@ public class  DessertAdapter extends RecyclerView.Adapter<DessertAdapter.Dessert
         Dessert dessert = mListDessert.get(position);
         if(dessert == null)
             return;
-        Picasso.get().load(mListDessert.get(position).getResourceId()).into(holder.imgFoodReal);
+        holder.imgFoodReal.getLayoutParams().width = 150;
+        holder.imgFoodReal.getLayoutParams().height = 170;
+        Picasso.get().load(mListDessert.get(position).getResourceId()).resize(holder.imgFoodReal.getLayoutParams().width, holder.imgFoodReal.getLayoutParams().height).centerCrop().into(holder.imgFoodReal);
 
         //holder.imgFood.setText(mListDessert.get(position).getResourceId());
         holder.tvName.setText(mListDessert.get(position).getName());
@@ -72,7 +74,6 @@ public class  DessertAdapter extends RecyclerView.Adapter<DessertAdapter.Dessert
         public DessertViewHolder(@NonNull View itemView) {
             super(itemView);
             imgFoodReal =itemView.findViewById(R.id.img_food_real);
-            imgFood = itemView.findViewById(R.id.img_food);
             tvName = itemView.findViewById(R.id.name_food);
             tvDescribe = itemView.findViewById(R.id.describe_food);
             tvPrice = itemView.findViewById(R.id.price_food);
