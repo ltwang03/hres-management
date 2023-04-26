@@ -36,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView ltvSignup;
     private DBHelper DB;
     private  boolean passwordvisible;
+    private DBHelper dbHelper;
     private SharedPreferences sharedPreferences;
 
     @Override
