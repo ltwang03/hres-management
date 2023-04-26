@@ -6,28 +6,39 @@
     xmlns:app="http://  schemas.android.com/apk/res-auto"
     android:layout_margin="10dp"
     android:theme="@style/AppTheme"
-    app:cardCornerRadius="25dp">
+    app:cardCornerRadius="15dp">
 
-    <TextView
-        android:id="@+id/name_customer"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:layout_marginStart="20dp"
-        android:text="Khách hàng 1"
-        android:textSize="25dp"/>
-
-        <Button
-            android:id="@+id/order_customer"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/CardBackground">
+        <TextView
+            android:id="@+id/name_customer"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_gravity="center|end"
-            android:layout_marginEnd="10dp"
-            android:text="Đơn hàng"
-            android:textSize="10dp"
-            android:textStyle="normal"
-            android:backgroundTint="@color/orange_01"
-            android:background="@drawable/button_primary"/>
+            android:layout_height="50dp"
+            style="@style/TextColor"
+            android:gravity="center"
+            android:layout_marginStart="20dp"
+            android:text="Khách hàng 1"
+            android:textSize="25dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="end">
+            <Button
+                android:id="@+id/order_customer"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/white"
+                android:text="Đơn hàng"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:backgroundTint="@color/orange_01"
+                android:background="@drawable/button_primary"/>
+        </LinearLayout>
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

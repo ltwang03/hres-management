@@ -7,6 +7,7 @@
     android:id="@+id/main_order"
     android:theme="@style/AppTheme"
     android:orientation="vertical"
+    style="@style/ScreenBackground"
     tools:context=".OrderTableActivity"
     android:layout_weight="40">
     <TextView
@@ -24,7 +25,7 @@
         android:layout_weight="2"
         android:gravity="center|left"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        style="@style/TextColor"
         android:textSize="20dp"
         android:text="Số lượng bàn (20)"/>
 

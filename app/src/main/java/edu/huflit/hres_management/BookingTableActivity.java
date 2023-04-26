@@ -102,7 +102,6 @@ public class BookingTableActivity extends AppCompatActivity {
 //checkBooked
     public static boolean getBooleanValue(Cursor cursor, String columnName) {
         boolean value = false;
-
         final int columnIndex = cursor.getColumnIndex(columnName);
         if (columnIndex != -1) {
             final int rowValue = cursor.getInt(columnIndex);

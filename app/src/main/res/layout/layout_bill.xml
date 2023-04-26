@@ -13,13 +13,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        style="@style/CardBackground"
         android:orientation="vertical">
         <TextView
             android:id="@+id/name_customer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nguyễn Thị Mỹ Diệu"
-            android:textColor="@color/black"
+            android:textColor="@color/orange_01"
             android:textSize="23dp"
             android:textStyle="bold" />
 
@@ -29,11 +30,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="Sunday, 12:50:23, 1/1/2020"
-            android:textColor="@color/black"
+            style="@style/TextColor"
             android:textSize="15dp" />
         <LinearLayout
         android:id="@+id/bill_show"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -49,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Danh sách các món đã dùng"
-            android:textColor="@color/black"
+            android:textColor="@color/orange_01"
             android:textSize="18dp"/>
         <TableLayout
             android:layout_width="match_parent"
@@ -63,7 +64,7 @@
                     android:gravity="center"
                     android:layout_column="1"
                     android:text="STT"
-                    android:textColor="@color/black"
+                    style="@style/TextColor"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_width="0dp"
@@ -71,7 +72,7 @@
                     android:gravity="center"
                     android:layout_column="2"
                     android:text="Tên"
-                    android:textColor="@color/black"
+                    style="@style/TextColor"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_width="0dp"
@@ -79,7 +80,7 @@
                     android:gravity="center"
                     android:layout_column="3"
                     android:text="SL"
-                    android:textColor="@color/black"
+                    style="@style/TextColor"
                     android:textStyle="bold"/>
                 <TextView
                     android:layout_width="0dp"
@@ -87,7 +88,7 @@
                     android:gravity="center"
                     android:layout_column="4"
                     android:text="Thành tiền"
-                    android:textColor="@color/black"
+                    style="@style/TextColor"
                     android:textStyle="bold"/>
             </TableRow>
             <androidx.recyclerview.widget.RecyclerView
@@ -113,6 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tổng cộng: "
+                android:textColor="@color/orange_01"
                 android:textSize="20dp"/>
 
             <TextView
@@ -120,7 +122,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="250000"
-                android:textColor="@color/black"
+                android:textColor="@color/orange_01"
                 android:textSize="20dp"
                 android:textStyle="bold" />
         </LinearLayout>

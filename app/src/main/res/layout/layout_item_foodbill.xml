@@ -5,12 +5,14 @@
     android:theme="@style/AppTheme"
     android:layout_margin="5dp"
     android:weightSum="100"
+    style="@style/ScreenBackground"
     android:stretchColumns="1,2,3,4">
     <TableRow>
         <TextView
             android:id="@+id/ordinal_numbers"
             android:layout_width="0dp"
             android:layout_weight="10"
+            style="@style/TextColor"
             android:gravity="center"
             android:layout_column="1"
             android:inputType="number"/>
@@ -18,12 +20,14 @@
             android:id="@+id/name_food"
             android:layout_width="0dp"
             android:layout_weight="40"
+            style="@style/TextColor"
             android:gravity="center"
             android:layout_column="1"/>
         <TextView
             android:id="@+id/amount_food"
             android:layout_width="0dp"
             android:layout_weight="15"
+            style="@style/TextColor"
             android:gravity="center"
             android:layout_column="1"
             android:inputType="number"/>
@@ -31,6 +35,7 @@
             android:id="@+id/total_item"
             android:layout_width="0dp"
             android:layout_weight="35"
+            style="@style/TextColor"
             android:gravity="center"
             android:layout_column="1"/>
     </TableRow>

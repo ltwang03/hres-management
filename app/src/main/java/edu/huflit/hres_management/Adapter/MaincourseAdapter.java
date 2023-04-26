@@ -43,7 +43,9 @@ public class MaincourseAdapter extends RecyclerView.Adapter<MaincourseAdapter.Ma
         Maincourse maincourse = mListMaincourse.get(position);
         if(maincourse == null)
             return;
-        Picasso.get().load(mListMaincourse.get(position).getResourceId()).into(holder.imgFoodReal);
+        holder.imgFoodReal.getLayoutParams().width = 150;
+        holder.imgFoodReal.getLayoutParams().height = 170;
+        Picasso.get().load(mListMaincourse.get(position).getResourceId()).resize(holder.imgFoodReal.getLayoutParams().width, holder.imgFoodReal.getLayoutParams().height).centerCrop().into(holder.imgFoodReal);
 
         //holder.imgFood.setText(mListMaincourse.get(position).getResourceId());
         holder.tvName.setText(mListMaincourse.get(position).getName());
@@ -71,7 +73,6 @@ public class MaincourseAdapter extends RecyclerView.Adapter<MaincourseAdapter.Ma
         public MaincourseViewHolder(@NonNull View itemView) {
             super(itemView);
             imgFoodReal = itemView.findViewById(R.id.img_food_real);
-            imgFood = itemView.findViewById(R.id.img_food);
             tvName = itemView.findViewById(R.id.name_food);
             tvDescribe = itemView.findViewById(R.id.describe_food);
             tvPrice = itemView.findViewById(R.id.price_food);

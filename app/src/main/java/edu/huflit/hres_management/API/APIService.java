@@ -7,6 +7,7 @@ import edu.huflit.hres_management.API.model.AddFoodRequest;
 import edu.huflit.hres_management.API.model.AddFoodResponse;
 import edu.huflit.hres_management.API.model.EditProfileRequest;
 import edu.huflit.hres_management.API.model.EditProfileResponse;
+import edu.huflit.hres_management.API.model.GetFoodResponse;
 import edu.huflit.hres_management.API.model.LoginRequest;
 import edu.huflit.hres_management.API.model.LoginResponse;
 import edu.huflit.hres_management.API.model.ProfileResponse;
@@ -27,9 +28,9 @@ import retrofit2.http.PUT;
 
 public interface APIService {
 
-//    static final String baseURL = "https://hres-management-server-production.up.railway.app/";
-    static final String baseURL = "https://hres-management-server.onrender.com/";
-//    static final String baseURL = "https://28e6-183-80-65-248.ngrok-free.app/";
+    static final String baseURL = "https://hres-management-server-production.up.railway.app/";
+//    static final String baseURL = "https://hres-management-server.onrender.com/";
+//    static final String baseURL = "https://7461-1-52-184-153.ngrok-free.app/";
     Gson gson = new GsonBuilder().setLenient().create();
     APIService apiService = new Retrofit.Builder()
             .baseUrl(baseURL)
@@ -50,5 +51,7 @@ public interface APIService {
     Call<EditProfileResponse> editProfile(@Header("Authorization") String token, @Body EditProfileRequest editProfileRequest);
     @POST("api/post/food")
     Call<AddFoodResponse> postFood(@Header("Authorization") String token, @Body AddFoodRequest addFoodRequest);
+    @GET ("api/get/food")
+    Call<GetFoodResponse> getFoods(@Header("Authorization") String token);
 
 }
