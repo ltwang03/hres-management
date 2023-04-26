@@ -128,7 +128,8 @@ public class TableBookingAdapter extends RecyclerView.Adapter<TableBookingAdapte
         dialog = new Dialog(mContext);
         dialog.setContentView(R.layout.dialog_form_booking);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        Button mbtnCancel = dialog.findViewById((R.id.btn_cancel));db = new DBHelper(mContext);
+        Button mbtnCancel = dialog.findViewById((R.id.btn_cancel));
+        db = new DBHelper(mContext);
 
 
 
