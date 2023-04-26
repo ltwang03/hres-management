@@ -50,7 +50,7 @@ public class ListStaffActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         getListUser();
         callStaff = (ImageView) findViewById(R.id.call_staff);
-        messageStaff = (ImageView) findViewById(R.id.message_staff);
+        messageStaff = (ImageView) findViewById(R.id.delete_staff);
         rcvListStaff = findViewById(R.id.rcvListStaff);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ListStaffActivity.this,RecyclerView.VERTICAL,false);
         rcvListStaff.setLayoutManager(linearLayoutManager);

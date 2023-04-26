@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:theme="@style/AppTheme"
+    app:cardCornerRadius="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/CardBackground">
+        <LinearLayout
+            android:id="@+id/ln_infoFood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_nameFood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextColor"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:text="Gà" />
+
+            <TextView
+                android:id="@+id/tv_priceFood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextColor"
+                android:textStyle="bold"
+                android:text="130000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnDecrease"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/orange_01"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:text="-" />
+
+            <EditText
+                android:id="@+id/et_amountFood"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                style="@style/TextColor"
+                android:inputType="number"
+                android:background="@drawable/delete_underline"
+                android:text="0" />
+
+            <Button
+                android:id="@+id/btnIncrease"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/orange_01"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:text="+" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

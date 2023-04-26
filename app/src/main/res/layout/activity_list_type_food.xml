@@ -23,30 +23,26 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="33">
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
             <LinearLayout
                 android:id="@+id/type_food"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                tools:ignore="InvalidId">
-
+                tools:ignore="InvalidId" >
                 <LinearLayout
                     android:id="@+id/appetizer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:background="@drawable/shape_item"
-                    android:orientation="vertical">
-
+                    android:orientation="vertical"
+                    android:background="@drawable/shape_item">
                     <LinearLayout
                         android:id="@+id/lnAppetizer"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"                    >
 
                         <ImageView
                             android:id="@+id/img_typefood"
@@ -61,99 +57,88 @@
                             android:id="@+id/name_type"
                             android:layout_width="wrap_content"
                             android:layout_height="100dp"
+                            android:textSize="27dp"
+                            android:gravity="center_vertical"
                             android:layout_marginStart="10dp"
                             android:textStyle="bold"
-                            android:layout_toRightOf="@id/img_typefood"
-                            android:gravity="center_vertical"
-                            android:text="Khai vị"
                             android:textColor="@color/orange_03"
-                            android:textSize="27dp" />
-
+                            android:layout_toRightOf="@id/img_typefood"
+                            android:text="Khai vị"/>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end">
-
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="100dp"
                                 android:src="@drawable/next_ic" />
                         </LinearLayout>
                     </LinearLayout>
-
                     <LinearLayout
                         android:id="@+id/show_appetizer"
+                        android:paddingLeft="20dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="20dp">
-
+                        android:layout_height="wrap_content">
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rcvAppetizer"
+                            android:visibility="gone"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
+                            android:layout_height="wrap_content">
+                        </androidx.recyclerview.widget.RecyclerView>
 
                     </LinearLayout>
                 </LinearLayout>
-
                 <LinearLayout
                     android:id="@+id/maincourse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
                     android:background="@drawable/shape_item"
+                    android:layout_margin="10dp"
                     android:orientation="vertical"
                     tools:ignore="InvalidId">
-
                     <LinearLayout
                         android:id="@+id/lnMaincourse"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-
                         <ImageView
                             android:id="@+id/img_typefood"
                             android:layout_width="80dp"
                             android:layout_height="100dp"
                             android:layout_marginStart="10dp"
-                            android:src="@drawable/maincourse" />
-
+                            android:src="@drawable/maincourse"/>
                         <TextView
                             android:id="@+id/name_type"
                             android:layout_width="wrap_content"
                             android:layout_height="100dp"
                             android:textSize="27dp"
                             android:textStyle="bold"
-                            android:layout_marginStart="10dp"
-                            android:layout_toRightOf="@id/img_typefood"
                             android:gravity="center_vertical"
-                            android:text="Món chính"
+                            android:layout_marginStart="10dp"
                             android:textColor="@color/orange_03"
-                             />
-
+                            android:layout_toRightOf="@id/img_typefood"
+                            android:text="Món chính"/>
                         <LinearLayout
                             android:id="@+id/lnMaincourse"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end">
-
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="100dp"
                                 android:src="@drawable/next_ic" />
                         </LinearLayout>
                     </LinearLayout>
-
                     <LinearLayout
                         android:id="@+id/show_Maincourse"
+                        android:paddingLeft="20dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="20dp">
-
+                        android:layout_height="wrap_content">
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rcvMaincourse"
+                            android:visibility="gone"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
+                            android:layout_height="wrap_content">
+                        </androidx.recyclerview.widget.RecyclerView>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -161,60 +146,52 @@
                     android:id="@+id/dessert"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/shape_item"
                     android:orientation="vertical"
+                    android:background="@drawable/shape_item"
+                    android:layout_margin="10dp"
                     tools:ignore="InvalidId">
-
                     <LinearLayout
                         android:id="@+id/lnDessert"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-
                         <ImageView
                             android:id="@+id/img_typefood"
                             android:layout_width="80dp"
                             android:layout_height="100dp"
                             android:layout_marginStart="10dp"
-                            android:src="@drawable/dessert" />
-
+                            android:src="@drawable/dessert"/>
                         <TextView
                             android:id="@+id/name_type"
                             android:layout_width="wrap_content"
                             android:layout_height="100dp"
-
+                            android:textSize="27dp"
                             android:textStyle="bold"
                             android:gravity="center_vertical"
-
                             android:layout_marginStart="10dp"
-                            android:layout_toRightOf="@id/img_typefood"
-                            android:text="Tráng miệng"
                             android:textColor="@color/orange_03"
-                            android:textSize="27dp" />
-
+                            android:layout_toRightOf="@id/img_typefood"
+                            android:text="Tráng miệng"/>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end">
-
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="100dp"
                                 android:src="@drawable/next_ic" />
                         </LinearLayout>
                     </LinearLayout>
-
                     <LinearLayout
                         android:id="@+id/show_dessert"
+                        android:paddingLeft="20dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="20dp">
-
+                        android:layout_height="wrap_content">
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rcvDessert"
+                            android:visibility="gone"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
+                            android:layout_height="wrap_content">
+                        </androidx.recyclerview.widget.RecyclerView>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -222,11 +199,10 @@
                     android:id="@+id/drinks"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/shape_item"
                     android:orientation="vertical"
+                    android:background="@drawable/shape_item"
+                    android:layout_margin="10dp"
                     tools:ignore="InvalidId">
-
                     <LinearLayout
                         android:id="@+id/lnDrinks"
                         android:layout_width="match_parent"
@@ -243,37 +219,34 @@
                             android:id="@+id/name_type"
                             android:layout_width="wrap_content"
                             android:layout_height="100dp"
+                            android:textSize="27dp"
                             android:textStyle="bold"
                             android:gravity="center_vertical"
                             android:layout_marginStart="10dp"
-                            android:layout_toRightOf="@id/img_typefood"
-                            android:text="Nước giải khát"
                             android:textColor="@color/orange_03"
-                            android:textSize="27dp" />
-
+                            android:layout_toRightOf="@id/img_typefood"
+                            android:text="Nước giải khát"/>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end">
-
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="100dp"
                                 android:src="@drawable/next_ic" />
                         </LinearLayout>
                     </LinearLayout>
-
                     <LinearLayout
                         android:id="@+id/show_drinks"
+                        android:paddingLeft="20dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="20dp">
-
+                        android:layout_height="wrap_content">
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rcvDrinks"
+                            android:visibility="gone"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
+                            android:layout_height="wrap_content">
+                        </androidx.recyclerview.widget.RecyclerView>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -281,7 +254,6 @@
             </LinearLayout>
 
         </ScrollView>
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_food"
             android:layout_width="wrap_content"
