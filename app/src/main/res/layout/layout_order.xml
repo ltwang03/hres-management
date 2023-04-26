@@ -2,44 +2,40 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
 
     android:id="@+id/layout_booking"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:theme="@style/AppTheme"
-    style="@style/ScreenBackground"
     xmlns:tools="http://schemas.android.com/tools">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/table_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        style="@style/CardBackground">
+        android:layout_margin="15dp">
+
         <ImageView
-            android:id="@+id/img_empty"
-            android:layout_width="100dp"
-            android:layout_height="130dp"
-            android:visibility="visible"
-            android:src="@drawable/table_empty"
-            tools:ignore="MissingConstraints" />
-        <ImageView
-            android:id="@+id/img_booking"
-            android:layout_width="100dp"
-            android:layout_height="130dp"
-            android:visibility="invisible"
+            android:id="@+id/imgv_order"
+            android:layout_width="170dp"
+            android:layout_height="190dp"
             android:src="@drawable/table_booking"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+           />
+
 
         <LinearLayout
-            android:id="@+id/ln_info_booking"
+            android:id="@+id/ln_info_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:orientation="vertical"
-            android:visibility="invisible"
+
+
             tools:ignore="MissingConstraints">
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -47,58 +43,65 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_name_booking_customer"
+                    android:id="@+id/tv_name_customer_order"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name"
-                    android:textSize="10dp"
+                    android:textSize="23dp"
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/tv_amount_people"
+                    android:id="@+id/tv_amount_people_order"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="0"
-                    android:textSize="10dp"
+                    android:textSize="20dp"
                     android:textStyle="bold"
 
                     tools:ignore="MissingConstraints" />
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_time_booking"
+                android:id="@+id/tv_time_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:text="13h"
-                android:textSize="10dp"/>
+                android:textSize="20dp"/>
         </LinearLayout>
 
         <LinearLayout
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+
+
             tools:ignore="MissingConstraints">
             <TextView
+
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Table"
-                style="@style/TextColor"
-                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold"
                 tools:ignore="MissingConstraints" />
             <TextView
-                android:id="@+id/number_table"
+                android:id="@+id/number_table_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="1"
-                style="@style/TextColor"
-                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
