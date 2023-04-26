@@ -24,28 +24,30 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/ic_search_staff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/baseline_search_24" />
+            android:background="@drawable/delete_underline"
+            style="@style/IconSearch"/>
 
         <EditText
-            android:id="@+id/search_staff"
-            android:layout_width="300dp"
+            android:id="@+id/et_search_staff"
+            android:layout_width="270dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/delete_underline"
             android:hint="Search"
-            style="@style/TextColor"
             android:minHeight="48dp" />
         <ImageView
-            android:id="@+id/clear_search_staff"
+            android:id="@+id/ic_clear_staff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/baseline_clear_24" />
+            style="@style/IconClear"/>
     </LinearLayout>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"

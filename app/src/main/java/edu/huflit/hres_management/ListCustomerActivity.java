@@ -41,8 +41,8 @@ public class ListCustomerActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.bottom_bar, bottomBar).commit();
 
-        clearSearchCustomer = (ImageView)findViewById(R.id.clear_search_customer);
-        searchCustomer = (EditText) findViewById(R.id.search_customer);
+        clearSearchCustomer = (ImageView)findViewById(R.id.ic_clear_customer);
+        searchCustomer = (EditText) findViewById(R.id.et_search_customer);
         madd = findViewById(R.id.add_customer);
         rcvListCustomer = findViewById(R.id.rcvListCustomer);
 

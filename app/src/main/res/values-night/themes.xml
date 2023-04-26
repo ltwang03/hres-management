@@ -4,5 +4,8 @@
     <style name="CardBackground" > <item name="android:background">#929292</item></style>
     <style name="TextColor" > <item name="android:textColor">#FFFFFF</item></style>
     <style name="TextColorHint" > <item name="android:textColorHint">#FFFFFF</item></style>
+    <style name="IconSearch"> <item name="android:src">@drawable/search_white</item></style>
+    <style name="IconClear"> <item name="android:src">@drawable/clear_white</item></style>
+    <style name="IconEdit"> <item name="android:src">@drawable/ic_edit_white</item></style>
 
 </resources>

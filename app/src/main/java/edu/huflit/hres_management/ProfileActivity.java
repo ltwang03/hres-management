@@ -56,13 +56,12 @@ public class ProfileActivity extends AppCompatActivity {
         mswitchMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                editor = sharedPreferences.edit();
                 if(nightMode){
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    editor = sharedPreferences.edit();
                     editor.putBoolean("nightMode",false);
                 }else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    editor = sharedPreferences.edit();
                     editor.putBoolean("nightMode",true);
                 }
                 editor.apply();
