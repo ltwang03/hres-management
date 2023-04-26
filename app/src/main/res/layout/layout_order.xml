@@ -11,16 +11,15 @@
         android:id="@+id/table_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp">
+        style="@style/ScreenBackground"
+        android:padding="15dp">
 
         <ImageView
             android:id="@+id/imgv_order"
             android:layout_width="170dp"
             android:layout_height="190dp"
             android:src="@drawable/table_booking"
-            tools:ignore="MissingConstraints"
-           />
-
+            tools:ignore="MissingConstraints"/>
 
         <LinearLayout
             android:id="@+id/ln_info_order"
@@ -32,10 +31,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:orientation="vertical"
-
-
             tools:ignore="MissingConstraints">
-
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -47,6 +43,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name"
+                    android:layout_marginRight="5dp"
                     android:textSize="23dp"
                     android:textStyle="bold"/>
 
@@ -84,12 +81,10 @@
 
             tools:ignore="MissingConstraints">
             <TextView
-
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Table"
-                android:textColor="@color/black"
+                style="@style/TextColor"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 tools:ignore="MissingConstraints" />
@@ -99,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="1"
-                android:textColor="@color/black"
+                style="@style/TextColor"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import edu.huflit.hres_management.Home;
+import edu.huflit.hres_management.ListBillActivity;
 import edu.huflit.hres_management.ListTypeFoodActivity;
 import edu.huflit.hres_management.OrderTableActivity;
 import edu.huflit.hres_management.ProfileActivity;
@@ -40,7 +41,7 @@ public class BottomBarFragment extends Fragment {
         imgOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getContext(), OrderTableActivity.class);
+                Intent i = new Intent(getContext(), ListBillActivity.class);
                 startActivity(i);
             }
         });

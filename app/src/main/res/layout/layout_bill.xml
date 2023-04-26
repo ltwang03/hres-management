@@ -4,17 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:theme="@style/AppTheme"
+    style="@style/CardBackground"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="5dp"
     android:layout_margin="10dp">
 
     <LinearLayout
         android:id="@+id/bill_main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
         style="@style/CardBackground"
-        android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="5dp">
+
         <TextView
             android:id="@+id/name_customer"
             android:layout_width="wrap_content"
@@ -26,96 +28,106 @@
 
         <TextView
             android:id="@+id/time_checkout"
+            style="@style/TextColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="Sunday, 12:50:23, 1/1/2020"
-            style="@style/TextColor"
             android:textSize="15dp" />
+
         <LinearLayout
-        android:id="@+id/bill_show"
-        android:visibility="visible"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/dash_line"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Danh sách các món đã dùng"
-            android:textColor="@color/orange_01"
-            android:textSize="18dp"/>
-        <TableLayout
+            android:id="@+id/bill_show"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="100"
-            android:stretchColumns="1,2,3,4">
-            <TableRow>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="10"
-                    android:gravity="center"
-                    android:layout_column="1"
-                    android:text="STT"
-                    style="@style/TextColor"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="40"
-                    android:gravity="center"
-                    android:layout_column="2"
-                    android:text="Tên"
-                    style="@style/TextColor"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="15"
-                    android:gravity="center"
-                    android:layout_column="3"
-                    android:text="SL"
-                    style="@style/TextColor"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="35"
-                    android:gravity="center"
-                    android:layout_column="4"
-                    android:text="Thành tiền"
-                    style="@style/TextColor"
-                    android:textStyle="bold"/>
-            </TableRow>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcv_Itembill"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/dash_line" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Danh sách các món đã dùng"
+                android:textColor="@color/orange_01"
+                android:textSize="18dp" />
+
+            <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:stretchColumns="1,2,3,4"
+                android:weightSum="100">
 
-            </androidx.recyclerview.widget.RecyclerView>
-        </TableLayout>
+                <TableRow>
 
-    </LinearLayout>
+                    <TextView
+                        style="@style/TextColor"
+                        android:layout_width="0dp"
+                        android:layout_column="1"
+                        android:layout_weight="10"
+                        android:gravity="center"
+                        android:text="STT"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/TextColor"
+                        android:layout_width="0dp"
+                        android:layout_column="2"
+                        android:layout_weight="40"
+                        android:gravity="center"
+                        android:text="Tên"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/TextColor"
+                        android:layout_width="0dp"
+                        android:layout_column="3"
+                        android:layout_weight="15"
+                        android:gravity="center"
+                        android:text="SL"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/TextColor"
+                        android:layout_width="0dp"
+                        android:layout_column="4"
+                        android:layout_weight="35"
+                        android:gravity="center"
+                        android:text="Thành tiền"
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcv_Itembill"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                </androidx.recyclerview.widget.RecyclerView>
+            </TableLayout>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="end"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp">
+            android:layout_marginEnd="10dp"
+            android:gravity="end"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tổng cộng: "
                 android:textColor="@color/orange_01"
-                android:textSize="20dp"/>
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/price_total"
