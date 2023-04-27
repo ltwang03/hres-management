@@ -178,12 +178,12 @@ public class AddProductsAcitivity extends AppCompatActivity {
     }
 
     private void RequestPermission(){
-        if(ContextCompat.checkSelfPermission(AddProductsAcitivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+        if(ContextCompat.checkSelfPermission(AddProductsAcitivity.this, Manifest.permission.READ_MEDIA_IMAGES) == PackageManager.PERMISSION_GRANTED){
             selectImage();
 
         }else {
             ActivityCompat.requestPermissions(AddProductsAcitivity.this,new String[]{
-                    Manifest.permission.READ_EXTERNAL_STORAGE
+                    Manifest.permission.READ_MEDIA_IMAGES
             },IMAGE_REQ);
         }
 
@@ -206,7 +206,8 @@ public class AddProductsAcitivity extends AppCompatActivity {
     }
     public void SaveFoodOnServer(String resourceId, String name, String category, String describe, String price) {
         String token = sharedPreferences.getString("token", "");
-        AddFoodRequest addFoodRequest = new AddFoodRequest(resourceId, name, price, category, describe);
+        int stt =db.getProductData().getCount();
+        AddFoodRequest addFoodRequest = new AddFoodRequest(stt+1,resourceId, name, price, category, describe);
         if(Objects.equals(token,"")) {
             Toast.makeText(this, "Token không hợp lệ!", Toast.LENGTH_SHORT).show();
             return;

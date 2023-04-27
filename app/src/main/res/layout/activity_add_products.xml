@@ -120,6 +120,7 @@
             android:hint="Mô tả món ăn"
             android:minHeight="48dp"
             android:padding="5dp"
+            android:maxLength="20"
             android:paddingLeft="10dp"
             android:textColor="@color/orange_01"
             android:textColorHint="@color/orange_01"

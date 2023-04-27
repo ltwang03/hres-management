@@ -120,8 +120,8 @@
             android:id="@+id/edt_descripe_update_product"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:padding="5dp"
+            android:maxLength="20"
             android:paddingLeft="10dp"
             android:textSize="25dp"
             android:textColor="@color/orange_01"/>
