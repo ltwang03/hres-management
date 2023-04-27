@@ -70,26 +70,26 @@ public void syncData() {
         String token = sharedPreferences.getString("token","");
         if(Objects.equals(token, "")) return;
     Log.d("token", "syncData: " + token);
-        APIService.apiService.getFoods("Bearer " + token).enqueue(new retrofit2.Callback<GetFoodResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<GetFoodResponse> call,@NonNull Response<GetFoodResponse> response) {
-                if(response.code() != 200) return;
-                GetFoodResponse getFoodResponse = response.body();
-                ArrayList<Food> foodRes = getFoodResponse.getFood();
-                dbHelper.deleteAllDatabase();
-                for(Food food: foodRes ) {
-                    Log.d("name food", food.getName());
-                    dbHelper.insertProductData(food.getResourceID(), food.getName(), food.getPrice(), food.getCategory(), food.getDescribe());
-                }
-                dbHelper.close();
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<GetFoodResponse> call,@NonNull Throwable t) {
-                Toast.makeText(SyncService.this, "Có lỗi xảy ra vui lòng thử lại sau", Toast.LENGTH_SHORT).show();
-
-            }
-        });
+//        APIService.apiService.getFoods("Bearer " + token).enqueue(new retrofit2.Callback<GetFoodResponse>() {
+//            @Override
+//            public void onResponse(@NonNull Call<GetFoodResponse> call,@NonNull Response<GetFoodResponse> response) {
+//                if(response.code() != 200) return;
+//                GetFoodResponse getFoodResponse = response.body();
+//                ArrayList<Food> foodRes = getFoodResponse.getFood();
+//                dbHelper.deleteAllDatabase();
+//                for(Food food: foodRes ) {
+//                    Log.d("name food", food.getName());
+//                    dbHelper.insertProductData(food.getId(),food.getResourceID(), food.getName(), food.getPrice(), food.getCategory(), food.getDescribe());
+//                }
+//                dbHelper.close();
+//            }
+//
+//            @Override
+//            public void onFailure(@NonNull Call<GetFoodResponse> call,@NonNull Throwable t) {
+//                Toast.makeText(SyncService.this, "Có lỗi xảy ra vui lòng thử lại sau", Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
 
 
 }

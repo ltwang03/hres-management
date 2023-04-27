@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -85,7 +86,7 @@ public class AddProductsAcitivity extends AppCompatActivity {
         db = new DBHelper(this);
 
         if (!checkInit) {
-           initConfig();
+            initConfig();
             checkInit = true;
         }
         ArrayAdapter arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,cate);
@@ -128,15 +129,16 @@ public class AddProductsAcitivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(String requestId, Map resultData) {
                         Log.d(TAG, "onStart: " + "usuccess" );
-                         imageUrl = (String) resultData.get("secure_url");
+                        imageUrl = (String) resultData.get("secure_url");
                         Log.e(TAG, "onSuccess: " +imageUrl );
                         String productName = edtProductName.getText().toString();
                         String productPrice = edtProductPrice.getText().toString();
                         String productDesc = edtProductDescripe.getText().toString();
 
                         // procate  + imageUrl;
+                        Integer stt = db.getProductData().getCount() ;
 
-                        Boolean checkInsertProductData = db.insertProductData(imageUrl , productName,productPrice,proCate,productDesc);
+                        Boolean checkInsertProductData = db.insertProductData(stt +1,imageUrl , productName,productPrice,proCate,productDesc);
                         SaveFoodOnServer(imageUrl,productName,proCate,productDesc, productPrice);
                         if(checkInsertProductData== true) {
                             Toast.makeText(AddProductsAcitivity.this, "New entry inserted", Toast.LENGTH_SHORT ).show();
@@ -160,7 +162,6 @@ public class AddProductsAcitivity extends AppCompatActivity {
                         Log.d(TAG, "onStart: " + "error");
                     }
                 }).dispatch();
-                Log.e(TAG, "onClick: " + proCate + imageUrl );
             }
         });
     }
@@ -177,12 +178,12 @@ public class AddProductsAcitivity extends AppCompatActivity {
     }
 
     private void RequestPermission(){
-        if(ContextCompat.checkSelfPermission(AddProductsAcitivity.this, Manifest.permission.READ_MEDIA_IMAGES) == PackageManager.PERMISSION_GRANTED){
+        if(ContextCompat.checkSelfPermission(AddProductsAcitivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
             selectImage();
 
         }else {
             ActivityCompat.requestPermissions(AddProductsAcitivity.this,new String[]{
-                    Manifest.permission.READ_MEDIA_IMAGES
+                    Manifest.permission.READ_EXTERNAL_STORAGE
             },IMAGE_REQ);
         }
 
@@ -210,22 +211,22 @@ public class AddProductsAcitivity extends AppCompatActivity {
             Toast.makeText(this, "Token không hợp lệ!", Toast.LENGTH_SHORT).show();
             return;
         }
-            APIService.apiService.postFood("Bearer " + token, addFoodRequest).enqueue(new retrofit2.Callback<AddFoodResponse>() {
-                @Override
-                public void onResponse(@NonNull Call call, @NonNull Response response) {
-                    if(response.code() != 200) {
-                        Toast.makeText(AddProductsAcitivity.this, "không thể cập nhật dữ liệu!", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    AddFoodResponse addFoodResponse = (AddFoodResponse) response.body();
-                    Toast.makeText(AddProductsAcitivity.this, addFoodResponse.getStatus(), Toast.LENGTH_SHORT).show();
+        APIService.apiService.postFood("Bearer " + token, addFoodRequest).enqueue(new retrofit2.Callback<AddFoodResponse>() {
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) {
+                if(response.code() != 200) {
+                    Toast.makeText(AddProductsAcitivity.this, "không thể cập nhật dữ liệu!", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+                AddFoodResponse addFoodResponse = (AddFoodResponse) response.body();
+                Toast.makeText(AddProductsAcitivity.this, addFoodResponse.getStatus(), Toast.LENGTH_SHORT).show();
+            }
 
-                @Override
-                public void onFailure(@NonNull Call call, @NonNull Throwable t) {
-                    Toast.makeText(AddProductsAcitivity.this, "thêm sản phẩm thất bại!", Toast.LENGTH_SHORT).show();
-                }
-            });
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull Throwable t) {
+                Toast.makeText(AddProductsAcitivity.this, "thêm sản phẩm thất bại!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 
 import edu.huflit.hres_management.Database.DBHelper;
 import edu.huflit.hres_management.Model.TableOrder;
+import edu.huflit.hres_management.OrderFoodActivity;
 import edu.huflit.hres_management.R;
 
 public class TableOrderAdapter  extends RecyclerView.Adapter<TableOrderAdapter.TableOrderViewHolder>
@@ -130,15 +132,29 @@ public class TableOrderAdapter  extends RecyclerView.Adapter<TableOrderAdapter.T
         TextView tvOrderName = dialog.findViewById(R.id.name_customer_form_order);
         tvOrderName.setText(nameCustomer);
         Button mbtnOrder = dialog.findViewById(R.id.btn_order);
+
+
+
+
+
+
+
+
         mbtnOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent i = new Intent(mContext, OrderFoodActivity.class);
-//                mContext.startActivity(i);
+                SharedPreferences sharedPref = mContext.getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("customer_name", nameCustomer);
+                editor.putString("amount_customer" , amountCustomer);
+                editor.putString("table_number",tableNumber1);
+                editor.putString("time_checkin" , timeCheckinOrder);
+                editor.apply();
+
+                Intent i = new Intent(mContext, OrderFoodActivity.class);
+                mContext.startActivity(i);
             }
         });
-
-        Log.e(TAG, "handleDialog: "+tvOrderAmountCustomer.getText());
 
         dialog.show();
 

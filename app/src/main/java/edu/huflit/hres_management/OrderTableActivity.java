@@ -53,7 +53,7 @@ public class OrderTableActivity extends AppCompatActivity {
         while (cursor.moveToNext()) {
             boolean checkBooked = getBooleanValue(cursor, "booked");
             if (checkBooked == true) {
-                TableOrder obj = new TableOrder(cursor.getString(0), cursor.getString(4), cursor.getString(1), cursor.getString(3), checkBooked);
+                TableOrder obj = new TableOrder(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), checkBooked);
                 tableOrderDataHolder.add(obj);
 
             }

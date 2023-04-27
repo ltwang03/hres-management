@@ -30,8 +30,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void CreateDatabase(SQLiteDatabase MyDB) {
         String createTableProduct = ("CREATE TABLE Product" +
-                "(product_url TEXT," +
-                " product_name TEXT primary key," +
+                "(product_id INTEGER primary key AUTOINCREMENT," +
+                "product_url TEXT," +
+                " product_name TEXT," +
                 " product_price INT , product_type TEXT," +
                 " product_descripe TEXT)");
         String createTableOrdering = ("CREATE TABLE Ordering" +
@@ -145,10 +146,11 @@ public class DBHelper extends SQLiteOpenHelper {
         }else return false;
 
     }
-    public Boolean insertProductData(String productImageUrl, String productName , String productPrice, String productType, String productDescripe ) {
+    public Boolean insertProductData(Integer product_id,String productImageUrl, String productName , String productPrice, String productType, String productDescripe ) {
           SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("product_url" , productImageUrl);
+        contentValues.put("product_id" , product_id);
         contentValues.put("product_name" , productName);
         contentValues.put("product_price" , productPrice);
         contentValues.put("product_type" , productType);
@@ -158,30 +160,31 @@ public class DBHelper extends SQLiteOpenHelper {
         else
             return true;
     }
-    public Boolean updateProductData(String productImageUrl, String productName , String productPrice, String productType, String productDescripe ) {
+    public Boolean updateProductData(Integer product_id,String productImageUrl, String productName , String productPrice, String productType, String productDescripe ) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put("product_id" , product_id);
         contentValues.put("product_url" , productImageUrl);
         contentValues.put("product_name" , productName);
         contentValues.put("product_price" , productPrice);
         contentValues.put("product_type" , productType);
         contentValues.put("product_descripe" , productDescripe);
-        Cursor cursor  = MyDB.rawQuery("Select * from Product where productName = ?", new String[] {productName});
+        Cursor cursor  = MyDB.rawQuery("Select * from Product where product_id = ?", new String[] {String.valueOf(product_id)});
         if(cursor.getCount() > 0 ) {
-            long result = MyDB.update("Product" , contentValues , "productName=?", new String[] {productName});
+            long result = MyDB.update("Product" , contentValues , "product_id=?", new String[] {String.valueOf(product_id)});
             if(result == -1) return false;
             else
                 return true;
         }else return false;
 
     }
-    public Boolean deleteProductData(String productName ) {
+    public Boolean deleteProductData(int product_id ) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
 
 
-        Cursor cursor  = MyDB.rawQuery("Select * from Product where productName = ?", new String[] {productName});
+        Cursor cursor  = MyDB.rawQuery("Select * from Product where product_id = ?", new String[] {String.valueOf(product_id)});
         if(cursor.getCount() > 0 ) {
-            long result = MyDB.delete("Product"  , "productName=?", new String[] {productName});
+            long result = MyDB.delete("Product"  , "product_id=?", new String[] {String.valueOf(product_id)});
             if(result == -1) return false;
             else
                 return true;

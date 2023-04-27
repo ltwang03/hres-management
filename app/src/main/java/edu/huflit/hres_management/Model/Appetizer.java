@@ -6,14 +6,24 @@ public class Appetizer {
     private String describe;
     private String category;
     private String price;
+    private Integer id;
 
 
-    public Appetizer(String resourceId, String name, String category, String describe, String price) {
+    public Appetizer(Integer id,String resourceId, String name, String category, String describe, String price) {
         this.resourceId = resourceId;
         this.name = name;
         this.category = category;
         this.describe = describe;
         this.price = price;
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getResourceId() {

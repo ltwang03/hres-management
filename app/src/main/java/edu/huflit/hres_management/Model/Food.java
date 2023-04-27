@@ -2,12 +2,22 @@ package edu.huflit.hres_management.Model;
 
 public class Food {
     String resourceID, name, category, describe, price;
-    public Food(String resourceID, String name, String category, String describe, String price) {
+    Integer id;
+    public Food(Integer id,String resourceID, String name, String category, String describe, String price) {
         this.resourceID = resourceID;
         this.name = name;
         this.category = category;
         this.describe = describe;
         this.price = price;
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getResourceID() {
