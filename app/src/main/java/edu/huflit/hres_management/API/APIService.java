@@ -5,6 +5,8 @@ import com.google.gson.GsonBuilder;
 
 import edu.huflit.hres_management.API.model.AddFoodRequest;
 import edu.huflit.hres_management.API.model.AddFoodResponse;
+import edu.huflit.hres_management.API.model.DeleteUserRequest;
+import edu.huflit.hres_management.API.model.DeleteUserResponse;
 import edu.huflit.hres_management.API.model.EditProfileRequest;
 import edu.huflit.hres_management.API.model.EditProfileResponse;
 import edu.huflit.hres_management.API.model.GetFoodResponse;
@@ -20,7 +22,9 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -53,5 +57,8 @@ public interface APIService {
     Call<AddFoodResponse> postFood(@Header("Authorization") String token, @Body AddFoodRequest addFoodRequest);
     @GET ("api/get/food")
     Call<GetFoodResponse> getFoods(@Header("Authorization") String token);
+    @HTTP(method = "DELETE", path = "auth/delete/user", hasBody = true)
+    Call<DeleteUserResponse> deleteUser(@Header("Authorization") String token, @Body DeleteUserRequest deleteUserRequest);
+
 
 }
