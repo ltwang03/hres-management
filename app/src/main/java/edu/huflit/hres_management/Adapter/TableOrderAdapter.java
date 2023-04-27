@@ -2,11 +2,18 @@ package edu.huflit.hres_management.Adapter;
 
 import static android.content.ContentValues.TAG;
 
+import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -15,13 +22,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.List;
 
 import edu.huflit.hres_management.Database.DBHelper;
 import edu.huflit.hres_management.Model.TableOrder;
+import edu.huflit.hres_management.OrderFoodActivity;
 import edu.huflit.hres_management.R;
 
 public class TableOrderAdapter  extends RecyclerView.Adapter<TableOrderAdapter.TableOrderViewHolder>
@@ -29,6 +34,7 @@ public class TableOrderAdapter  extends RecyclerView.Adapter<TableOrderAdapter.T
     private Context mContext;
     private ArrayList<TableOrder> arrayList;
     DBHelper db;
+    Dialog dialog;
     public TableOrderAdapter(Context mContext,ArrayList<TableOrder> arrayList) {
         super();
         this.mContext = mContext;
@@ -47,7 +53,7 @@ public class TableOrderAdapter  extends RecyclerView.Adapter<TableOrderAdapter.T
 
 
     @Override
-    public void onBindViewHolder(@NonNull TableOrderViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TableOrderViewHolder holder, @SuppressLint("RecyclerView") int position) {
         TableOrder tableOrder = arrayList.get(position);
         if (tableOrder == null) {
             return;
@@ -62,7 +68,12 @@ public class TableOrderAdapter  extends RecyclerView.Adapter<TableOrderAdapter.T
         holder.imgvOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String tableNumber1 = arrayList.get(position).getNumberTable();
+                String nameCustomer = arrayList.get(position).getNameCustomer();
+                String amountCustomer=  arrayList.get(position).getAmountCustomer();
+                String timeCheckinOrder = arrayList.get(position).getTimeCheckin();
+                Log.d(TAG, "onClick: " + tableNumber1 + nameCustomer+amountCustomer+timeCheckinOrder);
+                handleDialog(tableNumber1,nameCustomer,amountCustomer,timeCheckinOrder,holder.ln_info_order,holder.imgvOrder);
             }
         });
 
@@ -79,7 +90,7 @@ public class TableOrderAdapter  extends RecyclerView.Adapter<TableOrderAdapter.T
 
     public class TableOrderViewHolder extends RecyclerView.ViewHolder{
 
-    TextView tvName,tvAmount,tvTime,tvAccesableTable,tvTalbeNumber;
+    TextView tvName,tvAmount,tvTime,tvTalbeNumber;
 
     ImageView imgvOrder;
     ScrollView srcView;
@@ -99,7 +110,53 @@ public class TableOrderAdapter  extends RecyclerView.Adapter<TableOrderAdapter.T
 
         }
     }
-    public void handleDialog() {
+    public void handleDialog(String tableNumber1,String nameCustomer,String amountCustomer,String timeCheckinOrder, LinearLayout lnInfoOrder, ImageView imgOrder) {
+        dialog = new Dialog(mContext);
+        dialog.setContentView(R.layout.order_dialog_layout);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Button mbtnInBill = dialog.findViewById((R.id.btn_bill));
+        db = new DBHelper(mContext);
+
+
+
+        mbtnInBill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        TextView tvTimeOrder = dialog.findViewById(R.id.time_checkin_form_order);
+        tvTimeOrder.setText(timeCheckinOrder);
+        TextView tvOrderAmountCustomer = dialog.findViewById(R.id.tv_amount_people_order);
+        tvOrderAmountCustomer.setText(amountCustomer);
+        TextView tvOrderName = dialog.findViewById(R.id.name_customer_form_order);
+        tvOrderName.setText(nameCustomer);
+        Button mbtnOrder = dialog.findViewById(R.id.btn_order);
+
+
+
+
+
+
+
+
+        mbtnOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences sharedPref = mContext.getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("customer_name", nameCustomer);
+                editor.putString("amount_customer" , amountCustomer);
+                editor.putString("table_number",tableNumber1);
+                editor.putString("time_checkin" , timeCheckinOrder);
+                editor.apply();
+
+                Intent i = new Intent(mContext, OrderFoodActivity.class);
+                mContext.startActivity(i);
+            }
+        });
+
+        dialog.show();
 
     }
 

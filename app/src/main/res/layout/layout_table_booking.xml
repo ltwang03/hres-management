@@ -14,17 +14,17 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="15dp"
-        style="@style/CardBackground">
+        style="@style/ScreenBackground">
         <ImageView
             android:id="@+id/img_empty"
-            android:layout_width="100dp"
+            android:layout_width="110dp"
             android:layout_height="130dp"
             android:visibility="visible"
             android:src="@drawable/table_empty"
             tools:ignore="MissingConstraints" />
         <ImageView
             android:id="@+id/img_booking"
-            android:layout_width="100dp"
+            android:layout_width="110dp"
             android:layout_height="130dp"
             android:visibility="invisible"
             android:src="@drawable/table_booking"

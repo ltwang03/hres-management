@@ -1,6 +1,7 @@
 package edu.huflit.hres_management.API.model;
 
 public class AddFoodRequest {
+    private int product_id;
     private String resourceID;
     private String name;
     private String category;
@@ -9,12 +10,21 @@ public class AddFoodRequest {
 
     AddFoodRequest() {
     }
-    public AddFoodRequest(String resourceID, String name, String price,String category, String describe) {
+    public AddFoodRequest(int product_id,String resourceID, String name, String price,String category, String describe) {
+        this.product_id = product_id;
         this.resourceID = resourceID;
         this.name = name;
         this.price = price;
         this.category = category;
         this.describe = describe;
+    }
+
+    public int getProduct_id() {
+        return product_id;
+    }
+
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
     }
 
     public String getResourceId() {
