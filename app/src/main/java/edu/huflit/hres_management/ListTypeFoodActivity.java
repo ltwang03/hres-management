@@ -1,8 +1,5 @@
 package edu.huflit.hres_management;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -10,14 +7,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,13 +26,13 @@ import java.util.Objects;
 import edu.huflit.hres_management.Database.DBHelper;
 import edu.huflit.hres_management.Fragment.BottomBarFragment;
 import edu.huflit.hres_management.Model.Appetizer;
-import edu.huflit.hres_management.Adapter.AppetizerAdapter;
+import edu.huflit.hres_management.Adapter.FoodAdapter.AppetizerAdapter;
 import edu.huflit.hres_management.Model.Maincourse;
-import edu.huflit.hres_management.Adapter.MaincourseAdapter;
+import edu.huflit.hres_management.Adapter.FoodAdapter.MaincourseAdapter;
 import edu.huflit.hres_management.Model.Dessert;
-import edu.huflit.hres_management.Adapter.DessertAdapter;
+import edu.huflit.hres_management.Adapter.FoodAdapter.DessertAdapter;
 import edu.huflit.hres_management.Model.Drinks;
-import edu.huflit.hres_management.Adapter.DrinksAdapter;
+import edu.huflit.hres_management.Adapter.FoodAdapter.DrinksAdapter;
 
 public class ListTypeFoodActivity extends AppCompatActivity {
 
@@ -126,7 +120,7 @@ public class ListTypeFoodActivity extends AppCompatActivity {
 
             rcvAppetizer.setLayoutManager(linearLayoutManager);
 
-            edu.huflit.hres_management.Adapter.AppetizerAdapter appetizerAdapter = new AppetizerAdapter(this,appetizerDataHolder);
+            AppetizerAdapter appetizerAdapter = new AppetizerAdapter(this,appetizerDataHolder);
             rcvAppetizer.setAdapter(appetizerAdapter);
 
             lnAppetizer = findViewById(R.id.lnAppetizer);
@@ -166,7 +160,7 @@ public class ListTypeFoodActivity extends AppCompatActivity {
             });
 //ds món tráng miệng
             rcvDessert = findViewById(R.id.rcvDessert);
-            edu.huflit.hres_management.Adapter.DessertAdapter dessertAdapter = new DessertAdapter(this,dessertDataHolder);
+            DessertAdapter dessertAdapter = new DessertAdapter(this,dessertDataHolder);
             rcvDessert.setLayoutManager(linearLayoutManager_2);
             rcvDessert.setAdapter(dessertAdapter);
 
@@ -186,7 +180,7 @@ public class ListTypeFoodActivity extends AppCompatActivity {
             });
 //ds món nước
             rcvDrinks = findViewById(R.id.rcvDrinks);
-            edu.huflit.hres_management.Adapter.DrinksAdapter drinksAdapter = new DrinksAdapter(this,drinkDataHolder);
+            DrinksAdapter drinksAdapter = new DrinksAdapter(this,drinkDataHolder);
             rcvDrinks.setLayoutManager(linearLayoutManager_3);
 
             rcvDrinks.setAdapter(drinksAdapter);

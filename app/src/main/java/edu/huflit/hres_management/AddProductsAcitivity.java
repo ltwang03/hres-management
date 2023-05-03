@@ -138,6 +138,7 @@ public class AddProductsAcitivity extends AppCompatActivity {
                         // procate  + imageUrl;
                         Integer stt = db.getProductData().getCount() ;
 
+
                         Boolean checkInsertProductData = db.insertProductData(stt +1,imageUrl , productName,productPrice,proCate,productDesc);
                         SaveFoodOnServer(imageUrl,productName,proCate,productDesc, productPrice);
                         if(checkInsertProductData== true) {
@@ -178,12 +179,12 @@ public class AddProductsAcitivity extends AppCompatActivity {
     }
 
     private void RequestPermission(){
-        if(ContextCompat.checkSelfPermission(AddProductsAcitivity.this, Manifest.permission.READ_MEDIA_IMAGES) == PackageManager.PERMISSION_GRANTED){
+        if(ContextCompat.checkSelfPermission(AddProductsAcitivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
             selectImage();
 
         }else {
             ActivityCompat.requestPermissions(AddProductsAcitivity.this,new String[]{
-                    Manifest.permission.READ_MEDIA_IMAGES
+                    Manifest.permission.READ_EXTERNAL_STORAGE
             },IMAGE_REQ);
         }
 

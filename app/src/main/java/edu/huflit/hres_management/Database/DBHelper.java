@@ -36,9 +36,11 @@ public class DBHelper extends SQLiteOpenHelper {
                 " product_price INT , product_type TEXT," +
                 " product_descripe TEXT)");
         String createTableOrdering = ("CREATE TABLE Ordering" +
-                "(table_number TEXT primary key," +
-                " check_in_time TEXT, " +
-                "check_out_time TEXT)");
+                "(table_number TEXT," +
+                "product_url TEXT, "+
+                "product_name TEXT, " +
+                "product_amount INTEGER, " +
+                "product_price INTEGER)");
         String createTableTableNumber = ("CREATE TABLE Tablee" +
                 "(location TEXT primary key," +
                 "customer_name TEXT," +
@@ -105,33 +107,58 @@ public class DBHelper extends SQLiteOpenHelper {
         }else return false;
 
     }
-    public boolean insertOrderingData(String tableNumber, String checkInTime, String checkOutTime) {
+    public boolean insertOrderingData(String tableNumber, String product_url, String product_name,int product_amount,int product_price) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("table_number",tableNumber);
-        contentValues.put("check_in_time",checkInTime);
-        contentValues.put("check_out_time",checkOutTime);
+        contentValues.put("product_url",product_url);
+        contentValues.put("product_name",product_name);
+        contentValues.put("product_amount",product_amount);
+        contentValues.put("product_price",product_price);
+
         long result = MyDB.insert("Ordering" , null,contentValues);
         if(result == -1) return false;
         else
             return true;
-
-
     }
-    public boolean updateOrderingData(String tableNumber, String checkInTime, String checkOutTime) {
+
+    public boolean updateOrderingData(String tableNumber, String product_url, String product_name,int product_amount,int product_price) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("table_number",tableNumber);
-        contentValues.put("check_in_time",checkInTime);
-        contentValues.put("check_out_time",checkOutTime);
-        Cursor cursor  = MyDB.rawQuery("Select * from Ordering where tableNumber = ?", new String[] {tableNumber});
+        contentValues.put("product_url",product_url);
+        contentValues.put("product_name",product_name);
+        contentValues.put("product_amount",product_amount);
+        contentValues.put("product_price",product_price);
+        Cursor cursor  = MyDB.rawQuery("Select * from Ordering where table_number = ?", new String[] {tableNumber});
         if(cursor.getCount() > 0 ) {
-            long result = MyDB.update("Ordering" , contentValues , "tableNumber=?", new String[] {tableNumber});
+            long result = MyDB.update("Ordering" , contentValues , "table_number=?", new String[] {tableNumber});
             if(result == -1) return false;
             else
                 return true;
         }else return false;
 
+
+    }
+    public boolean checkOrderProductExist(String table_number, String product_name) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM Ordering WHERE table_number = ? AND product_name = ?", new String[] {table_number, product_name});
+        boolean exist = cursor.moveToFirst();
+        cursor.close();
+        db.close();
+        return exist;
+    }
+    public boolean updateOrder(String tableNumber, String product_url, String product_name,int product_amount,int product_price) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("table_number",tableNumber);
+        contentValues.put("product_url",product_url);
+        contentValues.put("product_name",product_name);
+        contentValues.put("product_amount",product_amount);
+        contentValues.put("product_price",product_price);
+        int numRows = db.update("Ordering", contentValues, "table_number = ? AND product_name = ?", new String[] {tableNumber, product_name});
+        db.close();
+        return numRows > 0; // Trả về true nếu có ít nhất một dòng bị ảnh hưởng, ngược lại trả về false
     }
     public Boolean deleteOrderingData(String tableNumber ) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
@@ -180,8 +207,6 @@ public class DBHelper extends SQLiteOpenHelper {
     }
     public Boolean deleteProductData(int product_id ) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
-
-
         Cursor cursor  = MyDB.rawQuery("Select * from Product where product_id = ?", new String[] {String.valueOf(product_id)});
         if(cursor.getCount() > 0 ) {
             long result = MyDB.delete("Product"  , "product_id=?", new String[] {String.valueOf(product_id)});
@@ -216,41 +241,54 @@ public class DBHelper extends SQLiteOpenHelper {
     public void deleteAllDatabase() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DROP TABLE IF EXISTS " + "Product");
-        db.execSQL("DROP TABLE IF EXISTS " + "Ordering");
         String createTableProduct = ("CREATE TABLE Product" +
                 "(product_id INTEGER primary key AUTOINCREMENT," +
                 "product_url TEXT," +
                 " product_name TEXT ," +
                 " product_price INT , product_type TEXT," +
                 " product_descripe TEXT)");
-        String createTableOrdering = ("CREATE TABLE Ordering" +
-                "(table_number TEXT primary key," +
-                " check_in_time TEXT, " +
-                "check_out_time TEXT)");
         db.execSQL(createTableProduct);
-        db.execSQL(createTableOrdering);
+    }
+    public boolean isValueExists( String tableName, String columnName, String value) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(tableName, new String[] { columnName },
+                columnName + "=?", new String[] { value }, null, null, null);
+        boolean exists = cursor.moveToFirst();
+        cursor.close();
+        return exists;
+    }
+    public boolean isValueExists1(String tableName, String column1Name, String column1Value, String column2Name, String column2Value) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String[] projection = {column1Name, column2Name};
+        String selection = column1Name + " = ? AND " + column2Name + " = ?";
+        String[] selectionArgs = {column1Value, column2Value};
+        Cursor cursor = db.query(
+                tableName,    // Tên bảng
+                projection,   // Mảng các cột bạn muốn trả về
+                selection,    // Chuỗi điều kiện WHERE
+                selectionArgs,// Giá trị của các tham số điều kiện WHERE
+                null,
+                null,
+                null
+        );
+        boolean exists = cursor.moveToFirst();
+        cursor.close();
+        return exists;
+    }
+    public int getCountWithTwoConditions(String value1, String value2) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = { "COUNT(*)" };
+        String selection = "table_number = ? AND product_name = ?";
+        String[] selectionArgs = { value1, value2 };
+        Cursor cursor = db.query("Ordering", projection, selection, selectionArgs, null, null, null);
+        cursor.moveToFirst();
+        int count = cursor.getInt(0);
+        cursor.close();
+        db.close();
+        return count;
     }
 }
 
-//    public Boolean checkUsername(String username) {
-//        SQLiteDatabase MyDB = this.getWritableDatabase();
-//        Cursor cursor = MyDB.rawQuery("Select * from users where username = ?" , new String[] {username});
-//        if(cursor.getCount() > 0)
-//            return true;
-//        else
-//            return false;
-//    }
-//    public Boolean checkUsernameandpassword( String username ,String password) {
-//        SQLiteDatabase MyDB = this.getWritableDatabase();
-//        Cursor cursor = MyDB.rawQuery("Select * from users where username = ? and password = ? " , new String[] {  username,password});
-//        if(cursor.getCount() > 0)
-//            return true;
-//            else
-//                return false;
-//        }
-//
-//
-//    }
 
 
     
