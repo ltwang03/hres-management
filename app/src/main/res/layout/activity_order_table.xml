@@ -16,7 +16,7 @@
         android:layout_weight="4"
         android:gravity="center"
         android:padding="10dp"
-        android:text="Orderrr"
+        android:text="Order"
         style="@style/EditNameMenu"
         android:textSize="40dp"/>
     <TextView
