@@ -5,6 +5,8 @@ import com.google.gson.GsonBuilder;
 
 import edu.huflit.hres_management.API.model.AddFoodRequest;
 import edu.huflit.hres_management.API.model.AddFoodResponse;
+import edu.huflit.hres_management.API.model.DeleteFoodRequest;
+import edu.huflit.hres_management.API.model.DeleteFoodResponse;
 import edu.huflit.hres_management.API.model.DeleteUserRequest;
 import edu.huflit.hres_management.API.model.DeleteUserResponse;
 import edu.huflit.hres_management.API.model.EditProfileRequest;
@@ -17,6 +19,8 @@ import edu.huflit.hres_management.API.model.RegisterManagerRequest;
 import edu.huflit.hres_management.API.model.RegisterManagerResponse;
 import edu.huflit.hres_management.API.model.RegisterStaffRequest;
 import edu.huflit.hres_management.API.model.RegisterStaffResponse;
+import edu.huflit.hres_management.API.model.UpdateFoodRequest;
+import edu.huflit.hres_management.API.model.UpdateFoodResponse;
 import edu.huflit.hres_management.API.model.UserResponse;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -53,12 +57,15 @@ public interface APIService {
     Call<ProfileResponse> getProfile(@Header("Authorization") String token);
     @PUT("auth/edit/profile")
     Call<EditProfileResponse> editProfile(@Header("Authorization") String token, @Body EditProfileRequest editProfileRequest);
+    @HTTP(method = "DELETE", path = "auth/delete/user", hasBody = true)
+    Call<DeleteUserResponse> deleteUser(@Header("Authorization") String token, @Body DeleteUserRequest deleteUserRequest);
     @POST("api/post/food")
     Call<AddFoodResponse> postFood(@Header("Authorization") String token, @Body AddFoodRequest addFoodRequest);
     @GET ("api/get/food")
     Call<GetFoodResponse> getFoods(@Header("Authorization") String token);
-    @HTTP(method = "DELETE", path = "auth/delete/user", hasBody = true)
-    Call<DeleteUserResponse> deleteUser(@Header("Authorization") String token, @Body DeleteUserRequest deleteUserRequest);
-
+    @PUT ("api/update/food")
+    Call<UpdateFoodResponse> updateFood(@Header("Authorization") String token, @Body UpdateFoodRequest updateFoodRequest);
+    @HTTP(method = "DELETE", path = "api/delete/food", hasBody = true)
+    Call<DeleteFoodResponse> deleteFood(@Header("Authorization") String token, @Body DeleteFoodRequest deleteFoodRequest);
 
 }
