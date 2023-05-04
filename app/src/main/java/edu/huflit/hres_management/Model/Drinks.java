@@ -6,15 +6,26 @@ public class Drinks {
     private String category;
     private String describe;
     private String price;
+    private Integer id;
 
 
-    public Drinks(String resourceId, String name, String category, String describe, String price) {
+    public Drinks(Integer id,String resourceId, String name, String category, String describe, String price) {
         this.resourceId = resourceId;
         this.name = name;
         this.category = category;
         this.describe = describe;
         this.price = price;
+        this.id = id;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getCategory() {
         return category;
     }
