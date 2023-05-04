@@ -89,7 +89,7 @@ public class BookingTableActivity extends AppCompatActivity {
         Cursor cursor = db.getTableeData();
         while (cursor.moveToNext()) {
             boolean checkBool = getBooleanValue(cursor, "booked");
-            TableBooking obj = new TableBooking(cursor.getString(0), cursor.getString(1), cursor.getString(3), cursor.getString(4), checkBool);
+            TableBooking obj = new TableBooking(cursor.getString(0), cursor.getString(2), cursor.getString(3), cursor.getString(1), checkBool);
             tableBookingDataHolder.add(obj);
         }
         TableBookingAdapter tableBookingAdapter = new TableBookingAdapter(this, tableBookingDataHolder);

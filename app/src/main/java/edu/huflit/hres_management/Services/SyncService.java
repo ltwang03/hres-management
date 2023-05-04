@@ -79,7 +79,7 @@ public void syncData() {
                 dbHelper.deleteAllDatabase();
                 for(Food food: foodRes ) {
                     Log.d("name food", food.getName());
-                    dbHelper.insertProductData(food.getResourceID(), food.getName(), food.getPrice(), food.getCategory(), food.getDescribe());
+                    dbHelper.insertProductData(food.getProduct_id(),food.getResourceID(), food.getName(), food.getPrice(), food.getCategory(), food.getDescribe());
                 }
                 dbHelper.close();
             }

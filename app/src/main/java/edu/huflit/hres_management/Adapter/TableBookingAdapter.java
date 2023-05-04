@@ -6,6 +6,7 @@ import static android.content.ContentValues.TAG;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -38,6 +39,7 @@ import java.util.List;
 
 import edu.huflit.hres_management.BookingTableActivity;
 import edu.huflit.hres_management.Database.DBHelper;
+import edu.huflit.hres_management.ListTypeFoodActivity;
 import edu.huflit.hres_management.Model.TableBooking;
 import edu.huflit.hres_management.R;
 
@@ -74,10 +76,16 @@ public class TableBookingAdapter extends RecyclerView.Adapter<TableBookingAdapte
 
                         holder.tvNumberTable.setText(mListTable.get(position).getNumberTable());
                         holder.tvNameBookingCustomer.setText(mListTable.get(position).getNameCustomer());
-                        holder.tvAmountCustomer.setText(mListTable.get(position).getAmountCustomer());
+                        holder.tvAmountCustomer.setText("SL :"+mListTable.get(position).getAmountCustomer());
                         holder.tvTimeCheckin.setText(mListTable.get(position).getTimeCheckin());
                         boolean checkbooked = mListTable.get(position).isBooked();
-                        db = new DBHelper(mContext);
+
+                        String tableNumber = mListTable.get(position).getNumberTable();
+                        String Name = mListTable.get(position).getNameCustomer();
+                        String Amount = mListTable.get(position).getAmountCustomer();
+                        String timeCheckin = mListTable.get(position).getTimeCheckin();
+
+        db = new DBHelper(mContext);
 
                         Cursor cursor = db.getTableeData();
                         while(cursor.moveToNext()) {
@@ -93,7 +101,7 @@ public class TableBookingAdapter extends RecyclerView.Adapter<TableBookingAdapte
                             }
 
 
-        }
+        }cursor.close();
 
                         db = new DBHelper(mContext);
 
@@ -112,7 +120,7 @@ public class TableBookingAdapter extends RecyclerView.Adapter<TableBookingAdapte
 
 
                                 } else {
-                                    Log.e("TAG", "đã đặt ");
+                                    dialogUpdate(tableNumber,Amount,Name,timeCheckin);
                                 }
 
 
@@ -128,7 +136,8 @@ public class TableBookingAdapter extends RecyclerView.Adapter<TableBookingAdapte
         dialog = new Dialog(mContext);
         dialog.setContentView(R.layout.dialog_form_booking);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        Button mbtnCancel = dialog.findViewById((R.id.btn_cancel));db = new DBHelper(mContext);
+        Button mbtnCancel = dialog.findViewById((R.id.btn_cancel));
+        db = new DBHelper(mContext);
 
 
 
@@ -241,6 +250,39 @@ public class TableBookingAdapter extends RecyclerView.Adapter<TableBookingAdapte
 
         return value;
     }
+    private void dialogUpdate(String tableNumber, String Amount,String Name,String Time) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle("Thông báo")
+                .setMessage("Bạn có muốn huỷ đặt bàn không?")
+                .setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        db=new DBHelper(mContext);
+                        Cursor cursor = db.getTableeData();
+                        while(cursor.moveToNext()) {
+                            Log.e(TAG, "onClick: "+ cursor.getString(0) + cursor.getString(1) + cursor.getString(2)+cursor.getString(3)+cursor.getString(4) );
 
+                            if(cursor.getString(0).equals(tableNumber)) {
+                                boolean checkDelete = db.updateTableeData(tableNumber,Amount,false,Time,Name);
+                                if(checkDelete) {
+                                    Log.e(TAG, "onClick: " + "check" );
+                                    Toast.makeText(mContext,"Update success",Toast.LENGTH_SHORT).show();
+
+                                    Intent i = new Intent(mContext , BookingTableActivity.class);
+                                    mContext.startActivity(i);
+                                }else {
+                                    Toast.makeText(mContext,"Update failed",Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        }
+                        cursor.close();
+                    }
+                })
+                .setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                }).show();
+    }
 
 }
