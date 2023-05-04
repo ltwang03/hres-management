@@ -63,7 +63,6 @@
                     android:text="0"
                     android:textSize="10dp"
                     android:textStyle="bold"
-
                     tools:ignore="MissingConstraints" />
             </LinearLayout>
 
