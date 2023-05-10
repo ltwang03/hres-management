@@ -30,13 +30,13 @@ public class FoodBillAdapter extends RecyclerView.Adapter<FoodBillAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        FoodBill foodBill = mListFoodBill.get(position);
-        if(foodBill == null)
-            return;
-        holder.tv_ordinal_numbers.setText(String.valueOf(foodBill.getOrdinalFood()));
-        holder.tv_name_food.setText(foodBill.getNameFood());
-        holder.tv_amount_food.setText(String.valueOf(foodBill.getAmountFood()));
-        holder.tv_total_item.setText(String.valueOf(foodBill.getTotalFood()));
+//        FoodBill foodBill = mListFoodBill.get(position);
+//        if(foodBill == null)
+//            return;
+//        holder.tv_ordinal_numbers.setText(String.valueOf(foodBill.getOrdinalFood()));
+//        holder.tv_name_food.setText(foodBill.getNameFood());
+//        holder.tv_amount_food.setText(String.valueOf(foodBill.getAmountFood()));
+//        holder.tv_total_item.setText(String.valueOf(foodBill.getTotalFood()));
 
     }
 

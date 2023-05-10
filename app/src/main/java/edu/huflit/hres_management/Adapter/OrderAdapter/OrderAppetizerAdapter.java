@@ -68,11 +68,8 @@ public class OrderAppetizerAdapter extends RecyclerView.Adapter<OrderAppetizerAd
         db = new DBHelper(mcontext);
         sharedPref = mcontext.getSharedPreferences( "my_prefs", Context.MODE_PRIVATE);
         String tableNumber = sharedPref.getString("table_number", "");
-        Log.e(TAG, "table number clicked: " + tableNumber );
         Cursor cursor = db.getOrdering();
-        Log.e(TAG, "sl duplicate"+ db );
-        Log.e(TAG, "count " + db.getCountWithTwoConditions(getName,tableNumber));
-            if(db.checkOrderProductExist(tableNumber, getName) == false) {
+            if(db.isDataExists(tableNumber,getName) == false) {
                 boolean check = db.insertOrderingData(tableNumber,src,getName,0,intPrice);
                 if(check) {
                     Toast.makeText(mcontext, " sync Succesfull", Toast.LENGTH_SHORT).show();

@@ -257,35 +257,14 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         return exists;
     }
-    public boolean isValueExists1(String tableName, String column1Name, String column1Value, String column2Name, String column2Value) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        String[] projection = {column1Name, column2Name};
-        String selection = column1Name + " = ? AND " + column2Name + " = ?";
-        String[] selectionArgs = {column1Value, column2Value};
-        Cursor cursor = db.query(
-                tableName,    // Tên bảng
-                projection,   // Mảng các cột bạn muốn trả về
-                selection,    // Chuỗi điều kiện WHERE
-                selectionArgs,// Giá trị của các tham số điều kiện WHERE
-                null,
-                null,
-                null
-        );
-        boolean exists = cursor.moveToFirst();
+    public boolean isDataExists(String tableNumber, String productName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM Ordering WHERE table_number=? AND product_name=?", new String[]{tableNumber,productName});
+
+        boolean exists = (cursor.getCount() > 0);
         cursor.close();
         return exists;
-    }
-    public int getCountWithTwoConditions(String value1, String value2) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String[] projection = { "COUNT(*)" };
-        String selection = "table_number = ? AND product_name = ?";
-        String[] selectionArgs = { value1, value2 };
-        Cursor cursor = db.query("Ordering", projection, selection, selectionArgs, null, null, null);
-        cursor.moveToFirst();
-        int count = cursor.getInt(0);
-        cursor.close();
-        db.close();
-        return count;
     }
 }
 

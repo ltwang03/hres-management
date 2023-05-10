@@ -63,7 +63,7 @@ public class OrderMainCourseAdapter extends RecyclerView.Adapter<OrderMainCourse
         sharedPref = mcontext.getSharedPreferences( "my_prefs", Context.MODE_PRIVATE);
         String tableNumber = sharedPref.getString("table_number", "");
 
-        if(db.checkOrderProductExist(getName, tableNumber) == false) {
+        if(db.isDataExists(tableNumber,getName) == false) {
             boolean check = db.insertOrderingData(tableNumber,src,getName,0,intPrice);
             if(check) {
                 Toast.makeText(mcontext, " sync Succesfull", Toast.LENGTH_SHORT).show();
