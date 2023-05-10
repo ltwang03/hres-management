@@ -2,6 +2,7 @@ package edu.huflit.hres_management.Adapter.OrderAdapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,42 +79,53 @@ public class OrderMainCourseAdapter extends RecyclerView.Adapter<OrderMainCourse
         holder.btnIncrea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String amount = holder.edtNumberfood.getText().toString();
-                int intAmount = Integer.parseInt(amount) +1;
-                String strAmount = String.valueOf(intAmount);
-                boolean check = db.updateOrder(tableNumber,src,getName,intAmount,intPrice);
-                if(check) {
-                    Toast.makeText(mcontext, "succes in", Toast.LENGTH_SHORT).show();
+                Cursor cursor1 = db.getOrdering();
+                while(cursor1.moveToNext()) {
+                    if(cursor1.getString(0).equals(tableNumber) && cursor1.getString(2).equals(getName)){
+                        String amount = holder.edtNumberfood.getText().toString();
+                        int intAmount = Integer.parseInt(amount) +1;
+                        String strAmount = String.valueOf(intAmount);
+                        boolean check = db.updateOrder(tableNumber,src,getName,cursor1.getInt(3)+1,intPrice);
+                        if(check) {
+                            Toast.makeText(mcontext, "Succesfull", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Toast.makeText(mcontext, "Failed", Toast.LENGTH_SHORT).show();
+                        }
+                        holder.edtNumberfood.setText(strAmount);
+                    }
                 }
-                else {
-                    Toast.makeText(mcontext, "failed in", Toast.LENGTH_SHORT).show();
-                }
-                holder.edtNumberfood.setText(strAmount);
+                cursor1.close();
+
             }
         });
         holder.btnDecrea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String amount = holder.edtNumberfood.getText().toString();
-                int intAmount = Integer.parseInt(amount);
-                int updatedAmount = intAmount-1;
-                if(updatedAmount < 0) {
-                    holder.edtNumberfood.setText("0");
-                    Toast.makeText(mcontext, "giá trị không thể nhỏ hơn 0", Toast.LENGTH_SHORT).show();
-                }
-                else {
-
-                    String strAmount = String.valueOf(updatedAmount);
-                    boolean check = db.updateOrder(tableNumber,src,getName,updatedAmount,intPrice);
-                    if(check) {
-                        Toast.makeText(mcontext, "Succesfull de", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        Toast.makeText(mcontext, "Failed de", Toast.LENGTH_SHORT).show();
-                    }
-                    holder.edtNumberfood.setText(strAmount);
-                }
+                Cursor cursor2 = db.getOrdering();
+                while(cursor2.moveToNext()) {
+                    if(cursor2.getString(0).equals(tableNumber) && cursor2.getString(2).equals(getName)){
+                        String amount = holder.edtNumberfood.getText().toString();
+                        int intAmount = Integer.parseInt(amount);
+                        int updatedAmount = intAmount-1;
+                        if(updatedAmount < 0) {
+                            holder.edtNumberfood.setText("0");
+                            Toast.makeText(mcontext, "giá trị không thể nhỏ hơn 0", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            String strAmount = String.valueOf(updatedAmount);
+                            boolean check = db.updateOrder(tableNumber,src,getName,cursor2.getInt(3) -1   ,intPrice);
+                            if(check) {
+                                Toast.makeText(mcontext, "Succesfull", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                Toast.makeText(mcontext, "Failed", Toast.LENGTH_SHORT).show();
+                            }
+                            holder.edtNumberfood.setText(strAmount);
+                        }}}
+                cursor2.close();
             }
+
         });
     }
 

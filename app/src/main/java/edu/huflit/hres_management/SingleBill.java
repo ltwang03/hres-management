@@ -7,11 +7,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
@@ -26,6 +29,7 @@ import edu.huflit.hres_management.Model.FoodBill;
 public class SingleBill extends AppCompatActivity {
     DBHelper db;
     ArrayList<FoodBill> arrayFoodBill = new ArrayList<>();
+    Button btnPrintBill,btnCancelBill;
     TextView tvNameCustomer,tvTableNumber,tvTimeCheckin,tvAmountCustomer,tvTotalMoney;
     RecyclerView rcvBill;
     int totalprice = 0;
@@ -40,6 +44,9 @@ public class SingleBill extends AppCompatActivity {
         tvAmountCustomer= findViewById(R.id.tv_amountCusBill);
         rcvBill = findViewById(R.id.lvBill);
         tvTotalMoney = findViewById(R.id.tvTotalPrice);
+        btnPrintBill = findViewById(R.id.btn_printBill);
+        btnCancelBill = findViewById(R.id.btn_cancelBill);
+
 
 
         LinearLayoutManager ln1 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
@@ -71,7 +78,32 @@ public class SingleBill extends AppCompatActivity {
         DecimalFormat formater = new DecimalFormat("#,### đ");
         String formatedStr = formater.format(totalprice);
         tvTotalMoney.setText(("Total : "+formatedStr));
-
+        btnPrintBill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Cursor cursor1 = db.getTableeData();
+                while (cursor1.moveToNext()) {
+                    if(cursor1.getString(0).equals(tableNumber)) {
+                        db.updateBookedTable(tableNumber,false);
+                    }
+                }
+                cursor1.close();
+                Cursor cursor2 = db.getOrdering();
+                while(cursor2.moveToNext()) {
+                    if(cursor2.getString(0).equals(tableNumber)){
+                        db.updateAmountOrderFood(tableNumber,0);
+                    }
+                }
+                Intent i = new Intent(SingleBill.this,OrderTableActivity.class);
+                startActivity(i);
+            }
+        });
+        btnCancelBill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(SingleBill.this,OrderTableActivity.class);
+                startActivity(i);
+            }
+        });
     }
-
 }

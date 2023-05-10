@@ -1,5 +1,6 @@
 package edu.huflit.hres_management.Database;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -88,6 +89,38 @@ public class DBHelper extends SQLiteOpenHelper {
                 return true;
         }else return false;
     }
+    public boolean updateBookedTable(String key, boolean newValue) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("booked", newValue);
+        String selection = "location = ?";
+        String[] selectionArgs = {key};
+        int count = db.update(
+                "tablee",
+                values,
+                selection,
+                selectionArgs
+        );
+        db.close();
+        if(count >0) return true;
+        return false;
+    }
+    public boolean updateAmountOrderFood(String key, int newValue) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("product_amount", newValue);
+        String selection = "table_number = ?";
+        String[] selectionArgs = {key};
+        int count = db.update(
+                "Ordering",
+                values,
+                selection,
+                selectionArgs
+        );
+        db.close();
+        if(count >0) return true;
+        return false;
+    }
     public boolean isTableEmpty( String tableName) {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Cursor cursor = MyDB.rawQuery("SELECT COUNT(*) FROM " + tableName, null);
@@ -122,32 +155,41 @@ public class DBHelper extends SQLiteOpenHelper {
             return true;
     }
 
-    public boolean updateOrderingData(String tableNumber, String product_url, String product_name,int product_amount,int product_price) {
-        SQLiteDatabase MyDB = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("table_number",tableNumber);
-        contentValues.put("product_url",product_url);
-        contentValues.put("product_name",product_name);
-        contentValues.put("product_amount",product_amount);
-        contentValues.put("product_price",product_price);
-        Cursor cursor  = MyDB.rawQuery("Select * from Ordering where table_number = ?", new String[] {tableNumber});
-        if(cursor.getCount() > 0 ) {
-            long result = MyDB.update("Ordering" , contentValues , "table_number=?", new String[] {tableNumber});
-            if(result == -1) return false;
-            else
-                return true;
-        }else return false;
+//    public boolean updateOrderingData(String tableNumber, String product_url, String product_name,int product_amount,int product_price) {
+//        SQLiteDatabase MyDB = this.getWritableDatabase();
+//        ContentValues contentValues = new ContentValues();
+//        contentValues.put("table_number",tableNumber);
+//        contentValues.put("product_url",product_url);
+//        contentValues.put("product_name",product_name);
+//        contentValues.put("product_amount",product_amount);
+//        contentValues.put("product_price",product_price);
+//        Cursor cursor  = MyDB.rawQuery("Select * from Ordering where table_number = ?", new String[] {tableNumber});
+//        if(cursor.getCount() > 0 ) {
+//            long result = MyDB.update("Ordering" , contentValues , "table_number=?", new String[] {tableNumber});
+//            if(result == -1) return false;
+//            else
+//                return true;
+//        }else return false;
+//    }
+@SuppressLint("Range")
+public String getLastValue() {
+    SQLiteDatabase db = this.getReadableDatabase();
 
+    String result = null;
 
+    // Sử dụng câu lệnh SELECT để lấy tất cả các giá trị trong bảng, sắp xếp theo thứ tự giảm dần của khóa chính, và chỉ lấy giá trị đầu tiên.
+    String query = "SELECT * FROM Product ORDER BY product_id DESC LIMIT 1";
+    Cursor cursor = db.rawQuery(query, null);
+
+    if (cursor.moveToFirst()) {
+        result = cursor.getString(cursor.getColumnIndex("product_id"));
     }
-    public boolean checkOrderProductExist(String table_number, String product_name) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM Ordering WHERE table_number = ? AND product_name = ?", new String[] {table_number, product_name});
-        boolean exist = cursor.moveToFirst();
-        cursor.close();
-        db.close();
-        return exist;
-    }
+
+    cursor.close();
+    db.close();
+
+    return result;
+}
     public boolean updateOrder(String tableNumber, String product_url, String product_name,int product_amount,int product_price) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -160,19 +202,19 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
         return numRows > 0; // Trả về true nếu có ít nhất một dòng bị ảnh hưởng, ngược lại trả về false
     }
-    public Boolean deleteOrderingData(String tableNumber ) {
-        SQLiteDatabase MyDB = this.getWritableDatabase();
-
-
-        Cursor cursor  = MyDB.rawQuery("Select * from Ordering where tableNumber = ?", new String[] {tableNumber});
-        if(cursor.getCount() > 0 ) {
-            long result = MyDB.delete("Ordering"  , "tableNumber=?", new String[] {tableNumber});
-            if(result == -1) return false;
-            else
-                return true;
-        }else return false;
-
-    }
+//    public Boolean deleteOrderingData(String tableNumber ) {
+//        SQLiteDatabase MyDB = this.getWritableDatabase();
+//
+//
+//        Cursor cursor  = MyDB.rawQuery("Select * from Ordering where tableNumber = ?", new String[] {tableNumber});
+//        if(cursor.getCount() > 0 ) {
+//            long result = MyDB.delete("Ordering"  , "tableNumber=?", new String[] {tableNumber});
+//            if(result == -1) return false;
+//            else
+//                return true;
+//        }else return false;
+//
+//    }
     public Boolean insertProductData(Integer product_id,String productImageUrl, String productName , String productPrice, String productType, String productDescripe ) {
           SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

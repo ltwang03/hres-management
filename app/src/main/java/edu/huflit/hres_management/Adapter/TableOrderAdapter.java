@@ -131,6 +131,7 @@ public class TableOrderAdapter  extends RecyclerView.Adapter<TableOrderAdapter.T
                 editor.apply();
                 Intent i = new Intent(mContext, SingleBill.class);
                 mContext.startActivity(i);
+                dialog.dismiss();
             }
         });
         TextView tvTimeOrder = dialog.findViewById(R.id.time_checkin_form_order);
@@ -163,6 +164,7 @@ public class TableOrderAdapter  extends RecyclerView.Adapter<TableOrderAdapter.T
 
                 Intent i = new Intent(mContext, OrderFoodActivity.class);
                 mContext.startActivity(i);
+                dialog.dismiss();
             }
         });
 

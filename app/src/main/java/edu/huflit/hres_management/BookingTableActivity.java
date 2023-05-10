@@ -86,6 +86,12 @@ public class BookingTableActivity extends AppCompatActivity {
             }
         }
         //push data to adapter
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         Cursor cursor = db.getTableeData();
         while (cursor.moveToNext()) {
             boolean checkBool = getBooleanValue(cursor, "booked");
@@ -97,9 +103,7 @@ public class BookingTableActivity extends AppCompatActivity {
         cursor.close();
     }
 
-
-
-//checkBooked
+    //checkBooked
     public static boolean getBooleanValue(Cursor cursor, String columnName) {
         boolean value = false;
         final int columnIndex = cursor.getColumnIndex(columnName);
