@@ -1,5 +1,7 @@
 package edu.huflit.hres_management.Services;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -40,7 +42,6 @@ public class SyncService extends Service {
     private ServiceHandler mServiceHandler;
     private SharedPreferences sharedPreferences;
     private LocalBroadcastManager broadcaster;
-
     private DBHelper dbHelper;
 
     private final class ServiceHandler extends Handler {
@@ -57,7 +58,6 @@ public class SyncService extends Service {
                 @Override
                 public void onFinish() {
                     syncData();
-                    startSyncTimer();
                 }
             }.start();
         }
@@ -69,7 +69,6 @@ public void syncData() {
         dbHelper = new DBHelper(getApplicationContext());
         String token = sharedPreferences.getString("token","");
         if(Objects.equals(token, "")) return;
-    Log.d("token", "syncData: " + token);
         APIService.apiService.getFoods("Bearer " + token).enqueue(new retrofit2.Callback<GetFoodResponse>() {
             @Override
             public void onResponse(@NonNull Call<GetFoodResponse> call,@NonNull Response<GetFoodResponse> response) {
@@ -81,6 +80,7 @@ public void syncData() {
                     Log.d("name food", food.getName());
                     dbHelper.insertProductData(food.getProduct_id(),food.getResourceID(), food.getName(), food.getPrice(), food.getCategory(), food.getDescribe());
                 }
+                Log.d(TAG, "onResponse: " + "sync data success");
                 dbHelper.close();
             }
 
@@ -90,7 +90,6 @@ public void syncData() {
 
             }
         });
-
 
 }
 
