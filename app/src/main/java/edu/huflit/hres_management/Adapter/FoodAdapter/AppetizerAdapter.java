@@ -1,4 +1,4 @@
-package edu.huflit.hres_management.Adapter;
+package edu.huflit.hres_management.Adapter.FoodAdapter;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
@@ -30,7 +30,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import edu.huflit.hres_management.Database.DBHelper;
 import edu.huflit.hres_management.ListTypeFoodActivity;

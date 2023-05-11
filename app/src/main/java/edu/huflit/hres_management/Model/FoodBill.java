@@ -1,24 +1,22 @@
 package edu.huflit.hres_management.Model;
 
 public class FoodBill {
-    private int ordinalFood;
+    private int priceFood;
     private String nameFood;
     private int amountFood;
-    private int totalFood;
 
-    public FoodBill(int ordinalFood, String nameFood, int amountFood, int totalFood) {
-        this.ordinalFood = ordinalFood;
+    public FoodBill(int priceFood, String nameFood, int amountFood) {
+        this.priceFood = priceFood;
         this.nameFood = nameFood;
         this.amountFood = amountFood;
-        this.totalFood = totalFood;
     }
 
-    public int getOrdinalFood() {
-        return ordinalFood;
+    public int getPriceFood() {
+        return priceFood;
     }
 
-    public void setOrdinalFood(int ordinalFood) {
-        this.ordinalFood = ordinalFood;
+    public void setPriceFood(int priceFood) {
+        this.priceFood = priceFood;
     }
 
     public String getNameFood() {
@@ -37,11 +35,4 @@ public class FoodBill {
         this.amountFood = amountFood;
     }
 
-    public int getTotalFood() {
-        return totalFood;
-    }
-
-    public void setTotalFood(int totalFood) {
-        this.totalFood = totalFood;
-    }
 }

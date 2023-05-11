@@ -1,4 +1,6 @@
-package edu.huflit.hres_management.Adapter;
+package edu.huflit.hres_management.Adapter.FoodAdapter;
+
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -7,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,24 +30,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import edu.huflit.hres_management.Database.DBHelper;
 import edu.huflit.hres_management.ListTypeFoodActivity;
-import edu.huflit.hres_management.Model.Maincourse;
+import edu.huflit.hres_management.Model.Dessert;
 import edu.huflit.hres_management.R;
 
-public class MaincourseAdapter extends RecyclerView.Adapter<MaincourseAdapter.MaincourseViewHolder>{
+public class  DessertAdapter extends RecyclerView.Adapter<DessertAdapter.DessertViewHolder>{
     private Context mContext;
-    private ArrayList<Maincourse> mListMaincourse;
-    private String cate[] = {"Khai vị" , "Món chính" , "Tráng miệng" , "Nước giải khát"};
+    private ArrayList<Dessert> mListDessert;
     DBHelper db;
+    private String cate[] = {"Khai vị" , "Món chính" , "Tráng miệng" , "Nước giải khát"};
     Dialog dialog;
     String procate;
 
-
-    public MaincourseAdapter(Context mContext, ArrayList<Maincourse> list) {
-        this.mContext = mContext; this.mListMaincourse= list;
+    public DessertAdapter( Context mContext,ArrayList<Dessert> list) {
+        this.mContext = mContext; this.mListDessert= list;
         notifyDataSetChanged();
     }
 
@@ -52,40 +53,42 @@ public class MaincourseAdapter extends RecyclerView.Adapter<MaincourseAdapter.Ma
     @NonNull
     @Override
 
-    public MaincourseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DessertViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_item_list_food,parent,false);
 
-        return new MaincourseViewHolder(view);
+        return new DessertViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MaincourseViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DessertViewHolder holder, int position) {
 
-        Maincourse maincourse = mListMaincourse.get(position);
-        if(maincourse == null)
+        Dessert dessert = mListDessert.get(position);
+        if(dessert == null)
             return;
         holder.imgFoodReal.getLayoutParams().width = 150;
         holder.imgFoodReal.getLayoutParams().height = 170;
-        Picasso.get().load(mListMaincourse.get(position).getResourceId()).resize(holder.imgFoodReal.getLayoutParams().width, holder.imgFoodReal.getLayoutParams().height).centerCrop().into(holder.imgFoodReal);
-        holder.tvName.setText(mListMaincourse.get(position).getName());
-        holder.tvDescribe.setText(mListMaincourse.get(position).getDescribe());
-        holder.tvPrice.setText(mListMaincourse.get(position).getPrice());
+        Picasso.get().load(mListDessert.get(position).getResourceId()).resize(holder.imgFoodReal.getLayoutParams().width, holder.imgFoodReal.getLayoutParams().height).centerCrop().into(holder.imgFoodReal);
+        //holder.imgFood.setText(mListDessert.get(position).getResourceId());
+        holder.tvName.setText(mListDessert.get(position).getName());
+        holder.tvDescribe.setText(mListDessert.get(position).getDescribe());
+        holder.tvPrice.setText(mListDessert.get(position).getPrice());
 
 
-        String name = mListMaincourse.get(position).getName();
-        String price = mListMaincourse.get(position).getPrice();
-        int product_id = mListMaincourse.get(position).getId();
-        String url = mListMaincourse.get(position).getResourceId();
-        String category = mListMaincourse.get(position).getCategory();
-        String descripe = mListMaincourse.get(position).getDescribe();
+        String name = mListDessert.get(position).getName();
+        String price = mListDessert.get(position).getPrice();
+        int product_id = mListDessert.get(position).getId();
+        String url = mListDessert.get(position).getResourceId();
+        String category = mListDessert.get(position).getCategory();
+        String descripe = mListDessert.get(position).getDescribe();
         holder.rltItemFood.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                 dialogDelete(product_id);
+                Log.e(TAG, "onLongClick: "+product_id );
                 return true;
             }
         });
-        holder.imgv_icUpdate.setOnClickListener(new View.OnClickListener() {
+        holder.imgvUpdateFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialogUpdate(product_id,url,name,price,category,descripe);
@@ -95,13 +98,13 @@ public class MaincourseAdapter extends RecyclerView.Adapter<MaincourseAdapter.Ma
 
     @Override
     public int getItemCount() {
-        if(mListMaincourse != null){
-            return mListMaincourse.size();
+        if(mListDessert != null){
+            return mListDessert.size();
         }
         return 0;
     }
 
-    public class MaincourseViewHolder extends RecyclerView.ViewHolder{
+    public class DessertViewHolder extends RecyclerView.ViewHolder{
 
 
         private TextView imgFood;
@@ -110,17 +113,17 @@ public class MaincourseAdapter extends RecyclerView.Adapter<MaincourseAdapter.Ma
         private TextView tvPrice;
         private ImageView imgFoodReal;
         private RelativeLayout rltItemFood;
-        private ImageView imgv_icUpdate;
+        private ImageView imgvUpdateFood;
 
-
-        public MaincourseViewHolder(@NonNull View itemView) {
+        public DessertViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgFoodReal = itemView.findViewById(R.id.img_food_real);
+            imgFoodReal =itemView.findViewById(R.id.img_food_real);
             tvName = itemView.findViewById(R.id.name_food);
             tvDescribe = itemView.findViewById(R.id.describe_food);
             tvPrice = itemView.findViewById(R.id.price_food);
             rltItemFood = itemView.findViewById(R.id.rlvFoodItem);
-            imgv_icUpdate= itemView.findViewById(R.id.ic_edit_food);
+            imgvUpdateFood = itemView.findViewById(R.id.ic_edit_food);
+
         }
     }
     private void dialogDelete(int positonid) {
@@ -219,5 +222,6 @@ public class MaincourseAdapter extends RecyclerView.Adapter<MaincourseAdapter.Ma
 
 
     }
+
 
 }

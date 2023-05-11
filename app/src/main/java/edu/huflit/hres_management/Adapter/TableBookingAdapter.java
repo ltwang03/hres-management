@@ -173,16 +173,16 @@ public class TableBookingAdapter extends RecyclerView.Adapter<TableBookingAdapte
 //                Log.e(TAG, "onClick: "  + + "/"  +  + "/ " + edtTimeCheckin  );
 
                 db = new DBHelper(mContext);
-                Log.e(TAG, "onClick: " + nameCustomer + amount + time + isSetVisibility(lnInfoBooking, imgBooking, imgEmpty) + tableNumber1);
                 boolean checkupdate = db.updateTableeData(tableNumber1, amount, isSetVisibility(lnInfoBooking, imgBooking, imgEmpty), time, nameCustomer);
                 if (checkupdate == true) {
                     Toast.makeText(mContext, "Update succesfull", Toast.LENGTH_SHORT).show();
+//                    Intent i = new Intent(mContext,BookingTableActivity.class);
+//                    mContext.startActivity(i);
                 } else {
                     Toast.makeText(mContext, "Update failed", Toast.LENGTH_SHORT).show();
                 }
 
-                Intent i = new Intent(mContext,BookingTableActivity.class);
-                mContext.startActivity(i);
+
 
             }
 
@@ -264,7 +264,6 @@ public class TableBookingAdapter extends RecyclerView.Adapter<TableBookingAdapte
                             if(cursor.getString(0).equals(tableNumber)) {
                                 boolean checkDelete = db.updateTableeData(tableNumber,Amount,false,Time,Name);
                                 if(checkDelete) {
-                                    Log.e(TAG, "onClick: " + "check" );
                                     Toast.makeText(mContext,"Update success",Toast.LENGTH_SHORT).show();
 
                                     Intent i = new Intent(mContext , BookingTableActivity.class);
@@ -273,6 +272,12 @@ public class TableBookingAdapter extends RecyclerView.Adapter<TableBookingAdapte
                                     Toast.makeText(mContext,"Update failed",Toast.LENGTH_SHORT).show();
                                 }
 
+                            }
+                        }
+                        Cursor cursor2 = db.getOrdering();
+                        while(cursor2.moveToNext()) {
+                            if(cursor2.getString(0).equals(tableNumber)){
+                                db.updateAmountOrderFood(tableNumber,0);
                             }
                         }
                         cursor.close();
