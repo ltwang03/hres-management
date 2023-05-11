@@ -52,6 +52,7 @@ public class AddProductsAcitivity extends AppCompatActivity {
     private static int IMAGE_REQ=1;
     private static final String TAG = "Upload image  ###";
     private Uri imagePath;
+    int stt;
     String cate[] = {"Khai vị" , "Món chính" , "Tráng miệng" , "Nước giải khát"};
     EditText edtProductName, edtProductPrice, edtProductDescripe;
     Button btnAddProduct;
@@ -114,55 +115,69 @@ public class AddProductsAcitivity extends AppCompatActivity {
         btnAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MediaManager.get().upload(imagePath).callback(new UploadCallback() {
-                    @Override
-                    public void onStart(String requestId) {
-                        Log.d(TAG, "onStart: " + "started");
-                        Toast.makeText(AddProductsAcitivity.this,"Adding" , Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onProgress(String requestId, long bytes, long totalBytes) {
-                        Log.d(TAG, "onStart: " + "uploading");
-                    }
-
-                    @Override
-                    public void onSuccess(String requestId, Map resultData) {
-                        Log.d(TAG, "onStart: " + "usuccess" );
-                        imageUrl = (String) resultData.get("secure_url");
-                        Log.e(TAG, "onSuccess: " +imageUrl );
-                        String productName = edtProductName.getText().toString();
-                        String productPrice = edtProductPrice.getText().toString();
-                        String productDesc = edtProductDescripe.getText().toString();
-
-                        // procate  + imageUrl;
-                        Integer stt = db.getProductData().getCount() ;
-
-                        Boolean checkInsertProductData = db.insertProductData(stt +1,imageUrl , productName,productPrice,proCate,productDesc);
-                        SaveFoodOnServer(imageUrl,productName,proCate,productDesc, productPrice);
-                        if(checkInsertProductData== true) {
-                            Toast.makeText(AddProductsAcitivity.this, "New entry inserted", Toast.LENGTH_SHORT ).show();
-                        }else {
-                            Toast.makeText(AddProductsAcitivity.this, "New entry inserted Failed", Toast.LENGTH_SHORT ).show();
+                if(imagePath == null){
+                    Toast.makeText(AddProductsAcitivity.this, "Vui lòng chọn ảnh upload", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    MediaManager.get().upload(imagePath).callback(new UploadCallback() {
+                        @Override
+                        public void onStart(String requestId) {
+                            Log.d(TAG, "onStart: " + "started");
+                            Toast.makeText(AddProductsAcitivity.this,"Adding" , Toast.LENGTH_SHORT).show();
                         }
-                        imageUrl = "";
-                        edtProductName.setText("");
-                        edtProductDescripe.setText("");
-                        edtProductPrice.setText("");
-                        proCate= "";
-                    }
 
-                    @Override
-                    public void onError(String requestId, ErrorInfo error) {
-                        Log.d(TAG, "onStart: " + "error");
-                    }
+                        @Override
+                        public void onProgress(String requestId, long bytes, long totalBytes) {
+                            Log.d(TAG, "onStart: " + "uploading");
+                        }
 
-                    @Override
-                    public void onReschedule(String requestId, ErrorInfo error) {
-                        Log.d(TAG, "onStart: " + "error");
-                    }
-                }).dispatch();
-            }
+                        @Override
+                        public void onSuccess(String requestId, Map resultData) {
+                            Log.d(TAG, "onStart: " + "usuccess" );
+                            imageUrl = (String) resultData.get("secure_url");
+                            Log.e(TAG, "onSuccess: " +imageUrl );
+
+
+                                String productName = edtProductName.getText().toString();
+                                String productPrice = edtProductPrice.getText().toString();
+                                String productDesc = edtProductDescripe.getText().toString();
+
+                                // procate  + imageUrl;
+                                if(db.getProductData().getCount() == 0){
+                                    stt = 1;
+                                }
+                                else {
+                                    stt = Integer.parseInt(db.getLastValue()) +1;
+                                }
+
+
+                                Boolean checkInsertProductData = db.insertProductData(stt ,imageUrl , productName,productPrice,proCate,productDesc);
+                                SaveFoodOnServer(imageUrl,productName,proCate,productDesc, productPrice);
+                                if(checkInsertProductData== true) {
+                                    Toast.makeText(AddProductsAcitivity.this, "New entry inserted", Toast.LENGTH_SHORT ).show();
+                                }else {
+                                    Toast.makeText(AddProductsAcitivity.this, "New entry inserted Failed", Toast.LENGTH_SHORT ).show();
+                                }
+                                imageUrl = "";
+                                edtProductName.setText("");
+                                edtProductDescripe.setText("");
+                                edtProductPrice.setText("");
+                                proCate= "";
+                            }
+
+
+                        @Override
+                        public void onError(String requestId, ErrorInfo error) {
+                            Log.d(TAG, "onStart: " + "error");
+                        }
+
+                        @Override
+                        public void onReschedule(String requestId, ErrorInfo error) {
+                            Log.d(TAG, "onStart: " + "error");
+                        }
+                    }).dispatch();
+                }
+                }
         });
     }
 //cloudinary init
@@ -178,12 +193,12 @@ public class AddProductsAcitivity extends AppCompatActivity {
     }
 
     private void RequestPermission(){
-        if(ContextCompat.checkSelfPermission(AddProductsAcitivity.this, Manifest.permission.READ_MEDIA_IMAGES) == PackageManager.PERMISSION_GRANTED){
+        if(ContextCompat.checkSelfPermission(AddProductsAcitivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
             selectImage();
 
         }else {
             ActivityCompat.requestPermissions(AddProductsAcitivity.this,new String[]{
-                    Manifest.permission.READ_MEDIA_IMAGES
+                    Manifest.permission.READ_EXTERNAL_STORAGE
             },IMAGE_REQ);
         }
 
@@ -206,8 +221,14 @@ public class AddProductsAcitivity extends AppCompatActivity {
     }
     public void SaveFoodOnServer(String resourceId, String name, String category, String describe, String price) {
         String token = sharedPreferences.getString("token", "");
-        int stt =db.getProductData().getCount();
-        AddFoodRequest addFoodRequest = new AddFoodRequest(stt+1,resourceId, name, price, category, describe);
+        // procate  + imageUrl;
+        if(db.getProductData().getCount() == 0){
+            stt = 1;
+        }
+        else {
+            stt = Integer.parseInt(db.getLastValue()) +1;
+        }
+        AddFoodRequest addFoodRequest = new AddFoodRequest(stt,resourceId, name, price, category, describe);
         if(Objects.equals(token,"")) {
             Toast.makeText(this, "Token không hợp lệ!", Toast.LENGTH_SHORT).show();
             return;

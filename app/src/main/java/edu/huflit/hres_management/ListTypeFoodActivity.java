@@ -1,8 +1,5 @@
 package edu.huflit.hres_management;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -10,14 +7,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,13 +26,13 @@ import java.util.Objects;
 import edu.huflit.hres_management.Database.DBHelper;
 import edu.huflit.hres_management.Fragment.BottomBarFragment;
 import edu.huflit.hres_management.Model.Appetizer;
-import edu.huflit.hres_management.Adapter.AppetizerAdapter;
+import edu.huflit.hres_management.Adapter.FoodAdapter.AppetizerAdapter;
 import edu.huflit.hres_management.Model.Maincourse;
-import edu.huflit.hres_management.Adapter.MaincourseAdapter;
+import edu.huflit.hres_management.Adapter.FoodAdapter.MaincourseAdapter;
 import edu.huflit.hres_management.Model.Dessert;
-import edu.huflit.hres_management.Adapter.DessertAdapter;
+import edu.huflit.hres_management.Adapter.FoodAdapter.DessertAdapter;
 import edu.huflit.hres_management.Model.Drinks;
-import edu.huflit.hres_management.Adapter.DrinksAdapter;
+import edu.huflit.hres_management.Adapter.FoodAdapter.DrinksAdapter;
 
 public class ListTypeFoodActivity extends AppCompatActivity {
 
@@ -103,7 +97,6 @@ public class ListTypeFoodActivity extends AppCompatActivity {
             }
             if (cursor.getString(4).equals("Nước giải khát")) {
                 Drinks obj2 = new Drinks(cursor.getInt(0),cursor.getString(1), cursor.getString(2), cursor.getString(4), cursor.getString(5), cursor.getString(3));
-
                 drinkDataHolder.add(obj2);
 
             }
@@ -120,13 +113,12 @@ public class ListTypeFoodActivity extends AppCompatActivity {
             rcvAppetizer = findViewById(R.id.rcvAppetizer);
 
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-            LinearLayoutManager linearLayoutManager_1 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-            LinearLayoutManager linearLayoutManager_2 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-            LinearLayoutManager linearLayoutManager_3 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-
+            LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+            LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+            LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
             rcvAppetizer.setLayoutManager(linearLayoutManager);
 
-            edu.huflit.hres_management.Adapter.AppetizerAdapter appetizerAdapter = new AppetizerAdapter(this,appetizerDataHolder);
+            AppetizerAdapter appetizerAdapter = new AppetizerAdapter(this,appetizerDataHolder);
             rcvAppetizer.setAdapter(appetizerAdapter);
 
             lnAppetizer = findViewById(R.id.lnAppetizer);
@@ -147,7 +139,8 @@ public class ListTypeFoodActivity extends AppCompatActivity {
             //ds món chính
             rcvMaincourse = findViewById(R.id.rcvMaincourse);
             MaincourseAdapter maincourseAdapter = new MaincourseAdapter(this,maincoursesDataHolder);
-            rcvMaincourse.setLayoutManager(linearLayoutManager_1);
+
+            rcvMaincourse.setLayoutManager(linearLayoutManager1);
 
             rcvMaincourse.setAdapter(maincourseAdapter);
 
@@ -166,8 +159,8 @@ public class ListTypeFoodActivity extends AppCompatActivity {
             });
 //ds món tráng miệng
             rcvDessert = findViewById(R.id.rcvDessert);
-            edu.huflit.hres_management.Adapter.DessertAdapter dessertAdapter = new DessertAdapter(this,dessertDataHolder);
-            rcvDessert.setLayoutManager(linearLayoutManager_2);
+            DessertAdapter dessertAdapter = new DessertAdapter(this,dessertDataHolder);
+            rcvDessert.setLayoutManager(linearLayoutManager2);
             rcvDessert.setAdapter(dessertAdapter);
 
             lnDessert = findViewById(R.id.lnDessert);
@@ -186,8 +179,8 @@ public class ListTypeFoodActivity extends AppCompatActivity {
             });
 //ds món nước
             rcvDrinks = findViewById(R.id.rcvDrinks);
-            edu.huflit.hres_management.Adapter.DrinksAdapter drinksAdapter = new DrinksAdapter(this,drinkDataHolder);
-            rcvDrinks.setLayoutManager(linearLayoutManager_3);
+            DrinksAdapter drinksAdapter = new DrinksAdapter(this,drinkDataHolder);
+            rcvDrinks.setLayoutManager(linearLayoutManager3);
 
             rcvDrinks.setAdapter(drinksAdapter);
 
@@ -207,6 +200,59 @@ public class ListTypeFoodActivity extends AppCompatActivity {
             });
 
         }
+
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        appetizerDataHolder.clear();
+        maincoursesDataHolder.clear();
+        drinkDataHolder.clear();
+        dessertDataHolder.clear();
+        Cursor cursor = db.getProductData();
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+
+        while (cursor.moveToNext()) {
+
+            if (cursor.getString(4).equals("Khai vị")) {
+                Appetizer obj = new Appetizer(cursor.getInt(0),cursor.getString(1), cursor.getString(2), cursor.getString(4), cursor.getString(5), cursor.getString(3));
+                appetizerDataHolder.add(obj);
+
+            }
+            if (cursor.getString(4).equals("Món chính")) {
+                Maincourse obj1 = new Maincourse(cursor.getInt(0),cursor.getString(1), cursor.getString(2), cursor.getString(4), cursor.getString(5), cursor.getString(3));
+                maincoursesDataHolder.add(obj1);
+
+            }
+            if (cursor.getString(4).equals("Nước giải khát")) {
+                Drinks obj2 = new Drinks(cursor.getInt(0),cursor.getString(1), cursor.getString(2), cursor.getString(4), cursor.getString(5), cursor.getString(3));
+                drinkDataHolder.add(obj2);
+
+            }
+            if (cursor.getString(4).equals("Tráng miệng")) {
+                Dessert obj3 = new Dessert(cursor.getInt(0),cursor.getString(1), cursor.getString( 2), cursor.getString(4), cursor.getString(5), cursor.getString(3));
+                dessertDataHolder.add(obj3);
+
+            }
+            rcvAppetizer.setLayoutManager(linearLayoutManager);
+            AppetizerAdapter appetizerAdapter = new AppetizerAdapter(this,appetizerDataHolder);
+            rcvAppetizer.setAdapter(appetizerAdapter);
+
+            rcvDessert.setLayoutManager(linearLayoutManager1);
+            DessertAdapter dessertAdapter = new DessertAdapter(this,dessertDataHolder);
+            rcvDessert.setAdapter(dessertAdapter);
+
+            rcvDrinks.setLayoutManager(linearLayoutManager2);
+            DrinksAdapter drinksAdapter = new DrinksAdapter(this,drinkDataHolder);
+            rcvDrinks.setAdapter(drinksAdapter);
+            rcvMaincourse.setLayoutManager(linearLayoutManager3);
+            MaincourseAdapter maincourseAdapter = new MaincourseAdapter(this,maincoursesDataHolder);
+            rcvMaincourse.setAdapter(maincourseAdapter);
+
+        }
+    }
 }
