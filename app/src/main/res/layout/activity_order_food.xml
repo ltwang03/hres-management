@@ -6,12 +6,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
+    android:weightSum="50"
     android:theme="@style/AppTheme"
     style="@style/ScreenBackground"
     tools:context=".OrderFoodActivity">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="10"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="wrap_content"
@@ -37,6 +39,7 @@
             android:id="@+id/tv_nameCusFood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="Tên"
             android:textStyle="bold"
             style="@style/TextColor"
@@ -59,9 +62,8 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="20dp"
+        android:layout_height="0dp"
+        android:layout_weight="5"
         android:gravity="center">
         <Button
             android:id="@+id/btn_appetizer"
@@ -115,12 +117,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lvOrder"
         android:layout_width="match_parent"
-        android:layout_height="500dp" />
+        android:layout_height="0dp"
+        android:layout_weight="30"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_height="0dp"
+        android:layout_weight="5"
         android:gravity="center"
         android:layout_gravity="bottom"
         android:orientation="horizontal">
@@ -128,15 +131,21 @@
             android:id="@+id/btn_cancelOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/orange_01"
+            android:background="@drawable/button_primary"
+            android:backgroundTint="@color/orange_01"
             android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"
             android:layout_marginRight="60dp"
             android:text="Hủy"/>
         <Button
             android:id="@+id/btn_doneOrder"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:background="@color/orange_01"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:background="@drawable/button_primary"
+            android:backgroundTint="@color/orange_01"
             android:textColor="@color/white"
             android:text="Xác nhận"/>
     </LinearLayout>
