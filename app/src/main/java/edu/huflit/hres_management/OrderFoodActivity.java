@@ -161,6 +161,8 @@ public class OrderFoodActivity extends AppCompatActivity {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent i = new Intent(OrderFoodActivity.this,OrderTableActivity.class);
+                startActivity(i);
             }
         });
     }

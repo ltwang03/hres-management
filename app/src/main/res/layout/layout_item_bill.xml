@@ -1,37 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:gravity="center"
+    android:theme="@style/AppTheme"
+    android:stretchColumns="1,2,3,4"
+    android:weightSum="85">
 
-    android:layout_height="wrap_content">
-    <TextView
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:layout_marginLeft="5dp"
-        android:text="name test"
-        android:id="@+id/tvProduct_name_bill"/>
-    <TextView
-        android:layout_width="25dp"
-        android:layout_marginRight="22dp"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text="AMount"
-        android:id="@+id/amount_item_food_bill"/>
-    <TextView
-        android:layout_width="90dp"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text="Price"
-        android:layout_marginRight="20dp"
-        android:id="@+id/tvPriceFoodBill"/>
-    <TextView
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="totalitem"
-        android:textSize="19dp"
-        android:id="@+id/total_single_price"></TextView>
+    <TableRow>
+        <TextView
+            android:id="@+id/tvProduct_name_bill"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="món 1"
+            android:layout_weight="25"
+            style="@style/TextColor"
+            android:textSize="20dp"/>
+        <TextView
+            android:id="@+id/amount_item_food_bill"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="15"
+            android:textSize="20dp"
+            android:text="2"
+            style="@style/TextColor"/>
+        <TextView
+            android:id="@+id/tvPriceFoodBill"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="20"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:text="24000"
+            style="@style/TextColor"/>
+        <TextView
+            android:id="@+id/total_single_price"
+            android:layout_width="0dp"
+            style="@style/TextColor"
+            android:gravity="end"
+            android:layout_height="wrap_content"
+            android:layout_weight="30"
+            android:textSize="20dp"
+            android:text="24.000đ"/>
+    </TableRow>
 
 
 
-</LinearLayout>
+</TableLayout>

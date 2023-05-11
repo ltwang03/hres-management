@@ -13,6 +13,7 @@
             android:layout_width="0dp"
             android:layout_weight="10"
             style="@style/TextColor"
+            android:text="1"
             android:gravity="center"
             android:layout_column="1"
             android:inputType="number"/>
@@ -20,6 +21,7 @@
             android:id="@+id/name_food"
             android:layout_width="0dp"
             android:layout_weight="40"
+            android:text="1"
             style="@style/TextColor"
             android:gravity="center"
             android:layout_column="1"/>
@@ -27,6 +29,7 @@
             android:id="@+id/amount_food"
             android:layout_width="0dp"
             android:layout_weight="15"
+            android:text="1"
             style="@style/TextColor"
             android:gravity="center"
             android:layout_column="1"
@@ -35,6 +38,7 @@
             android:id="@+id/total_item"
             android:layout_width="0dp"
             android:layout_weight="35"
+            android:text="1"
             style="@style/TextColor"
             android:gravity="center"
             android:layout_column="1"/>

@@ -43,6 +43,7 @@
                     android:id="@+id/tv_name_customer_order"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     android:text="Name"
                     android:layout_marginRight="5dp"
                     android:textSize="23dp"
@@ -63,14 +64,12 @@
 
             <TextView
                 android:id="@+id/tv_time_order"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:text="13h"
                 android:textColor="@color/white"
-                android:layout_marginRight="15dp"
                 android:textSize="20dp"/>
         </LinearLayout>
 
