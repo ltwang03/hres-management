@@ -80,7 +80,7 @@ public class SingleBill extends AppCompatActivity {
         tvTotalMoney.setText(("Total : "+formatedStr));
         btnPrintBill.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) {    
                 Cursor cursor1 = db.getTableeData();
                 while (cursor1.moveToNext()) {
                     if(cursor1.getString(0).equals(tableNumber)) {
