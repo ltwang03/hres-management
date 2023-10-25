@@ -4,14 +4,17 @@ import java.util.List;
 
 public class Bill {
     private String nameCustomer;
-    private String timeCheckout;
-    private String priceTotal;
+    private String tableNumber;
+    private String timeCheckIn;
+    private String amountCustomer;
     private List<FoodBill> listFoodBill;
 
-    public Bill(String nameCustomer, String timeCheckout, String priceTotal, List<FoodBill> listFoodBill) {
+    public Bill(String tableNumber, String timeCheckIn, String nameCustomer, String amountCustomer, List<FoodBill> listFoodBill) {
         this.nameCustomer = nameCustomer;
-        this.timeCheckout = timeCheckout;
-        this.priceTotal = priceTotal;
+
+        this.tableNumber = tableNumber;
+        this.timeCheckIn = timeCheckIn;
+        this.amountCustomer = amountCustomer;
         this.listFoodBill = listFoodBill;
     }
 
@@ -23,20 +26,28 @@ public class Bill {
         this.nameCustomer = nameCustomer;
     }
 
-    public String getTimeCheckout() {
-        return timeCheckout;
+    public String getTableNumber() {
+        return tableNumber;
     }
 
-    public void setTimeCheckout(String timeCheckout) {
-        this.timeCheckout = timeCheckout;
+    public void setTableNumber(String tableNumber) {
+        this.tableNumber = tableNumber;
     }
 
-    public String getPriceTotal() {
-        return priceTotal;
+    public String getTimeCheckIn() {
+        return timeCheckIn;
     }
 
-    public void setPriceTotal(String priceTotal) {
-        this.priceTotal = priceTotal;
+    public void setTimeCheckIn(String timeCheckIn) {
+        this.timeCheckIn = timeCheckIn;
+    }
+
+    public String getAmountCustomer() {
+        return amountCustomer;
+    }
+
+    public void setAmountCustomer(String amountCustomer) {
+        this.amountCustomer = amountCustomer;
     }
 
     public List<FoodBill> getListFoodBill() {
@@ -47,3 +58,4 @@ public class Bill {
         this.listFoodBill = listFoodBill;
     }
 }
+

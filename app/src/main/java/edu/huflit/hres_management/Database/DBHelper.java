@@ -37,7 +37,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 " product_price INT , product_type TEXT," +
                 " product_descripe TEXT)");
         String createTableOrdering = ("CREATE TABLE Ordering" +
-                "(table_number TEXT," +
+                "(id integer primary key autoincrement," +
+                "table_number TEXT," +
                 "product_url TEXT, "+
                 "product_name TEXT, " +
                 "product_amount INTEGER, " +
@@ -48,15 +49,39 @@ public class DBHelper extends SQLiteOpenHelper {
                 "amount_customer TEXT," +
                 "checkin TEXT," +
                 " booked boolean) ");
+
+        String createBillList = ("CREATE TABLE BillList" +
+                "(id integer primary key autoincrement," +
+                "location text," +
+                "checkin text," +
+                "customer_name TEXT," +
+                "amount_customer TEXT ) ");
+
+        String createPaidFoodHolder = ("CREATE TABLE PaidFood" +
+                "(id integer primary key autoincrement," +
+                "location text ," +
+                "checkin text ," +
+                " product_name TEXT," +
+                " product_price INT ," +
+                "product_amount INTEGER) ");
+
         MyDB.execSQL(createTableProduct);
         MyDB.execSQL(createTableOrdering);
         MyDB.execSQL(createTableTableNumber);
+        MyDB.execSQL(createBillList);
+        MyDB.execSQL(createPaidFoodHolder);
+
+
+
     }
     @Override
     public void onUpgrade(SQLiteDatabase MyDB, int i, int i1) {
         MyDB.execSQL("drop Table if exists Product");
         MyDB.execSQL("drop Table if exists Ordering");
         MyDB.execSQL("drop Table if exists Tablee");
+        MyDB.execSQL("drop Table if exists BillList");
+        MyDB.execSQL("drop Table if exists PaidFood");
+
 
     }
     public boolean insertTableeData(String location,String amount_customer, Boolean booked , String checkin , String customer_name) {
@@ -68,6 +93,37 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("customer_name",customer_name);
         contentValues.put("checkin" , checkin);
         long result = MyDB.insert("Tablee" , null,contentValues);
+        if(result == -1) return false;
+        else
+            return true;
+
+    }
+
+
+    public boolean insertListBill(String location,String checkinTime, String customer_name , String amount_customer) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("location",location);
+        contentValues.put("checkin", checkinTime);
+        contentValues.put("customer_name",customer_name);
+        contentValues.put("amount_customer" , amount_customer);
+        long result = MyDB.insert("BillList" , null,contentValues);
+        if(result == -1) return false;
+        else
+            return true;
+
+    }
+
+    public boolean insertPaidFood(String location,String checkin, String product_name ,  Integer product_price , Integer product_amount) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("location",location);
+        contentValues.put("checkin", checkin);
+        contentValues.put("product_name",product_name);
+        contentValues.put("product_price" , product_price);
+        contentValues.put("product_amount" , product_amount);
+
+        long result = MyDB.insert("PaidFood" , null,contentValues);
         if(result == -1) return false;
         else
             return true;
@@ -261,6 +317,20 @@ public String getLastValue() {
     public Cursor getProductData() {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Cursor cursor  = MyDB.rawQuery("Select * from Product ",null    );
+        return cursor;
+
+    }
+
+    public Cursor getListBills() {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor  = MyDB.rawQuery("Select * from ListBill ",null    );
+        return cursor;
+
+    }
+
+    public Cursor getPaidFood() {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor  = MyDB.rawQuery("Select * from PaidFood ",null    );
         return cursor;
 
     }

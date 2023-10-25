@@ -45,8 +45,8 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ListBillViewHo
         holder.rcvListFoodBill.setLayoutManager(linearLayoutManager);
 
         holder.tv_name_customer.setText(bill.getNameCustomer());
-        holder.tv_time_checkout.setText(bill.getTimeCheckout());
-        holder.tv_price_total.setText(bill.getPriceTotal().toString());
+//        holder.tv_time_checkout.setText(bill.getTimeCheckout());
+//        holder.tv_price_total.setText(bill.getPriceTotal().toString());
         holder.rcvListFoodBill.setAdapter(foodBillAdapter);
         holder.billMain.setOnClickListener(new View.OnClickListener() {
             @Override

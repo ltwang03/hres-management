@@ -25,10 +25,13 @@ import edu.huflit.hres_management.Adapter.SingleBillAdapter;
 import edu.huflit.hres_management.Database.DBHelper;
 import edu.huflit.hres_management.Model.Appetizer;
 import edu.huflit.hres_management.Model.FoodBill;
+import edu.huflit.hres_management.Model.ListBill;
 
 public class SingleBill extends AppCompatActivity {
     DBHelper db;
     ArrayList<FoodBill> arrayFoodBill = new ArrayList<>();
+
+    ArrayList<ListBill> arrayListBill = new ArrayList<>();
     Button btnPrintBill,btnCancelBill;
     TextView tvNameCustomer,tvTableNumber,tvTimeCheckin,tvAmountCustomer,tvTotalMoney;
     RecyclerView rcvBill;
@@ -64,11 +67,11 @@ public class SingleBill extends AppCompatActivity {
         Cursor cursor = db.getOrdering();
         Log.e(TAG, "onCreate: "+tableNumber );
         while (cursor.moveToNext()) {
-            if(cursor.getInt(0)  == Integer.parseInt(tableNumber) && cursor.getInt(3) !=0) {
+            if(cursor.getInt(  1)  == Integer.parseInt(tableNumber) && cursor.getInt(4) !=0) {
                 Log.e(TAG, "onCreate: 1" + "ok" );
-                FoodBill obj = new FoodBill(cursor.getInt(4),cursor.getString(2), cursor.getInt(3));
+                FoodBill obj = new FoodBill(cursor.getInt(5),cursor.getString(3), cursor.getInt(4));
                 arrayFoodBill.add(obj);
-                totalprice+=(cursor.getInt(4) * cursor.getInt(3));
+                totalprice+=(cursor.getInt(5) * cursor.getInt(4));
             }
 
             rcvBill.setLayoutManager(ln1);
@@ -80,7 +83,23 @@ public class SingleBill extends AppCompatActivity {
         tvTotalMoney.setText(("Total : "+formatedStr));
         btnPrintBill.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {    
+            public void onClick(View view) {
+
+
+                db.insertListBill(tableNumber,timeCheckinFood,nameCustomer,amountCustomer);
+
+        Cursor cursor3 = db.getOrdering();
+                while (cursor3.moveToNext()) {
+
+                    Log.d(TAG, "onClick" + cursor3.getString(1) + tableNumber);
+
+                    if(cursor3.getString(1).equals(tableNumber)  && cursor3.getString(4) != "0") {
+
+                        db.insertPaidFood(tableNumber,timeCheckinFood,cursor3.getString(3),cursor3.getInt(5),cursor3.getInt(4));
+                    }
+                }
+
+
                 Cursor cursor1 = db.getTableeData();
                 while (cursor1.moveToNext()) {
                     if(cursor1.getString(0).equals(tableNumber)) {
@@ -90,13 +109,15 @@ public class SingleBill extends AppCompatActivity {
                 cursor1.close();
                 Cursor cursor2 = db.getOrdering();
                 while(cursor2.moveToNext()) {
-                    if(cursor2.getString(0).equals(tableNumber)){
+                    if(cursor2.getString(1).equals(tableNumber)){
                         db.updateAmountOrderFood(tableNumber,0);
                     }
                 }
                 Intent i = new Intent(SingleBill.this,OrderTableActivity.class);
                 startActivity(i);
             }
+
+
         });
         btnCancelBill.setOnClickListener(new View.OnClickListener() {
             @Override

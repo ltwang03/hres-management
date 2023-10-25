@@ -83,11 +83,11 @@ public class OrderDrinksAdapter extends RecyclerView.Adapter<OrderDrinksAdapter.
             public void onClick(View view) {
                 Cursor cursor1 = db.getOrdering();
                 while(cursor1.moveToNext()) {
-                    if(cursor1.getString(0).equals(tableNumber) && cursor1.getString(2).equals(getName)){
+                    if(cursor1.getString(1).equals(tableNumber) && cursor1.getString(3).equals(getName)){
                         String amount = holder.edtNumberfood.getText().toString();
                         int intAmount = Integer.parseInt(amount) +1;
                         String strAmount = String.valueOf(intAmount);
-                        boolean check = db.updateOrder(tableNumber,src,getName,cursor1.getInt(3)+1,intPrice);
+                        boolean check = db.updateOrder(tableNumber,src,getName,cursor1.getInt(4)+1,intPrice);
                         if(check) {
                             Toast.makeText(mcontext, "Succesfull", Toast.LENGTH_SHORT).show();
                         }
@@ -106,7 +106,7 @@ public class OrderDrinksAdapter extends RecyclerView.Adapter<OrderDrinksAdapter.
             public void onClick(View view) {
                 Cursor cursor2 = db.getOrdering();
                 while(cursor2.moveToNext()) {
-                    if(cursor2.getString(0).equals(tableNumber) && cursor2.getString(2).equals(getName)){
+                    if(cursor2.getString(1).equals(tableNumber) && cursor2.getString(3).equals(getName)){
                         String amount = holder.edtNumberfood.getText().toString();
                         int intAmount = Integer.parseInt(amount);
                         int updatedAmount = intAmount-1;
@@ -116,7 +116,7 @@ public class OrderDrinksAdapter extends RecyclerView.Adapter<OrderDrinksAdapter.
                         }
                         else {
                             String strAmount = String.valueOf(updatedAmount);
-                            boolean check = db.updateOrder(tableNumber,src,getName,cursor2.getInt(3) -1   ,intPrice);
+                            boolean check = db.updateOrder(tableNumber,src,getName,cursor2.getInt(4) -1   ,intPrice);
                             if(check) {
                                 Toast.makeText(mcontext, "Succesfull", Toast.LENGTH_SHORT).show();
                             }
