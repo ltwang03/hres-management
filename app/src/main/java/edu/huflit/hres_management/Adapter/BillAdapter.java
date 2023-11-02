@@ -1,6 +1,10 @@
 package edu.huflit.hres_management.Adapter;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
+import android.database.Cursor;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import edu.huflit.hres_management.Database.DBHelper;
 import edu.huflit.hres_management.Model.Bill;
 import edu.huflit.hres_management.Model.FoodBill;
 import edu.huflit.hres_management.R;
@@ -21,10 +26,16 @@ import edu.huflit.hres_management.R;
 public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ListBillViewHolder> {
     private Context mContext;
     private List<Bill> mListBill;
+    List<FoodBill> listFoodBill;
+    private int price =0;
+
+
     boolean Show = false;
-    public BillAdapter(Context mContext, List<Bill> mListBill) {
+    DBHelper db ;
+    public BillAdapter(Context mContext, List<Bill> mListBill ,List<FoodBill> mListFoodBill) {
         this.mContext = mContext;
         this.mListBill = mListBill;
+        this.listFoodBill = mListFoodBill;
     }
 
     @NonNull
@@ -41,12 +52,27 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ListBillViewHo
             return;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext,RecyclerView.VERTICAL,false);
         FoodBillAdapter foodBillAdapter=new FoodBillAdapter();
-        foodBillAdapter.setData(bill.getListFoodBill());
+
+    db =new DBHelper(mContext);
+        Cursor cursor1 = db.getPaidFood();
+        Log.e(TAG, "onBindViewHolder: " + bill.getTableNumber());
+        while (cursor1.moveToNext()) {
+            if(cursor1.getString(1).equals(bill.getTableNumber()) && cursor1.getInt(5) != 0 && cursor1.getString(2).equals(bill.getTimeCheckIn())) {
+
+                listFoodBill.add(new FoodBill(cursor1.getInt(5),cursor1.getString(3),cursor1.getInt(4)));
+                Log.e(TAG, "onBindViewHolder: " + cursor1.getInt(5) + cursor1.getInt(4) );
+                price+=cursor1.getInt(5) * cursor1.getInt(4);
+
+            }
+
+        }
+        foodBillAdapter.setData(listFoodBill);
         holder.rcvListFoodBill.setLayoutManager(linearLayoutManager);
 
         holder.tv_name_customer.setText(bill.getNameCustomer());
-//        holder.tv_time_checkout.setText(bill.getTimeCheckout());
+        holder.tv_time_checkout.setText(bill.getTimeCheckIn());
 //        holder.tv_price_total.setText(bill.getPriceTotal().toString());
+        holder.tv_price_total.setText(String.valueOf(price));
         holder.rcvListFoodBill.setAdapter(foodBillAdapter);
         holder.billMain.setOnClickListener(new View.OnClickListener() {
             @Override

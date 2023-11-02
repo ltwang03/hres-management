@@ -9,13 +9,13 @@ public class Bill {
     private String amountCustomer;
     private List<FoodBill> listFoodBill;
 
-    public Bill(String tableNumber, String timeCheckIn, String nameCustomer, String amountCustomer, List<FoodBill> listFoodBill) {
+    public Bill(String tableNumber, String timeCheckIn, String nameCustomer, String amountCustomer) {
         this.nameCustomer = nameCustomer;
 
         this.tableNumber = tableNumber;
         this.timeCheckIn = timeCheckIn;
         this.amountCustomer = amountCustomer;
-        this.listFoodBill = listFoodBill;
+
     }
 
     public String getNameCustomer() {
@@ -50,12 +50,4 @@ public class Bill {
         this.amountCustomer = amountCustomer;
     }
 
-    public List<FoodBill> getListFoodBill() {
-        return listFoodBill;
-    }
-
-    public void setListFoodBill(List<FoodBill> listFoodBill) {
-        this.listFoodBill = listFoodBill;
-    }
 }
-

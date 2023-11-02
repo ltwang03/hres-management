@@ -323,7 +323,7 @@ public String getLastValue() {
 
     public Cursor getListBills() {
         SQLiteDatabase MyDB = this.getWritableDatabase();
-        Cursor cursor  = MyDB.rawQuery("Select * from ListBill ",null    );
+        Cursor cursor  = MyDB.rawQuery("Select * from BillList ",null    );
         return cursor;
 
     }

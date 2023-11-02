@@ -151,7 +151,7 @@
             android:backgroundTint="@color/orange_01"
             android:textColor="@color/white"
             android:layout_marginRight="60dp"
-            android:text="Huỷ"/>
+            android:text="Thanh Toán"/>
         <Button
             android:id="@+id/btn_printBill"
             android:layout_width="120dp"

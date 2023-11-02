@@ -17,23 +17,44 @@
         android:orientation="vertical"
         android:padding="5dp">
 
-        <TextView
-            android:id="@+id/name_customer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nguyễn Thị Mỹ Diệu"
-            android:textColor="@color/orange_01"
-            android:textSize="23dp"
-            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Khách hàng: "
+                android:textColor="@color/orange_01"
+                android:textSize="23dp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/name_customer"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Nguyễn Thị Mỹ Diệu"
+                android:textColor="@color/orange_01"
+                android:textSize="23dp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/time_checkout"
-            style="@style/TextColor"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Sunday, 12:50:23, 1/1/2020"
-            android:textSize="15dp" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Check-in: "
+                android:textSize="15dp"
+                style="@style/TextColor"/>
+            <TextView
+                android:id="@+id/time_checkout"
+                style="@style/TextColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sunday, 12:50:23, 1/1/2020"
+                android:textSize="15dp" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/bill_show"

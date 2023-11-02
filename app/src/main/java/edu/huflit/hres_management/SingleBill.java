@@ -11,11 +11,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -24,15 +28,20 @@ import edu.huflit.hres_management.Adapter.OrderAdapter.OrderAppetizerAdapter;
 import edu.huflit.hres_management.Adapter.SingleBillAdapter;
 import edu.huflit.hres_management.Database.DBHelper;
 import edu.huflit.hres_management.Model.Appetizer;
+import edu.huflit.hres_management.Model.CreateOrder;
 import edu.huflit.hres_management.Model.FoodBill;
 import edu.huflit.hres_management.Model.ListBill;
+import vn.zalopay.sdk.Environment;
+import vn.zalopay.sdk.ZaloPayError;
+import vn.zalopay.sdk.ZaloPaySDK;
+import vn.zalopay.sdk.listeners.PayOrderListener;
 
 public class SingleBill extends AppCompatActivity {
     DBHelper db;
     ArrayList<FoodBill> arrayFoodBill = new ArrayList<>();
 
     ArrayList<ListBill> arrayListBill = new ArrayList<>();
-    Button btnPrintBill,btnCancelBill;
+    Button btnPrintBill,btnPayment;
     TextView tvNameCustomer,tvTableNumber,tvTimeCheckin,tvAmountCustomer,tvTotalMoney;
     RecyclerView rcvBill;
     int totalprice = 0;
@@ -41,6 +50,14 @@ public class SingleBill extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_bill);
+
+
+//        zalo init
+
+        StrictMode.ThreadPolicy policy = new
+                StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        ZaloPaySDK.init(2553, Environment.SANDBOX);
         tvNameCustomer = findViewById(R.id.tv_nameCusBill);
         tvTableNumber = findViewById(R.id.tv_numberTableBill);
         tvTimeCheckin = findViewById(R.id.tv_timeCheckInBill);
@@ -48,7 +65,7 @@ public class SingleBill extends AppCompatActivity {
         rcvBill = findViewById(R.id.lvBill);
         tvTotalMoney = findViewById(R.id.tvTotalPrice);
         btnPrintBill = findViewById(R.id.btn_printBill);
-        btnCancelBill = findViewById(R.id.btn_cancelBill);
+        btnPayment = findViewById(R.id.btn_cancelBill);
 
 
 
@@ -119,11 +136,44 @@ public class SingleBill extends AppCompatActivity {
 
 
         });
-        btnCancelBill.setOnClickListener(new View.OnClickListener() {
+        btnPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(SingleBill.this,OrderTableActivity.class);
-                startActivity(i);
+//                Intent i = new Intent(SingleBill.this,OrderTableActivity.class);
+//                startActivity(i);
+                CreateOrder orderApi = new CreateOrder();
+
+                try {
+                    JSONObject data = orderApi.createOrder(tvTotalMoney.getText().toString());
+                    Log.d("Amount", tvTotalMoney.getText().toString());
+
+                    String code = data.getString("return_code");
+                    Toast.makeText(getApplicationContext(), "return_code: " + code, Toast.LENGTH_LONG).show();
+
+                    if (code.equals("1")) {
+                      String token =  data.getString("zp_trans_token");
+                     ZaloPaySDK.getInstance().payOrder(SingleBill.this, token, "demozpdk://app", new PayOrderListener() {
+                         @Override
+                         public void onPaymentSucceeded(String s, String s1, String s2) {
+                             Log.e(TAG, "onPaymentSucceeded: " + "success" );
+                         }
+
+                         @Override
+                         public void onPaymentCanceled(String s, String s1) {
+
+                         }
+
+                         @Override
+                         public void onPaymentError(ZaloPayError zaloPayError, String s, String s1) {
+
+                         }
+                     });
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
             }
         });
     }

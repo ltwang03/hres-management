@@ -35,7 +35,7 @@ public class FoodBillAdapter extends RecyclerView.Adapter<FoodBillAdapter.ViewHo
             return;
         holder.tv_name_food.setText(foodBill.getNameFood());
         holder.tv_amount_food.setText(String.valueOf(foodBill.getAmountFood()));
-        holder.tv_total_item.setText(String.valueOf(foodBill.getPriceFood());
+        holder.tv_total_item.setText(String.valueOf(foodBill.getPriceFood()));
 
     }
 
