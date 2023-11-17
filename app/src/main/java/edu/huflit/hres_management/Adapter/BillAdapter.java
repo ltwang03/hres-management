@@ -55,12 +55,13 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ListBillViewHo
 
     db =new DBHelper(mContext);
         Cursor cursor1 = db.getPaidFood();
-        Log.e(TAG, "onBindViewHolder: " + bill.getTableNumber());
+        listFoodBill.clear(); // Clear the list before adding new data
+
         while (cursor1.moveToNext()) {
             if(cursor1.getString(1).equals(bill.getTableNumber()) && cursor1.getInt(5) != 0 && cursor1.getString(2).equals(bill.getTimeCheckIn())) {
+                    Log.e(TAG, "onBindViewHolder: " + bill.getTableNumber() );
 
-                listFoodBill.add(new FoodBill(cursor1.getInt(5),cursor1.getString(3),cursor1.getInt(4)));
-                Log.e(TAG, "onBindViewHolder: " + cursor1.getInt(5) + cursor1.getInt(4) );
+                listFoodBill.add(new FoodBill(cursor1.getInt(4),cursor1.getString(3),cursor1.getInt(5)));
                 price+=cursor1.getInt(5) * cursor1.getInt(4);
 
             }

@@ -28,7 +28,6 @@ import edu.huflit.hres_management.Adapter.OrderAdapter.OrderAppetizerAdapter;
 import edu.huflit.hres_management.Adapter.SingleBillAdapter;
 import edu.huflit.hres_management.Database.DBHelper;
 import edu.huflit.hres_management.Model.Appetizer;
-import edu.huflit.hres_management.Model.CreateOrder;
 import edu.huflit.hres_management.Model.FoodBill;
 import edu.huflit.hres_management.Model.ListBill;
 import vn.zalopay.sdk.Environment;
@@ -85,7 +84,6 @@ public class SingleBill extends AppCompatActivity {
         Log.e(TAG, "onCreate: "+tableNumber );
         while (cursor.moveToNext()) {
             if(cursor.getInt(  1)  == Integer.parseInt(tableNumber) && cursor.getInt(4) !=0) {
-                Log.e(TAG, "onCreate: 1" + "ok" );
                 FoodBill obj = new FoodBill(cursor.getInt(5),cursor.getString(3), cursor.getInt(4));
                 arrayFoodBill.add(obj);
                 totalprice+=(cursor.getInt(5) * cursor.getInt(4));
@@ -132,49 +130,12 @@ public class SingleBill extends AppCompatActivity {
                 }
                 Intent i = new Intent(SingleBill.this,OrderTableActivity.class);
                 startActivity(i);
+                finish();
             }
 
 
         });
-        btnPayment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Intent i = new Intent(SingleBill.this,OrderTableActivity.class);
-//                startActivity(i);
-                CreateOrder orderApi = new CreateOrder();
 
-                try {
-                    JSONObject data = orderApi.createOrder(tvTotalMoney.getText().toString());
-                    Log.d("Amount", tvTotalMoney.getText().toString());
 
-                    String code = data.getString("return_code");
-                    Toast.makeText(getApplicationContext(), "return_code: " + code, Toast.LENGTH_LONG).show();
-
-                    if (code.equals("1")) {
-                      String token =  data.getString("zp_trans_token");
-                     ZaloPaySDK.getInstance().payOrder(SingleBill.this, token, "demozpdk://app", new PayOrderListener() {
-                         @Override
-                         public void onPaymentSucceeded(String s, String s1, String s2) {
-                             Log.e(TAG, "onPaymentSucceeded: " + "success" );
-                         }
-
-                         @Override
-                         public void onPaymentCanceled(String s, String s1) {
-
-                         }
-
-                         @Override
-                         public void onPaymentError(ZaloPayError zaloPayError, String s, String s1) {
-
-                         }
-                     });
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
     }
 }

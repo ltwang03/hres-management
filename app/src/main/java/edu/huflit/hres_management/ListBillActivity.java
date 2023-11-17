@@ -37,7 +37,7 @@ public class ListBillActivity extends AppCompatActivity {
         fragmentTransaction.add(R.id.bottom_bar, bottomBar).commit();
         Cursor c1 = db.getListBills();
         while (c1.moveToNext()) {
-            listBill.add(0,new Bill(c1.getString(1), c1.getString(2),c1.getString(3),c1.getString(4)));
+            listBill.add(new Bill(c1.getString(1), c1.getString(2),c1.getString(3),c1.getString(4)));
         }
         c1.close();
         billAdapter = new BillAdapter(ListBillActivity.this,listBill,listFoodBill);

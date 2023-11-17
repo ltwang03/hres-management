@@ -30,7 +30,7 @@ import edu.huflit.hres_management.OrderFoodActivity;
 import edu.huflit.hres_management.R;
 import edu.huflit.hres_management.SingleBill;
 
-public class TableOrderAdapter  extends RecyclerView.Adapter<TableOrderAdapter.TableOrderViewHolder>
+public class  TableOrderAdapter  extends RecyclerView.Adapter<TableOrderAdapter.TableOrderViewHolder>
 {
     private Context mContext;
     private ArrayList<TableOrder> arrayList;
