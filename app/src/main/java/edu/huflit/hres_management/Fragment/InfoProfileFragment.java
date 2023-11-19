@@ -53,7 +53,7 @@ public class InfoProfileFragment extends Fragment {
         mbtnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //mở ra trang edit profile
+
                 Fragment editProfileFragment = new EditProfileFragment();
                 FragmentTransaction fragmentEditProfile = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentEditProfile.replace(R.id.layout_profile, editProfileFragment).addToBackStack(null).commit();
@@ -96,12 +96,12 @@ public class InfoProfileFragment extends Fragment {
     }
 
     private void RenderProfile(ProfileResponse profileResponse) {
-//        resID.setText(profileResponse.getRestaurantID());
-//        fullName.setText(profileResponse.getFullName());
-//        userName.setText(profileResponse.getUserName());
-//        phoneNumber.setText("0" + String.valueOf(profileResponse.getPhoneNumber()));
-//        editor.putString("fullName", profileResponse.getFullName());
-//        editor.putString("phoneNumber", "0" + String.valueOf(profileResponse.getPhoneNumber()));
-//        editor.apply();
+        resID.setText(profileResponse.getRestaurantID());
+        fullName.setText(profileResponse.getFullName());
+        userName.setText(profileResponse.getUserName());
+        phoneNumber.setText("0" + String.valueOf(profileResponse.getPhoneNumber()));
+        editor.putString("fullName", profileResponse.getFullName());
+        editor.putString("phoneNumber", "0" + String.valueOf(profileResponse.getPhoneNumber()));
+        editor.apply();
     }
 }
