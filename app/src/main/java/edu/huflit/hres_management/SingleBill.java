@@ -30,10 +30,6 @@ import edu.huflit.hres_management.Database.DBHelper;
 import edu.huflit.hres_management.Model.Appetizer;
 import edu.huflit.hres_management.Model.FoodBill;
 import edu.huflit.hres_management.Model.ListBill;
-import vn.zalopay.sdk.Environment;
-import vn.zalopay.sdk.ZaloPayError;
-import vn.zalopay.sdk.ZaloPaySDK;
-import vn.zalopay.sdk.listeners.PayOrderListener;
 
 public class SingleBill extends AppCompatActivity {
     DBHelper db;
@@ -53,10 +49,7 @@ public class SingleBill extends AppCompatActivity {
 
 //        zalo init
 
-        StrictMode.ThreadPolicy policy = new
-                StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-        ZaloPaySDK.init(2553, Environment.SANDBOX);
+
         tvNameCustomer = findViewById(R.id.tv_nameCusBill);
         tvTableNumber = findViewById(R.id.tv_numberTableBill);
         tvTimeCheckin = findViewById(R.id.tv_timeCheckInBill);
