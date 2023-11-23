@@ -2,37 +2,38 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ScreenBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListStaffActivity"
+    android:layout_weight="40"
     android:orientation="vertical"
-    style="@style/ScreenBackground"
     android:theme="@style/AppTheme"
-    android:layout_weight="40">
+    tools:context=".ListStaffActivity">
+
     <TextView
+        style="@style/EditNameMenu"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4"
         android:gravity="center"
         android:padding="10dp"
         android:text="Danh sách Nhân viên"
-        style="@style/EditNameMenu"
-        android:textSize="35dp"/>
+        android:textSize="35dp" />
 
     <LinearLayout
-        android:layout_marginStart="15dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="15dp"
         android:layout_weight="3"
         android:gravity="center"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/ic_search_staff"
+            style="@style/IconSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/delete_underline"
-            style="@style/IconSearch"/>
+            android:background="@drawable/delete_underline" />
 
         <EditText
             android:id="@+id/et_search_staff"
@@ -43,12 +44,14 @@
             android:background="@drawable/delete_underline"
             android:hint="Search"
             android:minHeight="48dp" />
+
         <ImageView
             android:id="@+id/ic_clear_staff"
+            style="@style/IconClear"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/IconClear"/>
+            android:layout_height="wrap_content" />
     </LinearLayout>
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -81,10 +84,9 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <FrameLayout
+        android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
-        android:id="@+id/bottom_bar">
-    </FrameLayout>
+        android:layout_weight="3"></FrameLayout>
 
 </LinearLayout>

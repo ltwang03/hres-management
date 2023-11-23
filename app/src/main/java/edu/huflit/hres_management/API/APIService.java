@@ -3,14 +3,21 @@ package edu.huflit.hres_management.API;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import edu.huflit.hres_management.API.model.AddCustomerRequest;
+import edu.huflit.hres_management.API.model.AddCustomerResponse;
 import edu.huflit.hres_management.API.model.AddFoodRequest;
 import edu.huflit.hres_management.API.model.AddFoodResponse;
+import edu.huflit.hres_management.API.model.DeleteCustomerRequest;
+import edu.huflit.hres_management.API.model.DeleteCustomerResponse;
 import edu.huflit.hres_management.API.model.DeleteFoodRequest;
 import edu.huflit.hres_management.API.model.DeleteFoodResponse;
 import edu.huflit.hres_management.API.model.DeleteUserRequest;
 import edu.huflit.hres_management.API.model.DeleteUserResponse;
+import edu.huflit.hres_management.API.model.EditCustomerRequest;
+import edu.huflit.hres_management.API.model.EditCustomerResponse;
 import edu.huflit.hres_management.API.model.EditProfileRequest;
 import edu.huflit.hres_management.API.model.EditProfileResponse;
+import edu.huflit.hres_management.API.model.GetCustomerResponse;
 import edu.huflit.hres_management.API.model.GetFoodResponse;
 import edu.huflit.hres_management.API.model.LoginRequest;
 import edu.huflit.hres_management.API.model.LoginResponse;
@@ -19,6 +26,7 @@ import edu.huflit.hres_management.API.model.RegisterManagerRequest;
 import edu.huflit.hres_management.API.model.RegisterManagerResponse;
 import edu.huflit.hres_management.API.model.RegisterStaffRequest;
 import edu.huflit.hres_management.API.model.RegisterStaffResponse;
+import edu.huflit.hres_management.API.model.SearchUserResponse;
 import edu.huflit.hres_management.API.model.UpdateFoodRequest;
 import edu.huflit.hres_management.API.model.UpdateFoodResponse;
 import edu.huflit.hres_management.API.model.UserResponse;
@@ -30,16 +38,18 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.Header;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 
 public interface APIService {
 
-//    static final String baseURL = "https://hres-management-server-production.up.railway.app/";
+    static final String baseURL = "https://69b7-115-79-143-209.ngrok-free.app/";
 //    static final String baseURL = "https://hres-management-server.onrender.com/";
 //    static final String baseURL = "https://7461-1-52-184-153.ngrok-free.app/";
-     static final String baseURL = "https://api.baden.live/";
+//     static final String baseURL = "https://api.baden.live/";
 
     Gson gson = new GsonBuilder().setLenient().create();
     APIService apiService = new Retrofit.Builder()
@@ -69,5 +79,14 @@ public interface APIService {
     Call<UpdateFoodResponse> updateFood(@Header("Authorization") String token, @Body UpdateFoodRequest updateFoodRequest);
     @HTTP(method = "DELETE", path = "api/delete/food", hasBody = true)
     Call<DeleteFoodResponse> deleteFood(@Header("Authorization") String token, @Body DeleteFoodRequest deleteFoodRequest);
-
+    @POST("auth/post/customer")
+    Call<AddCustomerResponse> addCustomer(@Header("Authorization") String token, @Body AddCustomerRequest addCustomerRequest);
+    @GET("auth/get/customers")
+    Call<GetCustomerResponse> getCustomer(@Header("Authorization") String token);
+    @DELETE("auth/delete/customer/{id}")
+    Call<DeleteCustomerResponse> deleteCustomer(@Header("Authorization") String token, @Path("id") String id);
+    @PATCH("auth/patch/customer/{id}")
+    Call<EditCustomerResponse> editCustomer(@Header("Authorization") String token, @Path("id") String id, @Body EditCustomerRequest editCustomerRequest);
+    @GET("auth/search/customer/{text}")
+    Call<SearchUserResponse> searchUser(@Header("Authorization") String token, @Path("text") String text);
 }
